@@ -97,9 +97,9 @@ GameObject:
   - 212: {fileID: 993361738}
   - 50: {fileID: 993361737}
   - 61: {fileID: 993361736}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RobotPlayer
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,7 +189,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_name: P1
+  team_number: 1
   controller: 0
+  player_color: {r: 0, g: 0, b: 0, a: 0}
+  max_health: 1000
+  cur_health: 0
   horizontal_movement: 0
   prev_horizontal_movement: 0
   vertical_movement: 0

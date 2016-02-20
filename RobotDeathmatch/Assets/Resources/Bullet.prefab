@@ -11,9 +11,10 @@ GameObject:
   - 50: {fileID: 5024026}
   - 58: {fileID: 5816652}
   - 212: {fileID: 21215096}
-  m_Layer: 0
+  - 114: {fileID: 11409886}
+  m_Layer: 11
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,6 +62,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &11409886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e62c7f1bddd3148bb35ddc288252f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  shooter_team_number: 0
 --- !u!212 &21215096
 SpriteRenderer:
   m_ObjectHideFlags: 1
