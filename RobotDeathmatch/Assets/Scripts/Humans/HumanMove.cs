@@ -16,6 +16,8 @@ public class HumanMove : PlayerInput {
 	public AudioClip Gunshot;
 
 
+	GameObject parent;
+
 	private float nextFire;
 	public float speed;
 	Animator anim;
@@ -23,6 +25,7 @@ public class HumanMove : PlayerInput {
 
 	// Use this for initialization
 	void Start () {
+		parent = transform.parent.gameObject;
 		target = this.GetComponent<Transform> ();
 		anim = GetComponent<Animator> ();
 		thisCollider = GetComponent<CircleCollider2D> ();
@@ -38,7 +41,7 @@ public class HumanMove : PlayerInput {
 			float MoveVertical = vertical_movement;
 
 			Vector2 movement = new Vector2 (MoveHorizontal, MoveVertical);
-			GetComponent<Rigidbody2D> ().velocity = movement * speed;
+			parent.GetComponent<Rigidbody2D> ().velocity = movement * speed;
 
 			bool walking = MoveHorizontal != 0 || MoveVertical != 0;
 			anim.SetBool ("walking", walking);
