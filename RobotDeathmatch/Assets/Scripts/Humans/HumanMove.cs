@@ -16,7 +16,7 @@ public class HumanMove : PlayerInput {
 	public AudioClip Gunshot;
 
 
-	GameObject parent;
+	public GameObject parent;
 
 	private float nextFire;
 	public float speed;
@@ -24,13 +24,13 @@ public class HumanMove : PlayerInput {
 	AudioSource audio;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
 		parent = transform.parent.gameObject;
 		target = this.GetComponent<Transform> ();
 		anim = GetComponent<Animator> ();
 		thisCollider = GetComponent<CircleCollider2D> ();
 		audio = GetComponent<AudioSource> ();
-
+		base.Start ();
 	}
 	
 	// Update is called once per frame
@@ -40,7 +40,7 @@ public class HumanMove : PlayerInput {
 			float MoveHorizontal = this.horizontal_movement;
 			float MoveVertical = vertical_movement;
 
-			Vector2 movement = new Vector2 (MoveHorizontal, MoveVertical);
+			Vector2 movement = new Vector2 (MoveHorizontal, -MoveVertical);
 			parent.GetComponent<Rigidbody2D> ().velocity = movement * speed;
 
 			bool walking = MoveHorizontal != 0 || MoveVertical != 0;
@@ -85,5 +85,5 @@ public class HumanMove : PlayerInput {
 		audio.Play ();
 		anim.SetTrigger ("die");
 		Destroy (this.gameObject, 3);
-	}
+	} 
 }

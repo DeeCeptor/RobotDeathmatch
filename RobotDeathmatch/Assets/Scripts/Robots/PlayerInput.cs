@@ -30,11 +30,16 @@ public class PlayerInput : MonoBehaviour
 	public bool right_bumper_held_down = false;		// Currently held down
 	public bool right_bumper_pressed = false;		// Trigger was pressed in this frame
 
-
-	void Awake()
+	HealthBar healthbar;
+	public virtual void Start() 
 	{
-
+		healthbar = GetComponent<HealthBar> ();
+		if (healthbar) {
+			healthbar.maxHealth = max_health;
+			healthbar.setHealth (max_health);
+		}
 	}
+
 
 	public void UpdateInputs () 
 	{
@@ -49,8 +54,17 @@ public class PlayerInput : MonoBehaviour
 		if (controller)
 		{
 			prev_aiming_direction = aiming_direction;
+			prev_flicked_aiming_direction = flicked_aiming_direction;
 			aiming_direction = new Vector2(Input.GetAxis(player_name + " RightStick X"),
 										Input.GetAxis(player_name + " RightStick Y"));
+
+			if (prev_aiming_direction == Vector2.zero && aiming_direction != Vector2.zero)
+			{
+				Debug.Log(aiming_direction.normalized);
+				flicked_aiming_direction = aiming_direction.normalized;
+			}
+			else
+				flicked_aiming_direction = Vector2.zero;
 		}
 		else
 		{
@@ -78,6 +92,8 @@ public class PlayerInput : MonoBehaviour
 	public virtual void TakeHit(float damage)
 	{
 		cur_health -= damage;
+		if (healthbar)
+			healthbar.setHealth (cur_health);
 
 		if (cur_health <= 0)
 			Die();
