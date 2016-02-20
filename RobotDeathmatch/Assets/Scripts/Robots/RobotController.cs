@@ -43,7 +43,7 @@ public class RobotController : PlayerInput
 			GameObject icon = (GameObject) Instantiate(Resources.Load("ActionSlot") as GameObject);
 			icon.transform.parent = UI_parent;
 			icon.transform.localScale = Vector3.one;
-			//action_icons[x] = icon.GetComponent<>();
+			action_icons[x] = icon.GetComponent<Animator>();
 		}
 	}
 	void Start()
@@ -101,7 +101,9 @@ public class RobotController : PlayerInput
 	{
 		player_input_queue.Enqueue(command);
 
-		//actions_queue[player_input_queue.Count - 1] animate something
+		action_icons[player_input_queue.Count - 1].SetBool("active", true);
+		//action_icons[player_input_queue.Count - 1].GetBool("active");
+		//actions_queue[player_input_queue.Count - 1].
 	}
 
 
@@ -144,12 +146,19 @@ public class RobotController : PlayerInput
 		performing_action = false;
 	}
 
+
+	// Takes all input currently entered and adds it to the queue that is executing actions
 	public void DequeuePlayerInput()
 	{
 		while (player_input_queue.Count > 0)
 		{
 			string command = player_input_queue.Dequeue();
 			actions_queue.Enqueue(command);
+		}
+
+		foreach (Animator anim in action_icons)
+		{
+			anim.SetBool("active", false);
 		}
 	}
 
