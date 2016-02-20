@@ -74,6 +74,10 @@ public class Bullet : MonoBehaviour
 		else if (other.tag == "Obstacle")
 		{
 			// Hit a piece of cover, destroy this bullet
+			DestructibleObstacle obs = other.GetComponent<DestructibleObstacle>();
+
+			obs.TakeHit(this.damage);
+
 			this.Bullet_Impacted();
 		}
 	}

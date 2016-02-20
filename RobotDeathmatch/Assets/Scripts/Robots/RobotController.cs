@@ -37,32 +37,36 @@ public class RobotController : PlayerInput
 		// We have all of the player input
 		UpdateInputs();
 
-		// Check for player input to be added the to the player input queue
-		if (prev_horizontal_movement == 0 && horizontal_movement != 0)
+		// If not maxed out on player inputs, allow more action inputs
+		if (player_input_queue.Count >= input_limit)
 		{
-			if (horizontal_movement > 0)
-				player_input_queue.Enqueue("MoveRight");
-			else
-				player_input_queue.Enqueue("MoveLeft");
-		}
-		if (prev_vertical_movement == 0 && vertical_movement != 0)
-		{
-			if (vertical_movement > 0)
-				player_input_queue.Enqueue("MoveUp");
-			else
-				player_input_queue.Enqueue("MoveDown");
-		}
-		// Aiming and firing
-		if (prev_flicked_aiming_direction == Vector2.zero && flicked_aiming_direction != Vector2.zero)
-		{
-			player_input_queue.Enqueue("MachineGun " + aiming_direction.x + " " + aiming_direction.y);
+			// Check for player input to be added the to the player input queue
+			if (prev_horizontal_movement == 0 && horizontal_movement != 0)
+			{
+				if (horizontal_movement > 0)
+					player_input_queue.Enqueue("MoveRight");
+				else
+					player_input_queue.Enqueue("MoveLeft");
+			}
+			if (prev_vertical_movement == 0 && vertical_movement != 0)
+			{
+				if (vertical_movement > 0)
+					player_input_queue.Enqueue("MoveUp");
+				else
+					player_input_queue.Enqueue("MoveDown");
+			}
+			// Aiming and firing
+			if (prev_flicked_aiming_direction == Vector2.zero && flicked_aiming_direction != Vector2.zero)
+			{
+				player_input_queue.Enqueue("MachineGun " + aiming_direction.x + " " + aiming_direction.y);
+			}
 		}
 
-
+		/*
 		if (player_input_queue.Count >= input_limit)
 		{
 			DequeuePlayerInput();
-		}
+		}*/
 
 
 		// Currently performing actions?
