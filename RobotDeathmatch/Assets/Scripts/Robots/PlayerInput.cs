@@ -31,7 +31,7 @@ public class PlayerInput : MonoBehaviour
 	public bool right_bumper_pressed = false;		// Trigger was pressed in this frame
 
 	HealthBar healthbar;
-	public void Start()
+	public virtual void Start()
 	{
 		healthbar = GetComponent<HealthBar> ();
 		if (healthbar) {
@@ -40,10 +40,6 @@ public class PlayerInput : MonoBehaviour
 		}
 	}
 
-	void Awake()
-	{
-
-	}
 
 	public void UpdateInputs () 
 	{
