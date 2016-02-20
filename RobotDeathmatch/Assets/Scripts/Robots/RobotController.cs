@@ -10,6 +10,7 @@ public class RobotController : PlayerInput
 	InputTimer timer;
 	Image[] action_icons;
 	Transform UI_parent; 
+	Animator top_anim;
 
 	// ACTIONS
 	string current_action;	// Action we are performing
@@ -34,6 +35,7 @@ public class RobotController : PlayerInput
 	{
 		physics = this.GetComponent<Rigidbody2D>();
 		cur_health = max_health;
+		top_anim = this.GetComponentInChildren<Animator>();
 
 		// Find the timer and register the robot
 		timer = GameObject.FindWithTag("Timer").GetComponent<InputTimer>();
@@ -120,16 +122,19 @@ public class RobotController : PlayerInput
 	{
 		performing_action = true;
 		physics.velocity = direction;
+		top_anim.SetBool ("walking", true);
 
 		yield return new WaitForSeconds(movement_time);
 
 		// Done moving
+		top_anim.SetBool ("walking", false);
 		performing_action = false;
 		physics.velocity = Vector2.zero;
 	}
 	IEnumerator MachineGun_Action(Vector2 direction)
 	{
 		performing_action = true;
+		top_anim.SetTrigger ("shoot");
 
 		int bullets_left = (int) num_machine_gun_bullets;
 		while (bullets_left > 0)
