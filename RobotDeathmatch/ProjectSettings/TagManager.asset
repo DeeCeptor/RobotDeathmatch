@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Floor
+  - Human
+  - Robot
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -14,9 +16,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Robots
+  - Humans
+  - Obstacles
   - 
   - 
   - 
@@ -41,4 +43,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 1326269169
+    locked: 0
+  - name: Effects
+    uniqueID: 3398550711
+    locked: 0
+  - name: Players
+    uniqueID: 1093026937
+    locked: 0
+  - name: Walls
+    uniqueID: 1070929625
     locked: 0
