@@ -19,12 +19,15 @@ public class HumanMove : PlayerInput {
 	private float nextFire;
 	public float speed;
 	Animator anim;
+	AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
 		target = this.GetComponent<Transform> ();
 		anim = GetComponent<Animator> ();
 		thisCollider = GetComponent<CircleCollider2D> ();
+		audio = GetComponent<AudioSource> ();
+
 	}
 	
 	// Update is called once per frame
@@ -51,6 +54,7 @@ public class HumanMove : PlayerInput {
 			FireBullet ();
 		} else if (IsDead == true) {
 			thisCollider.enabled = false;
+
 		}
 	}
 
@@ -60,6 +64,8 @@ public class HumanMove : PlayerInput {
 			GameObject bullet = (GameObject) Instantiate ( (GameObject) shot, shotSpawn.position, shotSpawn.rotation);
 			bullet.GetComponent<Bullet> ().Initialize_Bullet(1, 10, aiming_direction, 10, 3) ;
 			anim.SetTrigger ("shoot");
+			audio.clip = Gunshot;
+			audio.Play ();
 		}
 	}
 
@@ -72,6 +78,8 @@ public class HumanMove : PlayerInput {
 
 		base.Die ();
 		IsDead = true;
+		audio.clip = DeathNoise;
+		audio.Play ();
 		anim.SetTrigger ("die");
 		Destroy (this.gameObject, 3);
 	}
