@@ -16,7 +16,7 @@ public class InputTimer : MonoBehaviour
 	}
 	
 
-	void Update () 
+	void FixedUpdate () 
 	{
 		time_left_in_iteration -= Time.deltaTime;
 
@@ -27,6 +27,7 @@ public class InputTimer : MonoBehaviour
 	}
 	public void EnterInput()
 	{
+		Debug.Log("Entering input");
 		iterating = true;
 
 		// Done this iteration
@@ -40,11 +41,10 @@ public class InputTimer : MonoBehaviour
 		iterating = false;
 	}
 
+
 	public void AddActiveRobot(RobotController robot)
 	{
-		// Check if robot is present
-		if (!active_robots.Contains(robot))
-			StartCoroutine(AddRobot(robot));
+		StartCoroutine(AddRobot(robot));
 	}
 	IEnumerator AddRobot(RobotController robot)
 	{
@@ -52,7 +52,8 @@ public class InputTimer : MonoBehaviour
 		{
 			yield return new WaitForSeconds(0.1f);
 		}
-		active_robots.Add(robot);
+		if (!active_robots.Contains(robot))
+			active_robots.Add(robot);
 	}
 	public void RemoveActiveRobot(RobotController robot)
 	{
@@ -65,5 +66,11 @@ public class InputTimer : MonoBehaviour
 			yield return new WaitForSeconds(0.1f);
 		}
 		active_robots.Remove(robot);
+	}
+
+
+	void OnGUI()
+	{
+		GUI.Label(new Rect(0, 0, 1000, 1000), "" + time_left_in_iteration);
 	}
 }
