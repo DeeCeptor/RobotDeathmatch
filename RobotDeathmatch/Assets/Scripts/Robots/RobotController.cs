@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class RobotController : PlayerInput 
 {
 	Queue<string> player_input_queue = new Queue<string>();		// Input the player is adding in, input that has yet to be confirmed
 	Queue<string> actions_queue = new Queue<string>();	// Actions that we are in the midst of performing
 	InputTimer timer;
+	Animator[] action_icons;
+	Transform UI_parent;
 
 	// ACTIONS
 	string current_action;	// Action we are performing
@@ -30,6 +33,18 @@ public class RobotController : PlayerInput
 		// Find the timer and register the robot
 		timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<InputTimer>();
 		timer.AddActiveRobot(this);
+
+		// Spawn UI icons
+		UI_parent = this.transform.GetComponentInChildren<GridLayoutGroup>().transform;
+		action_icons = new Animator[input_limit];
+		for (int x = 0; x < input_limit; x++)
+		{
+			// Spawn 1 UI action icon per input limit
+			GameObject icon = (GameObject) Instantiate(Resources.Load("ActionSlot") as GameObject);
+			icon.transform.parent = UI_parent;
+			icon.transform.localScale = Vector3.one;
+			//action_icons[x] = icon.GetComponent<>();
+		}
 	}
 	void Start()
 	{
@@ -49,21 +64,21 @@ public class RobotController : PlayerInput
 			if (prev_horizontal_movement == 0 && horizontal_movement != 0)
 			{
 				if (horizontal_movement > 0)
-					player_input_queue.Enqueue("MoveRight");
+					QueueNewInput("MoveRight");
 				else
-					player_input_queue.Enqueue("MoveLeft");
+					QueueNewInput("MoveLeft");
 			}
 			if (prev_vertical_movement == 0 && vertical_movement != 0)
 			{
 				if (vertical_movement > 0)
-					player_input_queue.Enqueue("MoveUp");
+					QueueNewInput("MoveUp");
 				else
-					player_input_queue.Enqueue("MoveDown");
+					QueueNewInput("MoveDown");
 			}
 			// Aiming and firing
 			if (prev_flicked_aiming_direction == Vector2.zero && flicked_aiming_direction != Vector2.zero)
 			{
-				player_input_queue.Enqueue("MachineGun " + aiming_direction.x + " " + aiming_direction.y);
+				QueueNewInput("MachineGun " + aiming_direction.x + " " + aiming_direction.y);
 			}
 		}
 
@@ -79,6 +94,14 @@ public class RobotController : PlayerInput
 		{
 			ResolveNextAction();
 		}
+	}
+
+
+	public void QueueNewInput(string command)
+	{
+		player_input_queue.Enqueue(command);
+
+		//actions_queue[player_input_queue.Count - 1] animate something
 	}
 
 
