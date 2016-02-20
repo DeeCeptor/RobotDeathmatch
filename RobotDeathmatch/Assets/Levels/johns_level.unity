@@ -220,7 +220,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -309,7 +309,30 @@ Prefab:
       propertyPath: shotSpawn
       value: 
       objectReference: {fileID: 1542207204}
-    m_RemovedComponents: []
+    - target: {fileID: 11460276, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
+      propertyPath: controller
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21237930, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7cab50f81d47c2547aae6cb4c9618417,
+        type: 3}
+    - target: {fileID: 11460276, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
+      propertyPath: FireRate
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 459574, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .192000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 459574, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: .00200000009
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11427150, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
+    - {fileID: 11427170, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1542207204 stripped

@@ -6,13 +6,18 @@ public class HumanMove : PlayerInput {
 	public GameObject shot;
 	public Transform shotSpawn;
 	public float FireRate;
-	
+	Vector3 mouse_pos;
+	Vector3 human_pos;
+	Transform target;
+	float angle;
+
 	private float nextFire;
 	public float speed;
 	Animator anim;
 
 	// Use this for initialization
 	void Start () {
+		target = this.GetComponent<Transform> ();
 		anim = GetComponent<Animator> ();
 	}
 	
@@ -28,6 +33,13 @@ public class HumanMove : PlayerInput {
 
 		bool walking = MoveHorizontal != 0 || MoveVertical != 0;
 		anim.SetBool ("walking", walking);
+
+		mouse_pos = Input.mousePosition;
+		human_pos = Camera.main.WorldToScreenPoint (target.position);
+		mouse_pos.x = mouse_pos.x - human_pos.x;
+		mouse_pos.y = mouse_pos.y - human_pos.y;
+		angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg - 90;
+		transform.rotation = Quaternion.Euler (0, 0, angle);
 
 
 		FireBullet ();
