@@ -31,7 +31,7 @@ public class PlayerInput : MonoBehaviour
 	public bool right_bumper_pressed = false;		// Trigger was pressed in this frame
 
 	HealthBar healthbar;
-	public void Start()
+	public virtual void Start()
 	{
 		healthbar = GetComponent<HealthBar> ();
 		if (healthbar) {
@@ -39,11 +39,7 @@ public class PlayerInput : MonoBehaviour
 			healthbar.setHealth (max_health);
 		}
 	}
-	 
-	void Awake()
-	{
 
-	}
 
 	public void UpdateInputs () 
 	{
@@ -58,8 +54,17 @@ public class PlayerInput : MonoBehaviour
 		if (controller)
 		{
 			prev_aiming_direction = aiming_direction;
+			prev_flicked_aiming_direction = flicked_aiming_direction;
 			aiming_direction = new Vector2(Input.GetAxis(player_name + " RightStick X"),
 										Input.GetAxis(player_name + " RightStick Y"));
+
+			if (prev_aiming_direction == Vector2.zero && aiming_direction != Vector2.zero)
+			{
+				Debug.Log(aiming_direction.normalized);
+				flicked_aiming_direction = aiming_direction.normalized;
+			}
+			else
+				flicked_aiming_direction = Vector2.zero;
 		}
 		else
 		{

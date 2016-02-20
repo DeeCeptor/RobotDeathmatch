@@ -64,14 +64,16 @@ public class RobotController : PlayerInput
 		if (player_input_queue.Count < input_limit)
 		{
 			// Check for player input to be added the to the player input queue
-			if (prev_horizontal_movement == 0 && horizontal_movement != 0)
+			if (prev_horizontal_movement == 0 && horizontal_movement != 0
+				&& Mathf.Abs(horizontal_movement) > Mathf.Abs(vertical_movement))
 			{
 				if (horizontal_movement > 0)
 					QueueNewInput("MoveRight");
 				else
 					QueueNewInput("MoveLeft");
 			}
-			if (prev_vertical_movement == 0 && vertical_movement != 0)
+			if (prev_vertical_movement == 0 && vertical_movement != 0
+				&& Mathf.Abs(vertical_movement) > Mathf.Abs(horizontal_movement))
 			{
 				if (vertical_movement > 0)
 					QueueNewInput("MoveUp");
@@ -81,7 +83,7 @@ public class RobotController : PlayerInput
 			// Aiming and firing
 			if (prev_flicked_aiming_direction == Vector2.zero && flicked_aiming_direction != Vector2.zero)
 			{
-				QueueNewInput("MachineGun " + aiming_direction.x + " " + aiming_direction.y);
+				QueueNewInput("MachineGun " + flicked_aiming_direction.x + " " + flicked_aiming_direction.y);
 			}
 		}
 
@@ -154,7 +156,6 @@ public class RobotController : PlayerInput
 			float wait_duration = machine_gun_duration / (float) num_machine_gun_bullets;
 			yield return new WaitForSeconds(wait_duration);
 		}
-		Debug.Log(timer.time_left_in_iteration);
 		performing_action = false;
 	}
 
