@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11401446}
   - 95: {fileID: 9522884}
   m_Layer: 5
-  m_Name: ActionSlot 1
+  m_Name: ActionSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

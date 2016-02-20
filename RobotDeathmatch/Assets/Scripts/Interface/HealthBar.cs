@@ -25,10 +25,10 @@ public class HealthBar : MonoBehaviour {
 	void Update () {
 		if (Time.time > showTime + fadeDelay) {
 			Color barColor = barRender.color;
-			barColor.a -= 5;
+			barColor.a -= 0.05f;
 			barRender.color = barColor;
 			Color containerColor = containerRender.color;
-			containerColor.a -= 5;
+			containerColor.a -= 0.05f;
 			containerRender.color = containerColor;
 		}
 	}
@@ -59,10 +59,10 @@ public class HealthBar : MonoBehaviour {
 	{
 		showTime = Time.time;
 		Color barColor = barRender.color;
-		barColor.a = 255;
+		barColor.a = 1f;
 		barRender.color = barColor;
 		Color containerColor = containerRender.color;
-		containerColor.a = 255;
+		containerColor.a = 1f;
 		containerRender.color = containerColor;
 	}
 }
