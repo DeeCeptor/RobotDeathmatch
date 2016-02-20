@@ -8,7 +8,7 @@ public class SlowAfter : MonoBehaviour
 
 	void Start () {
 		physics = this.GetComponent<Rigidbody2D>();
-		slow_After = slow_After + Random.value * 0.2f - 0.1f;	// A bit of random variation when to slow down
+		slow_After = slow_After + Random.value * slow_After - slow_After / 2;	// A bit of random variation when to slow down
 	}
 	
 

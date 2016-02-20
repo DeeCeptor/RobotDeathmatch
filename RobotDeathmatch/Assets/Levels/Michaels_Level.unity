@@ -270,6 +270,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 126288, guid: 444777d7d21a91b49a2c99bdba1c2a84, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 444777d7d21a91b49a2c99bdba1c2a84, type: 2}
   m_IsPrefabParent: 0
@@ -787,6 +791,34 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2101398233}
+    - target: {fileID: 22435334, guid: 53f8f34eebf69754c82e09685ae90d8f, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22435334, guid: 53f8f34eebf69754c82e09685ae90d8f, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22435334, guid: 53f8f34eebf69754c82e09685ae90d8f, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455320, guid: 53f8f34eebf69754c82e09685ae90d8f, type: 2}
+      propertyPath: m_CellSize.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455320, guid: 53f8f34eebf69754c82e09685ae90d8f, type: 2}
+      propertyPath: m_CellSize.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455320, guid: 53f8f34eebf69754c82e09685ae90d8f, type: 2}
+      propertyPath: m_StartCorner
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455320, guid: 53f8f34eebf69754c82e09685ae90d8f, type: 2}
+      propertyPath: m_ChildAlignment
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53f8f34eebf69754c82e09685ae90d8f, type: 2}
   m_IsPrefabParent: 0
