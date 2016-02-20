@@ -80,7 +80,7 @@ public class Bullet : MonoBehaviour
 			obs.TakeHit (this.damage);
 
 			this.Bullet_Impacted ();
-		} else {
+		} else if (other.tag != "Bullet"){
 			this.Bullet_Impacted ();
 		}
 		}
