@@ -9,7 +9,7 @@ public class RobotController : PlayerInput
 	Queue<string> actions_queue = new Queue<string>();	// Actions that we are in the midst of performing
 	InputTimer timer;
 	Image[] action_icons;
-	Transform UI_parent;
+	Transform UI_parent; 
 
 	// ACTIONS
 	string current_action;	// Action we are performing

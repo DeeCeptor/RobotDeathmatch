@@ -276,7 +276,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -287,7 +287,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -298,7 +298,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &9531902
 Animator:
   serializedVersion: 3
@@ -402,11 +402,12 @@ MonoBehaviour:
   left_bumper_pressed: 0
   right_bumper_held_down: 0
   right_bumper_pressed: 0
-  shot: {fileID: 188730, guid: de46c0f149074b344b6304d977cd8055, type: 2}
+  shot: {fileID: 161634, guid: c158b07802a434343a70dccb32d65d8b, type: 2}
   shotSpawn: {fileID: 485954}
   FireRate: 0.25
   DeathNoise: {fileID: 8300000, guid: 9dafc746234b4bd418c5df122d22c68b, type: 3}
   Gunshot: {fileID: 8300000, guid: 24c5de575b831cc40a3262a7861f27b6, type: 3}
+  parent: {fileID: 0}
   speed: 5
 --- !u!212 &21224248
 SpriteRenderer:
@@ -549,6 +550,22 @@ Prefab:
       propertyPath: m_TagString
       value: Human
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shot
+      value: 
+      objectReference: {fileID: 161634, guid: c158b07802a434343a70dccb32d65d8b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 126288}

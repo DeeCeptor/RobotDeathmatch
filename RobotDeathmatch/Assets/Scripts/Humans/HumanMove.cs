@@ -85,5 +85,5 @@ public class HumanMove : PlayerInput {
 		audio.Play ();
 		anim.SetTrigger ("die");
 		Destroy (this.gameObject, 3);
-	}
+	} 
 }
