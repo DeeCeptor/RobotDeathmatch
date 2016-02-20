@@ -39,7 +39,7 @@ public class PlayerInput : MonoBehaviour
 			healthbar.setHealth (max_health);
 		}
 	}
-
+	 
 	void Awake()
 	{
 

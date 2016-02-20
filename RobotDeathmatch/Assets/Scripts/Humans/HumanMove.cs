@@ -23,14 +23,18 @@ public class HumanMove : PlayerInput {
 	Animator anim;
 	AudioSource audio;
 
-	// Use this for initialization
+	// Use this for initialization 
 	public void Start () {
-		base.Start ();
+		Debug.Log ("H");
+
+		Debug.Log ("a");
+
 		parent = transform.parent.gameObject;
 		target = this.GetComponent<Transform> ();
 		anim = GetComponent<Animator> ();
 		thisCollider = GetComponent<CircleCollider2D> ();
 		audio = GetComponent<AudioSource> ();
+		base.Start ();
 
 	}
 	
