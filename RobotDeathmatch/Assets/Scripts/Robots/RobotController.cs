@@ -17,7 +17,7 @@ public class RobotController : PlayerInput
 	float movement_time = 0.4f;	// Time in seconds it takes the robot to move per move action
 	float movement_velocity = 2.0f;
 	bool performing_action = false;
-	int input_limit = 3;	// If over this limit, dequeue the inputs
+	int input_limit = 5;	// If over this limit, dequeue the inputs
 
 	// MACHINE GUN
 	float machine_gun_duration = .2f;

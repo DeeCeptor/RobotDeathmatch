@@ -442,11 +442,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 468942, guid: fd9adf1e682c3d54f9d18f41672dec98, type: 2}
       propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408372, guid: fd9adf1e682c3d54f9d18f41672dec98, type: 2}
-      propertyPath: time_to_live
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd9adf1e682c3d54f9d18f41672dec98, type: 2}
@@ -818,6 +814,10 @@ Prefab:
     - target: {fileID: 11455320, guid: 53f8f34eebf69754c82e09685ae90d8f, type: 2}
       propertyPath: m_ChildAlignment
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455320, guid: 53f8f34eebf69754c82e09685ae90d8f, type: 2}
+      propertyPath: m_ConstraintCount
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53f8f34eebf69754c82e09685ae90d8f, type: 2}
