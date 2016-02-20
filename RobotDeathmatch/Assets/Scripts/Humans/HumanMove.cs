@@ -15,6 +15,9 @@ public class HumanMove : PlayerInput {
 	public AudioClip DeathNoise;
 	public AudioClip Gunshot;
 	public GameObject bloodspray;
+	public GameObject bloodpool1;
+	public GameObject bloodpool2;
+	public GameObject bloodpool3;
 
 	public GameObject parent;
 
@@ -85,6 +88,18 @@ public class HumanMove : PlayerInput {
 	{
 		base.TakeHit (damage, collision_position);
 		GameObject spobj = Instantiate (bloodspray, collision_position, this.transform.rotation) as GameObject;
+		switch (Random.Range (0, 3)) {
+			case 0:
+			Instantiate (bloodpool1, collision_position, this.transform.rotation);
+				break;
+			case 1:
+			Instantiate (bloodpool2, collision_position, this.transform.rotation);
+				break;
+			case 2:
+			Instantiate (bloodpool3, collision_position, this.transform.rotation);
+				break;
+		}
+
 		Destroy (spobj, 1);
 	}
 	public override void Die ()
