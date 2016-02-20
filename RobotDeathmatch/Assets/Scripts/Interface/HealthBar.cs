@@ -57,6 +57,8 @@ public class HealthBar : MonoBehaviour {
 
 	void showBar()
 	{
+		if (!barRender)
+			Start ();
 		showTime = Time.time;
 		Color barColor = barRender.color;
 		barColor.a = 1f;
