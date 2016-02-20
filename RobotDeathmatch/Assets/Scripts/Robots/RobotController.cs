@@ -6,6 +6,7 @@ public class RobotController : PlayerInput
 {
 	Queue<string> player_input_queue = new Queue<string>();		// Input the player is adding in, input that has yet to be confirmed
 	Queue<string> actions_queue = new Queue<string>();	// Actions that we are in the midst of performing
+	InputTimer timer;
 
 	// ACTIONS
 	string current_action;	// Action we are performing
@@ -16,15 +17,19 @@ public class RobotController : PlayerInput
 	int input_limit = 3;	// If over this limit, dequeue the inputs
 
 	// MACHINE GUN
-	float machine_gun_duration = .4f;
-	int num_machine_gun_bullets = 20;
-	float machine_gun_speed = 9.0f;
+	float machine_gun_duration = .2f;
+	int num_machine_gun_bullets = 15;
+	float machine_gun_speed = 20.0f;
 	float machine_gun_damage = 50;
 
 	void Awake()
 	{
 		physics = this.GetComponent<Rigidbody2D>();
 		cur_health = max_health;
+
+		// Find the timer and register the robot
+		timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<InputTimer>();
+		timer.AddActiveRobot(this);
 	}
 	void Start()
 	{
@@ -38,7 +43,7 @@ public class RobotController : PlayerInput
 		UpdateInputs();
 
 		// If not maxed out on player inputs, allow more action inputs
-		if (player_input_queue.Count >= input_limit)
+		if (player_input_queue.Count < input_limit)
 		{
 			// Check for player input to be added the to the player input queue
 			if (prev_horizontal_movement == 0 && horizontal_movement != 0)
@@ -109,9 +114,10 @@ public class RobotController : PlayerInput
 				Quaternion.AngleAxis(angle, Vector3.forward));
 			bullet.GetComponent<Bullet>().Initialize_Bullet(this.team_number, machine_gun_damage, bullet_dir, machine_gun_speed, 3.0f);
 
-			yield return new WaitForSeconds(machine_gun_duration / num_machine_gun_bullets);
+			float wait_duration = machine_gun_duration / (float) num_machine_gun_bullets;
+			yield return new WaitForSeconds(wait_duration);
 		}
-
+		Debug.Log(timer.time_left_in_iteration);
 		performing_action = false;
 	}
 

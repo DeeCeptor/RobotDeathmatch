@@ -8,6 +8,7 @@ TagManager:
   - Robot
   - Obstacle
   - Bullet
+  - Timer
   layers:
   - Default
   - TransparentFX
