@@ -73,6 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   shooter_team_number: 0
+  sparks: {fileID: 176574, guid: abdc3026f333c0743b75b8906e185963, type: 2}
 --- !u!212 &21292968
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -118,6 +119,10 @@ Prefab:
       propertyPath: m_TagString
       value: Bullet
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sparks
+      value: 
+      objectReference: {fileID: 176574, guid: abdc3026f333c0743b75b8906e185963, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 188730}

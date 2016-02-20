@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 	public float damage;	// Grab this damage from the player controller
 	public int shooter_team_number;
 	float time_left;	// When this hits 0, destroy bullet
+	public GameObject sparks;
 
 	void Awake ()
 	{
@@ -50,7 +51,8 @@ public class Bullet : MonoBehaviour
 	public void Bullet_Impacted()
 	{
 		// Any graphical stuff of the bullet hitting something
-
+		GameObject spobj = Instantiate (sparks, this.transform.position, this.transform.rotation) as GameObject;
+		Destroy (spobj, 1);
 		Destroy(this.gameObject);
 	}
 
