@@ -34,6 +34,10 @@ public class PlayerInput : MonoBehaviour
 	public void Start()
 	{
 		healthbar = GetComponent<HealthBar> ();
+		if (healthbar) {
+			healthbar.maxHealth = max_health;
+			healthbar.setHealth (max_health);
+		}
 	}
 
 	void Awake()
