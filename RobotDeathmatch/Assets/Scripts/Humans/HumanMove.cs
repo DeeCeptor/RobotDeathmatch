@@ -24,13 +24,13 @@ public class HumanMove : PlayerInput {
 	AudioSource audio;
 
 	// Use this for initialization
-	public override void Start () {
+	public void Start () {
 		parent = transform.parent.gameObject;
 		target = this.GetComponent<Transform> ();
 		anim = GetComponent<Animator> ();
 		thisCollider = GetComponent<CircleCollider2D> ();
 		audio = GetComponent<AudioSource> ();
-		base.Start ();
+		base.init ();
 	}
 	
 	// Update is called once per frame
