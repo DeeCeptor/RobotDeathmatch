@@ -142,7 +142,8 @@ public class RobotController : PlayerInput
 			GameObject casing = (GameObject) Instantiate(Resources.Load("Casing") as GameObject, 
 				this.transform.position, 
 				Quaternion.AngleAxis(angle, Vector3.forward));
-			
+			casing.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0));
+
 			float wait_duration = machine_gun_duration / (float) num_machine_gun_bullets;
 			yield return new WaitForSeconds(wait_duration);
 		}
