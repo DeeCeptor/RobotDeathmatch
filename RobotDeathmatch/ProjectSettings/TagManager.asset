@@ -42,11 +42,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Floor
     uniqueID: 1326269169
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Effects
     uniqueID: 3398550711
