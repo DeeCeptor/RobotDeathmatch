@@ -68,7 +68,6 @@ public class PlayerInput : MonoBehaviour
 
 			if (prev_aiming_direction == Vector2.zero && aiming_direction != Vector2.zero)
 			{
-				Debug.Log(aiming_direction.normalized);
 				flicked_aiming_direction = aiming_direction.normalized;
 			}
 			else

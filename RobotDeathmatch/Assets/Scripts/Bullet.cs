@@ -67,7 +67,8 @@ public class Bullet : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Robot" || other.tag == "Human") {
+		if (other.tag == "Robot" || other.tag == "Human") 
+		{
 			PlayerInput player = other.GetComponent<PlayerInput> ();
 
 			// Should we be hurt by this bullet?
@@ -76,21 +77,19 @@ public class Bullet : MonoBehaviour
 
 			// Take a hit
 			player.TakeHit (this.damage, this.transform.position, owners_name);
-
-			if (other.tag == "Human" && shooter_team_number != 1) {
-				this.Bullet_Impacted ();
-			} else if (other.tag == "Robot" && shooter_team_number != 2) {
-				this.Bullet_Impacted ();
-			} 
-		} else if (other.tag == "Obstacle") {
+			this.Bullet_Impacted();
+		} 
+		else if (other.tag == "Obstacle") {
 			// Hit a piece of cover, destroy this bullet
 			DestructibleObstacle obs = other.GetComponent<DestructibleObstacle> ();
 
 			obs.TakeHit (this.damage);
 
 			this.Bullet_Impacted ();
-		} else if (other.tag != "Bullet"){
+		} 
+		else if (other.tag != "Bullet")
+		{
 			this.Bullet_Impacted ();
 		}
-		}
+	}
 }

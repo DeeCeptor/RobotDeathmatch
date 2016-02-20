@@ -21,6 +21,9 @@ public class HumanMove : PlayerInput {
 
 	public GameObject parent;
 
+	Quaternion desired_rotation;
+	float rotation_speed = 10f;
+
 	private float nextFire;
 	public float speed;
 	float bullet_speed = 15;
@@ -46,7 +49,8 @@ public class HumanMove : PlayerInput {
 	void Update () {
 		if (Time.timeScale > 0) {
 			UpdateInputs ();
-			if (IsDead == false) {
+			if (IsDead == false) 
+			{
 				float MoveHorizontal = this.horizontal_movement;
 				float MoveVertical = vertical_movement;
 
@@ -56,16 +60,35 @@ public class HumanMove : PlayerInput {
 				bool walking = MoveHorizontal != 0 || MoveVertical != 0;
 				anim.SetBool ("walking", walking);
 
-				mouse_pos = Input.mousePosition;
-				human_pos = Camera.main.WorldToScreenPoint (target.position);
-				mouse_pos.x = mouse_pos.x - human_pos.x;
-				mouse_pos.y = mouse_pos.y - human_pos.y;
-				angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg - 90;
-				transform.rotation = Quaternion.Euler (0, 0, angle);
-
 
 				FireBullet ();
-			} else if (IsDead == true) {
+
+				// Rotate towards desired rotation
+				if (!controller)
+				{
+					mouse_pos = Input.mousePosition;
+					human_pos = Camera.main.WorldToScreenPoint (target.position);
+					mouse_pos.x = mouse_pos.x - human_pos.x;
+					mouse_pos.y = mouse_pos.y - human_pos.y;
+					angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg - 90;
+					transform.rotation = Quaternion.Euler (0, 0, angle);
+				}
+				else
+				{
+					// Look towards where shooting or if we haven't shot in a while rotate towards movement direction
+					// Check if we've shot recently
+					if (Time.time > nextFire + 0.8f)
+					{
+						// Rotate towards walking direction
+						float angle_ = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+						desired_rotation = Quaternion.AngleAxis(angle_ - 90, Vector3.forward);
+					}
+
+					this.transform.rotation = Quaternion.Slerp(this.transform.rotation, desired_rotation, Time.deltaTime * rotation_speed);
+				}
+			} 
+			else if (IsDead == true) 
+			{
 				thisCollider.enabled = false;
 
 			}
@@ -76,6 +99,10 @@ public class HumanMove : PlayerInput {
 		if (Time.time > nextFire
 			&& ((controller && aiming_direction != Vector2.zero) || (!controller && flicked_aiming_direction != Vector2.zero)))
 		{
+			// Look towards where we're shooting
+			float angle_ = Mathf.Atan2(aiming_direction.y, aiming_direction.x) * Mathf.Rad2Deg;
+			desired_rotation = Quaternion.AngleAxis(angle_ - 90, Vector3.forward);
+
 			nextFire = Time.time + FireRate;
 			GameObject bullet = (GameObject) Instantiate ( (GameObject) shot, shotSpawn.position, shotSpawn.rotation);
 			bullet.GetComponent<Bullet> ().Initialize_Bullet(this.player_name, team_number, bullet_damage, aiming_direction, bullet_speed, 3) ;
