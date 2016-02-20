@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 146553769}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a0a5072350c52a40b568d9c738c0d66, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -293,9 +293,29 @@ Prefab:
       propertyPath: FireRate
       value: .25
       objectReference: {fileID: 0}
+    - target: {fileID: 11460276, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
+      propertyPath: player_name
+      value: P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460276, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
+      propertyPath: team_number
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460276, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
+      propertyPath: shot
+      value: 
+      objectReference: {fileID: 161634, guid: c158b07802a434343a70dccb32d65d8b, type: 2}
+    - target: {fileID: 11460276, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
+      propertyPath: shotSpawn
+      value: 
+      objectReference: {fileID: 1542207204}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1542207204 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 459574, guid: bb7e4da2ff49703449c1b17a7a202498, type: 2}
+  m_PrefabInternal: {fileID: 1418131642}
 --- !u!1 &2019546603
 GameObject:
   m_ObjectHideFlags: 0
