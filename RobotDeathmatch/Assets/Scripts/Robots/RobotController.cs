@@ -48,6 +48,7 @@ public class RobotController : PlayerInput
 			icon.transform.localScale = Vector3.one;
 			action_icons[x] = icon.GetComponent<Image>();
 		}
+		base.init ();
 	}
 	void Start()
 	{

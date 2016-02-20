@@ -92,8 +92,10 @@ public class PlayerInput : MonoBehaviour
 	public virtual void TakeHit(float damage)
 	{
 		cur_health -= damage;
-		if (healthbar)
+
+		if (healthbar) {
 			healthbar.setHealth (cur_health);
+		}
 
 		if (cur_health <= 0)
 			Die();
