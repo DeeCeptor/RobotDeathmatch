@@ -89,7 +89,7 @@ public class PlayerInput : MonoBehaviour
 
 
 
-	public virtual void TakeHit(float damage)
+	public virtual void TakeHit(float damage, Vector3 collision_position)
 	{
 		cur_health -= damage;
 		if (healthbar)

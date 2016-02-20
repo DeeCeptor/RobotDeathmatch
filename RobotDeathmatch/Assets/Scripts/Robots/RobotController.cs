@@ -28,6 +28,8 @@ public class RobotController : PlayerInput
 	public Sprite open_action_slot;
 	public Sprite filled_action_slot;
 
+	public GameObject robosparks;
+
 	void Awake()
 	{
 		physics = this.GetComponent<Rigidbody2D>();
@@ -47,6 +49,7 @@ public class RobotController : PlayerInput
 			icon.transform.parent = UI_parent;
 			icon.transform.localScale = Vector3.one;
 			action_icons[x] = icon.GetComponent<Image>();
+		
 		}
 	}
 	void Start()
@@ -214,6 +217,9 @@ public class RobotController : PlayerInput
 	public override void TakeHit(float damage)
 	{
 		base.TakeHit(damage);
+		GameObject spobj = Instantiate (robosparks, this.transform.position, this.transform.rotation) as GameObject;
+		Destroy (spobj, 1);
+
 	}
 	public override void Die()
 	{

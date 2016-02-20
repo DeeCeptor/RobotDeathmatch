@@ -73,7 +73,7 @@ public class Bullet : MonoBehaviour
 				return;
 
 			// Take a hit
-			player.TakeHit (this.damage);
+			player.TakeHit (this.damage, this.transform.position);
 
 			if (other.tag == "Human" && shooter_team_number != 1) {
 				this.Bullet_Impacted ();
