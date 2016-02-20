@@ -44,29 +44,31 @@ public class HumanMove : PlayerInput {
 	
 
 	void Update () {
-		UpdateInputs ();
-		if (IsDead == false) {
-			float MoveHorizontal = this.horizontal_movement;
-			float MoveVertical = vertical_movement;
+		if (Time.timeScale > 0) {
+			UpdateInputs ();
+			if (IsDead == false) {
+				float MoveHorizontal = this.horizontal_movement;
+				float MoveVertical = vertical_movement;
 
-			Vector2 movement = new Vector2 (MoveHorizontal, -MoveVertical);
-			parent.GetComponent<Rigidbody2D> ().velocity = movement * speed;
+				Vector2 movement = new Vector2 (MoveHorizontal, -MoveVertical);
+				parent.GetComponent<Rigidbody2D> ().velocity = movement * speed;
 
-			bool walking = MoveHorizontal != 0 || MoveVertical != 0;
-			anim.SetBool ("walking", walking);
+				bool walking = MoveHorizontal != 0 || MoveVertical != 0;
+				anim.SetBool ("walking", walking);
 
-			mouse_pos = Input.mousePosition;
-			human_pos = Camera.main.WorldToScreenPoint (target.position);
-			mouse_pos.x = mouse_pos.x - human_pos.x;
-			mouse_pos.y = mouse_pos.y - human_pos.y;
-			angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg - 90;
-			transform.rotation = Quaternion.Euler (0, 0, angle);
+				mouse_pos = Input.mousePosition;
+				human_pos = Camera.main.WorldToScreenPoint (target.position);
+				mouse_pos.x = mouse_pos.x - human_pos.x;
+				mouse_pos.y = mouse_pos.y - human_pos.y;
+				angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg - 90;
+				transform.rotation = Quaternion.Euler (0, 0, angle);
 
 
-			FireBullet ();
-		} else if (IsDead == true) {
-			thisCollider.enabled = false;
+				FireBullet ();
+			} else if (IsDead == true) {
+				thisCollider.enabled = false;
 
+			}
 		}
 	}
 
