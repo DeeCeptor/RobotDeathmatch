@@ -13,15 +13,25 @@ public class Pause : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Pause") && ispaused == false) {
+		if (Input.GetButtonDown ("Pause")) {
+			TogglePause();
+		}
+	}
+
+	public void TogglePause()
+	{
+		if (ispaused == false){
 			Time.timeScale = 0f;
 			ispaused = true;
 			pausedscreen.enabled = true;
-		} else if (Input.GetButtonDown ("Pause") && ispaused == true) {
+		} else if (ispaused == true) {
 			Time.timeScale = 1f;
 			ispaused = false;
 			pausedscreen.enabled=false;
 		}
+	}
+	public void Quit(){
+		Application.Quit ();
 	}
 
 	}
