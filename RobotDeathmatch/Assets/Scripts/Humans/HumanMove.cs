@@ -30,8 +30,7 @@ public class HumanMove : PlayerInput {
 	Animator anim;
 	AudioSource audio;
 
-	// Use this for initialization
-	public void Start () {
+	void Awake () {
 		parent = transform.parent.gameObject;
 		target = this.GetComponent<Transform> ();
 		anim = GetComponent<Animator> ();
@@ -43,7 +42,7 @@ public class HumanMove : PlayerInput {
 		base.init ();
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
 		if (Time.timeScale > 0) {
 			UpdateInputs ();
@@ -79,16 +78,16 @@ public class HumanMove : PlayerInput {
 		{
 			nextFire = Time.time + FireRate;
 			GameObject bullet = (GameObject) Instantiate ( (GameObject) shot, shotSpawn.position, shotSpawn.rotation);
-			bullet.GetComponent<Bullet> ().Initialize_Bullet(team_number, bullet_damage, aiming_direction, bullet_speed, 3) ;
+			bullet.GetComponent<Bullet> ().Initialize_Bullet(this.player_name, team_number, bullet_damage, aiming_direction, bullet_speed, 3) ;
 			anim.SetTrigger ("shoot");
 			audio.clip = Gunshot;
 			audio.Play ();
 		}
 	}
 
-	public override void TakeHit (float damage, Vector3 collision_position)
+	public override void TakeHit (float damage, Vector3 collision_position, string attacker_name)
 	{
-		base.TakeHit (damage, collision_position);
+		base.TakeHit (damage, collision_position, attacker_name);
 		GameObject spobj = Instantiate (bloodspray, collision_position, this.transform.rotation) as GameObject;
 		switch (Random.Range (0, 3)) {
 			case 0:
@@ -104,10 +103,10 @@ public class HumanMove : PlayerInput {
 
 		Destroy (spobj, 1);
 	}
-	public override void Die ()
+	public override void Die (string attacker_name)
 	{
 
-		base.Die ();
+		base.Die (attacker_name);
 		IsDead = true;
 		audio.clip = DeathNoise;
 		audio.Play ();

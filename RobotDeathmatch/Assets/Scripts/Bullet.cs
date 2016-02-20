@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 	public int shooter_team_number;
 	float time_left;	// When this hits 0, destroy bullet
 	public GameObject sparks;
+	string owners_name;
 
 	void Awake ()
 	{
@@ -26,8 +27,9 @@ public class Bullet : MonoBehaviour
 	}
 
 	// NEEDS TO BE CALLED
-	public void Initialize_Bullet(int team_number, float bullet_damage, Vector2 direction, float speed, float duration)
+	public void Initialize_Bullet(string shooters_name, int team_number, float bullet_damage, Vector2 direction, float speed, float duration)
 	{
+		owners_name = shooters_name;
 		shooter_team_number = team_number;
 		damage = bullet_damage;
 		time_left = duration;
@@ -73,7 +75,7 @@ public class Bullet : MonoBehaviour
 				return;
 
 			// Take a hit
-			player.TakeHit (this.damage, this.transform.position);
+			player.TakeHit (this.damage, this.transform.position, owners_name);
 
 			if (other.tag == "Human" && shooter_team_number != 1) {
 				this.Bullet_Impacted ();
