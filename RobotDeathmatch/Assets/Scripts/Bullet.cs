@@ -53,6 +53,11 @@ public class Bullet : MonoBehaviour
 		// Any graphical stuff of the bullet hitting something
 		GameObject spobj = Instantiate (sparks, this.transform.position, this.transform.rotation) as GameObject;
 		Destroy (spobj, 1);
+
+		Transform trail = this.GetComponentInChildren<TrailRenderer>().transform;
+		trail = null;
+		Destroy(trail, 3.0f);
+
 		Destroy(this.gameObject);
 	}
 

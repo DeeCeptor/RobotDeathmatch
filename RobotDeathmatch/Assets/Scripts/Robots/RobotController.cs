@@ -139,10 +139,14 @@ public class RobotController : PlayerInput
 				Quaternion.AngleAxis(angle, Vector3.forward));
 			bullet.GetComponent<Bullet>().Initialize_Bullet(this.team_number, machine_gun_damage, bullet_dir, machine_gun_speed, 3.0f);
 
+			// Shoot out a bullet casing perpendicular to the firing line
 			GameObject casing = (GameObject) Instantiate(Resources.Load("Casing") as GameObject, 
 				this.transform.position, 
-				Quaternion.AngleAxis(angle, Vector3.forward));
-			casing.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0));
+				Quaternion.AngleAxis(angle + 90, Vector3.forward));
+			Quaternion quat = Quaternion.AngleAxis(90 + Random.value * 10 - 5f, Vector3.forward);
+			Vector3 vect= (Vector3) direction;
+			vect = quat * vect;
+			casing.GetComponent<Rigidbody2D>().AddForce((Vector2) vect * 15);
 
 			float wait_duration = machine_gun_duration / (float) num_machine_gun_bullets;
 			yield return new WaitForSeconds(wait_duration);

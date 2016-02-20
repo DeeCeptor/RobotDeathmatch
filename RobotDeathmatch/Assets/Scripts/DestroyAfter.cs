@@ -8,5 +8,8 @@ public class DestroyAfter : MonoBehaviour
 	void Update () 
 	{
 		time_to_live -= Time.deltaTime;
+
+		if (time_to_live <= 0)
+			Destroy(this.gameObject);
 	}
 }

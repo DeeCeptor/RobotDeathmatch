@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &124798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 465340}
+  - 96: {fileID: 9693136}
+  m_Layer: 11
+  m_Name: Trail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &161634
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +28,6 @@ GameObject:
   - 58: {fileID: 5816652}
   - 212: {fileID: 21215096}
   - 114: {fileID: 11409886}
-  - 96: {fileID: 9687826}
   m_Layer: 11
   m_Name: Bullet
   m_TagString: Bullet
@@ -29,8 +44,21 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.17, y: -3.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 465340}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &465340
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 446342}
   m_RootOrder: 0
 --- !u!50 &5024026
 Rigidbody2D:
@@ -63,12 +91,12 @@ CircleCollider2D:
   m_Offset: {x: -0.015, y: 0.015}
   serializedVersion: 2
   m_Radius: 0.07
---- !u!96 &9687826
+--- !u!96 &9693136
 TrailRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 161634}
+  m_GameObject: {fileID: 124798}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -123,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   shooter_team_number: 0
+  sparks: {fileID: 176574, guid: abdc3026f333c0743b75b8906e185963, type: 2}
 --- !u!212 &21215096
 SpriteRenderer:
   m_ObjectHideFlags: 1
