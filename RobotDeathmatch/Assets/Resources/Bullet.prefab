@@ -12,7 +12,7 @@ GameObject:
   - 58: {fileID: 5816652}
   - 212: {fileID: 21215096}
   - 114: {fileID: 11409886}
-  - 96: {fileID: 9600772}
+  - 96: {fileID: 9687826}
   m_Layer: 11
   m_Name: Bullet
   m_TagString: Bullet
@@ -60,10 +60,10 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.015, y: 0.015}
   serializedVersion: 2
   m_Radius: 0.07
---- !u!96 &9600772
+--- !u!96 &9687826
 TrailRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -90,24 +90,24 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Time: 0.3
-  m_StartWidth: 0.1
-  m_EndWidth: 0.1
+  m_StartWidth: 0.05
+  m_EndWidth: 0.05
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
-      rgba: 2046885873
+      rgba: 4278255590
     m_Color[1]:
       serializedVersion: 2
-      rgba: 2264989681
+      rgba: 4278255590
     m_Color[2]:
       serializedVersion: 2
-      rgba: 4278255601
+      rgba: 4278255611
     m_Color[3]:
       serializedVersion: 2
-      rgba: 2281766897
+      rgba: 2214658043
     m_Color[4]:
       serializedVersion: 2
-      rgba: 2315321329
+      rgba: 65531
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
 --- !u!114 &11409886
