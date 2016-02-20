@@ -36,7 +36,7 @@ public class RobotController : PlayerInput
 		cur_health = max_health;
 
 		// Find the timer and register the robot
-		timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<InputTimer>();
+		timer = GameObject.FindWithTag("Timer").GetComponent<InputTimer>();
 		timer.AddActiveRobot(this);
 
 		// Spawn UI icons

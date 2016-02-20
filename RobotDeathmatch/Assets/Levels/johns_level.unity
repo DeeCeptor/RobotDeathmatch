@@ -6102,6 +6102,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 330
       objectReference: {fileID: 0}
+    - target: {fileID: 11471222, guid: 444777d7d21a91b49a2c99bdba1c2a84, type: 2}
+      propertyPath: bloodspray
+      value: 
+      objectReference: {fileID: 117382, guid: a3b9557a16af2d64dbf9f89c05721a2b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 444777d7d21a91b49a2c99bdba1c2a84, type: 2}
   m_IsPrefabParent: 0

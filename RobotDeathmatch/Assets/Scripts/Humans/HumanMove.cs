@@ -14,7 +14,7 @@ public class HumanMove : PlayerInput {
 	CircleCollider2D thisCollider;
 	public AudioClip DeathNoise;
 	public AudioClip Gunshot;
-
+	public GameObject bloodspray;
 
 	public GameObject parent;
 
@@ -84,6 +84,8 @@ public class HumanMove : PlayerInput {
 	public override void TakeHit (float damage, Vector3 collision_position)
 	{
 		base.TakeHit (damage, collision_position);
+		GameObject spobj = Instantiate (bloodspray, collision_position, this.transform.rotation) as GameObject;
+		Destroy (spobj, 1);
 	}
 	public override void Die ()
 	{
