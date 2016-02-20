@@ -19,7 +19,7 @@ public class RobotController : PlayerInput
 	float machine_gun_duration = .4f;
 	int num_machine_gun_bullets = 20;
 	float machine_gun_speed = 9.0f;
-	float machine_gun_damage = 100;
+	float machine_gun_damage = 50;
 
 	void Awake()
 	{
@@ -53,7 +53,7 @@ public class RobotController : PlayerInput
 				player_input_queue.Enqueue("MoveDown");
 		}
 		// Aiming and firing
-		if (prev_aiming_direction == Vector2.zero && aiming_direction != Vector2.zero)
+		if (prev_flicked_aiming_direction == Vector2.zero && flicked_aiming_direction != Vector2.zero)
 		{
 			player_input_queue.Enqueue("MachineGun " + aiming_direction.x + " " + aiming_direction.y);
 		}
@@ -155,4 +155,15 @@ public class RobotController : PlayerInput
 		}
 	}
 
+
+	public override void TakeHit(float damage)
+	{
+		base.TakeHit(damage);
+	}
+	public override void Die()
+	{
+		base.Die();
+
+		Destroy(this.gameObject);
+	}
 }
