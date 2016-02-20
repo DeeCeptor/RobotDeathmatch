@@ -51,6 +51,7 @@ public class RobotController : PlayerInput
 			action_icons[x] = icon.GetComponent<Image>();
 		
 		}
+		base.init ();
 	}
 	void Start()
 	{
