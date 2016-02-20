@@ -163,7 +163,7 @@ public class RobotController : PlayerInput
 
 		foreach (Animator anim in action_icons)
 		{
-			anim.SetBool("active", false);
+			//anim.SetBool("active", false);
 		}
 	}
 
