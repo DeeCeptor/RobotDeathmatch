@@ -30,6 +30,11 @@ public class PlayerInput : MonoBehaviour
 	public bool right_bumper_held_down = false;		// Currently held down
 	public bool right_bumper_pressed = false;		// Trigger was pressed in this frame
 
+	HealthBar healthbar;
+	public void Start()
+	{
+		healthbar = GetComponent<HealthBar> ();
+	}
 
 	void Awake()
 	{
@@ -78,6 +83,8 @@ public class PlayerInput : MonoBehaviour
 	public virtual void TakeHit(float damage)
 	{
 		cur_health -= damage;
+		if (healthbar)
+			healthbar.setHealth (cur_health);
 
 		if (cur_health <= 0)
 			Die();

@@ -24,7 +24,8 @@ public class HumanMove : PlayerInput {
 	AudioSource audio;
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
+		base.Start ();
 		parent = transform.parent.gameObject;
 		target = this.GetComponent<Transform> ();
 		anim = GetComponent<Animator> ();
