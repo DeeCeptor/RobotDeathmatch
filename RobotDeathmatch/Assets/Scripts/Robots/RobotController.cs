@@ -8,7 +8,7 @@ public class RobotController : PlayerInput
 	Queue<string> player_input_queue = new Queue<string>();		// Input the player is adding in, input that has yet to be confirmed
 	Queue<string> actions_queue = new Queue<string>();	// Actions that we are in the midst of performing
 	InputTimer timer;
-	Animator[] action_icons;
+	Image[] action_icons;
 	Transform UI_parent;
 
 	// ACTIONS
@@ -25,6 +25,9 @@ public class RobotController : PlayerInput
 	float machine_gun_speed = 20.0f;
 	float machine_gun_damage = 50;
 
+	public Sprite open_action_slot;
+	public Sprite filled_action_slot;
+
 	void Awake()
 	{
 		physics = this.GetComponent<Rigidbody2D>();
@@ -36,14 +39,14 @@ public class RobotController : PlayerInput
 
 		// Spawn UI icons
 		UI_parent = this.transform.GetComponentInChildren<GridLayoutGroup>().transform;
-		action_icons = new Animator[input_limit];
+		action_icons = new Image[input_limit];
 		for (int x = 0; x < input_limit; x++)
 		{
 			// Spawn 1 UI action icon per input limit
 			GameObject icon = (GameObject) Instantiate(Resources.Load("ActionSlot") as GameObject);
 			icon.transform.parent = UI_parent;
 			icon.transform.localScale = Vector3.one;
-			action_icons[x] = icon.GetComponent<Animator>();
+			action_icons[x] = icon.GetComponent<Image>();
 		}
 	}
 	void Start()
@@ -101,7 +104,7 @@ public class RobotController : PlayerInput
 	{
 		player_input_queue.Enqueue(command);
 
-		action_icons[player_input_queue.Count - 1].SetBool("active", true);
+		action_icons[player_input_queue.Count - 1].sprite = filled_action_slot;
 		//action_icons[player_input_queue.Count - 1].GetBool("active");
 		//actions_queue[player_input_queue.Count - 1].
 	}
@@ -165,9 +168,9 @@ public class RobotController : PlayerInput
 			actions_queue.Enqueue(command);
 		}
 
-		foreach (Animator anim in action_icons)
+		foreach (Image anim in action_icons)
 		{
-			//anim.SetBool("active", false);
+			anim.sprite = open_action_slot;
 		}
 	}
 
