@@ -12,8 +12,18 @@ public class PlayerInput : MonoBehaviour
 	public float vertical_movement;
 	public float prev_vertical_movement;
 	public Vector2 aiming_direction;
+	public Vector2 prev_aiming_direction;
 
-	
+	public bool left_trigger_held_down = false;		// Currently held down
+	public bool left_trigger_pressed = false;		// Trigger was pressed in this frame
+	public bool right_trigger_held_down = false;		// Currently held down
+	public bool right_trigger_pressed = false;		// Trigger was pressed in this frame
+	public bool left_bumper_held_down = false;		// Currently held down
+	public bool left_bumper_pressed = false;		// Trigger was pressed in this frame
+	public bool right_bumper_held_down = false;		// Currently held down
+	public bool right_bumper_pressed = false;		// Trigger was pressed in this frame
+
+
 	public void UpdateInputs () 
 	{
 		// Grab inputs from our controller
@@ -24,7 +34,27 @@ public class PlayerInput : MonoBehaviour
 		vertical_movement = Input.GetAxis(player_name + " LeftStick Y");
 
 		// Is the player aiming anywhere?
-		aiming_direction = new Vector2(Input.GetAxis(player_name + " RightStick X"),
+		if (controller)
+		{
+			prev_aiming_direction = aiming_direction;
+			aiming_direction = new Vector2(Input.GetAxis(player_name + " RightStick X"),
 										Input.GetAxis(player_name + " RightStick Y"));
+		}
+		else
+		{
+			// Keyboard controls looks towards the mouse
+			prev_aiming_direction = aiming_direction;
+
+			// Only record mouse looks when the mouse clicks
+			if (Input.GetMouseButtonDown(0))
+			{
+				Vector2 mouse_pos = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				aiming_direction = ((Vector2) (mouse_pos - (Vector2) this.transform.position)).normalized;
+			}
+			else
+			{
+				aiming_direction = Vector2.zero;
+			}
+		}
 	}
 }

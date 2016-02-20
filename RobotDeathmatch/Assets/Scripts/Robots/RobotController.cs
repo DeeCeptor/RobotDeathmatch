@@ -7,6 +7,9 @@ public class RobotController : PlayerInput
 	Queue<string> player_input_queue = new Queue<string>();		// Input the player is adding in, input that has yet to be confirmed
 	Queue<string> actions_queue = new Queue<string>();	// Actions that we are in the midst of performing
 
+	public float max_health = 1000;
+	public float cur_health;
+
 	string current_action;	// Action we are performing
 	Rigidbody2D physics;
 	float movement_time = 0.4f;	// Time in seconds it takes the robot to move per move action
@@ -14,10 +17,14 @@ public class RobotController : PlayerInput
 	bool performing_action = false;
 	int input_limit = 3;	// If over this limit, dequeue the inputs
 
+	float machine_gun_duration = .4f;
+	int num_machine_gun_bullets = 20;
+	float machine_gun_speed = 9.0f;
 
 	void Awake()
 	{
 		physics = this.GetComponent<Rigidbody2D>();
+		cur_health = max_health;
 	}
 	void Start()
 	{
@@ -33,7 +40,6 @@ public class RobotController : PlayerInput
 		// Check for player input to be added the to the player input queue
 		if (prev_horizontal_movement == 0 && horizontal_movement != 0)
 		{
-			Debug.Log("horizontal");
 			if (horizontal_movement > 0)
 				player_input_queue.Enqueue("MoveRight");
 			else
@@ -41,11 +47,15 @@ public class RobotController : PlayerInput
 		}
 		if (prev_vertical_movement == 0 && vertical_movement != 0)
 		{
-			Debug.Log("vertical");
 			if (vertical_movement > 0)
 				player_input_queue.Enqueue("MoveUp");
 			else
 				player_input_queue.Enqueue("MoveDown");
+		}
+		// Aiming and firing
+		if (prev_aiming_direction == Vector2.zero && aiming_direction != Vector2.zero)
+		{
+			player_input_queue.Enqueue("MachineGun " + aiming_direction.x + " " + aiming_direction.y);
 		}
 
 
@@ -65,7 +75,6 @@ public class RobotController : PlayerInput
 
 	IEnumerator Move_Action(Vector2 direction)
 	{
-		Debug.Log(physics.velocity + " " + direction);
 		performing_action = true;
 		physics.velocity = direction;
 
@@ -75,7 +84,28 @@ public class RobotController : PlayerInput
 		performing_action = false;
 		physics.velocity = Vector2.zero;
 	}
+	IEnumerator MachineGun_Action(Vector2 direction)
+	{
+		performing_action = true;
 
+		int bullets_left = (int) num_machine_gun_bullets;
+		while (bullets_left > 0)
+		{
+			bullets_left--;
+
+			// Spawn a bullet, with a random variation on the aiming vector
+			Vector3 bullet_dir = new Vector3(direction.x + (Random.value - 0.5f),
+				direction.y + (Random.value - 0.5f), 0);
+
+			// Set rotation, speed
+			GameObject bullet = (GameObject) Instantiate(Resources.Load("Bullet") as GameObject, this.transform.position, Quaternion.Euler(bullet_dir));
+			bullet.GetComponent<Rigidbody2D>().velocity = bullet_dir.normalized * machine_gun_speed;
+
+			yield return new WaitForSeconds(machine_gun_duration / num_machine_gun_bullets);
+		}
+
+		performing_action = false;
+	}
 
 	public void DequeuePlayerInput()
 	{
@@ -109,7 +139,10 @@ public class RobotController : PlayerInput
 			}
 			else if (command.Contains("MachineGun"))
 			{
-
+				string[] splits = command.Split(' ');
+				float x = float.Parse(splits[1]);
+				float y = float.Parse(splits[2]);
+				StartCoroutine(MachineGun_Action(new Vector2(x, y)));
 			}
 			else if (command.Contains("RocketLauncher"))
 			{
