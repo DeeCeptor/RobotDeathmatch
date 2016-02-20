@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class InputTimer : MonoBehaviour 
 {
@@ -10,15 +11,39 @@ public class InputTimer : MonoBehaviour
 	private List<RobotController> active_robots = new List<RobotController>();
 	bool iterating = false;
 
+	Image countdown_image;
+	public Sprite three;
+	public Sprite two;
+	public Sprite one;
+	Text countdown_text;
+
 	void Start () 
 	{
 		time_left_in_iteration = time_per_iteration;
+		countdown_image = this.GetComponent<Image>();
+		countdown_text = this.GetComponentInChildren<Text>();
 	}
 	
 
 	void FixedUpdate () 
 	{
 		time_left_in_iteration -= Time.deltaTime;
+
+		if (time_left_in_iteration > 2)
+		{
+			countdown_image.sprite = three;
+			countdown_text.text = "3";
+		}
+		else if (time_left_in_iteration > 1)
+		{
+			countdown_image.sprite = two;
+			countdown_text.text = "2";
+		}
+		else
+		{
+			countdown_image.sprite = one;
+			countdown_text.text = "1";
+		}
 
 		if (time_left_in_iteration <= 0)
 		{
