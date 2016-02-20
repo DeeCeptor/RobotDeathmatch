@@ -81,9 +81,9 @@ public class HumanMove : PlayerInput {
 		}
 	}
 
-	public override void TakeHit (float damage)
+	public override void TakeHit (float damage, Vector3 collision_position)
 	{
-		base.TakeHit (damage);
+		base.TakeHit (damage, collision_position);
 	}
 	public override void Die ()
 	{

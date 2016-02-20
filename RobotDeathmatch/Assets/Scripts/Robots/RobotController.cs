@@ -215,10 +215,10 @@ public class RobotController : PlayerInput
 	}
 
 
-	public override void TakeHit(float damage)
+	public override void TakeHit(float damage, Vector3 collision_position)
 	{
-		base.TakeHit(damage);
-		GameObject spobj = Instantiate (robosparks, this.transform.position, this.transform.rotation) as GameObject;
+		base.TakeHit(damage, collision_position);
+		GameObject spobj = Instantiate (robosparks, collision_position, this.transform.rotation) as GameObject;
 		Destroy (spobj, 1);
 
 	}
