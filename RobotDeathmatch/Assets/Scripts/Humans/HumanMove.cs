@@ -20,6 +20,10 @@ public class HumanMove : PlayerInput {
 
 	private float nextFire;
 	public float speed;
+	float bullet_speed = 15;
+	float bullet_damage = 10;
+
+
 	Animator anim;
 	AudioSource audio;
 
@@ -30,6 +34,9 @@ public class HumanMove : PlayerInput {
 		anim = GetComponent<Animator> ();
 		thisCollider = GetComponent<CircleCollider2D> ();
 		audio = GetComponent<AudioSource> ();
+
+		this.cur_health = this.max_health;
+
 		base.init ();
 	}
 	
@@ -62,10 +69,12 @@ public class HumanMove : PlayerInput {
 	}
 
 	void FireBullet(){
-		if (Input.GetButton ("Fire1") && Time.time > nextFire) {
+		if (Time.time > nextFire
+			&& ((controller && aiming_direction != Vector2.zero) || (!controller && flicked_aiming_direction != Vector2.zero)))
+		{
 			nextFire = Time.time + FireRate;
 			GameObject bullet = (GameObject) Instantiate ( (GameObject) shot, shotSpawn.position, shotSpawn.rotation);
-			bullet.GetComponent<Bullet> ().Initialize_Bullet(1, 10, aiming_direction, 10, 3) ;
+			bullet.GetComponent<Bullet> ().Initialize_Bullet(team_number, bullet_damage, aiming_direction, bullet_speed, 3) ;
 			anim.SetTrigger ("shoot");
 			audio.clip = Gunshot;
 			audio.Play ();
