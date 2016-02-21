@@ -81,7 +81,6 @@ public class StartScreen : MonoBehaviour {
 
 	public void loadLevel()
 	{
-		MenuMusic.stopMusic ();
 		switch (current) 
 		{
 		case 0:
