@@ -61,12 +61,16 @@ public class ModeScreen : MonoBehaviour
 		plyr.team_name = "Blue";
 
 
-		SceneManager.LoadScene("LevelSelectScreen");
+		SceneManager.LoadScene("LevelSelect");
 	}
 
 
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+		if (Input.GetButtonDown("Cancel")) 
+		{
+			SceneManager.LoadScene("Join");
+		}
 	}
 }

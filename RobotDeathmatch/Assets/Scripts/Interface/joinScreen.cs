@@ -80,7 +80,7 @@ public class joinScreen : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetButtonDown ("P3 A")) 
+		if (Input.GetButtonDown ("P4 A")) 
 		{
 			if(!p4)
 			{
