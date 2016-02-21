@@ -70,6 +70,8 @@ public class Bullet : MonoBehaviour
 		if (other.tag == "Robot" || other.tag == "Human") 
 		{
 			PlayerInput player = other.GetComponent<PlayerInput> ();
+			if (player == null)
+				player = other.GetComponentInChildren<PlayerInput>();
 
 			// Should we be hurt by this bullet?
 			if (!this.Should_Bullet_Damage_You (player.team_number))
