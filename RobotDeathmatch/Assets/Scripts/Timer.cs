@@ -1,28 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour 
 {
+	public static Timer timer;
+
 	public Text timer_text;
 	public float remaining_time;
 	public int alive_humans = 0;
+	public OpeningText big_text;
+	bool game_over = false;
 
-	void Start () 
+
+	void Awake () 
 	{
-	
+		timer = this;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
 		remaining_time -= Time.deltaTime;
-		timer_text.text = getFormattedTime(remaining_time);
 
-		if (remaining_time <= 0)
+		if (!game_over)
+			timer_text.text = getFormattedTime(remaining_time);
+		else
+			timer_text.text = "";
+		
+		if (remaining_time <= 0 && !game_over)
 		{
 			Debug.Log("Time is up, humans win!");
+			big_text.StartText(new string[] { "HUMAN(S)", "SURVIVED" });
 			GameOver();
 		}
 	}
@@ -34,6 +44,7 @@ public class Timer : MonoBehaviour
 		if (alive_humans <= 0)
 		{
 			Debug.Log("All humans are dead");
+			big_text.StartText(new string[] { "HUMANS", "ARE", "DEAD" });
 			GameOver();
 		}
 	}
@@ -45,6 +56,15 @@ public class Timer : MonoBehaviour
 	public void GameOver()
 	{
 		Debug.Log("Game over");
+		game_over = true;
+		Invoke("ToScoreScreen", 2.0f);
+	}
+
+
+	public void ToScoreScreen()
+	{
+		Debug.Log("Loading score screen");
+		SceneManager.LoadScene("Results");
 	}
 
 

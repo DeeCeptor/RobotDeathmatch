@@ -238,7 +238,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &5852688
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -411,8 +411,8 @@ MonoBehaviour:
   player_name: P1
   team_number: 1
   controller: 0
-  player_color: {r: 0, g: 0, b: 0, a: 0}
-  max_health: 1000
+  player_color: {r: 1, g: 1, b: 1, a: 0}
+  max_health: 100
   cur_health: 0
   horizontal_movement: 0
   prev_horizontal_movement: 0
@@ -584,6 +584,26 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: max_health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: player_color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: player_color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: player_color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
