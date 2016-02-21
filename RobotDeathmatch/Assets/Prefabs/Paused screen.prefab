@@ -100,6 +100,7 @@ GameObject:
   - 223: {fileID: 22391094}
   - 114: {fileID: 11434656}
   - 114: {fileID: 11406278}
+  - 114: {fileID: 11433984}
   m_Layer: 5
   m_Name: Paused screen
   m_TagString: Untagged
@@ -175,6 +176,21 @@ MonoBehaviour:
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &11433984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4468e99cfb428b448eba92037f954e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausedscreen: {fileID: 22391094}
+  slot0: {fileID: 106942}
+  slot1: {fileID: 120356}
+  delay: 1
 --- !u!114 &11434656
 MonoBehaviour:
   m_ObjectHideFlags: 1

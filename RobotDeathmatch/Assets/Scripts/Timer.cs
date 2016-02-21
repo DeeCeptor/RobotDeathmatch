@@ -24,7 +24,8 @@ public class Timer : MonoBehaviour
 	void Start ()
 	{
 		// Get the number of players to determine what we should set the timer to
-		if (PlayerInformation.player_info.players.Count >= 4)
+		if (PlayerInformation.player_info != null &&
+			PlayerInformation.player_info.players.Count >= 4)
 		{
 			remaining_time = four_player_match_time;
 			Debug.Log("Upper match time");
