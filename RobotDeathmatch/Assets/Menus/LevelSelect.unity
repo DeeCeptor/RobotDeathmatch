@@ -718,7 +718,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Killing Area
+  m_Text: Crazy Complex
 --- !u!222 &1225643650
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -19,3 +19,5 @@ EditorBuildSettings:
     path: Assets/Levels/Yige_level.unity
   - enabled: 1
     path: Assets/Levels/Catacombs.unity
+  - enabled: 1
+    path: Assets/Levels/johns_level.unity
