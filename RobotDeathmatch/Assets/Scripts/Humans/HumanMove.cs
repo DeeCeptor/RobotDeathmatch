@@ -8,7 +8,7 @@ public class HumanMove : PlayerInput {
 	public float FireRate;
 	Vector3 mouse_pos;
 	Vector3 human_pos;
-	Transform target;
+	public Transform target;
 	float angle;
 	bool IsDead;
 	CircleCollider2D thisCollider;
@@ -33,10 +33,11 @@ public class HumanMove : PlayerInput {
 	Animator anim;
 	AudioSource audio;
 
-	void Awake () {
-		parent = transform.parent.gameObject;
+	void Awake () 
+	{
+		parent = this.gameObject;
 		target = this.GetComponent<Transform> ();
-		anim = GetComponent<Animator> ();
+		anim = this.GetComponentInChildren<Animator> ();
 		thisCollider = GetComponent<CircleCollider2D> ();
 		audio = GetComponent<AudioSource> ();
 
@@ -47,8 +48,10 @@ public class HumanMove : PlayerInput {
 	
 
 	void Update () {
-		if (Time.timeScale > 0) {
+		if (Time.timeScale > 0) 
+		{
 			UpdateInputs ();
+
 			if (IsDead == false) 
 			{
 				float MoveHorizontal = this.horizontal_movement;
@@ -66,6 +69,7 @@ public class HumanMove : PlayerInput {
 				// Rotate towards desired rotation
 				if (!controller)
 				{
+					Debug.Log("A");
 					mouse_pos = Input.mousePosition;
 					human_pos = Camera.main.WorldToScreenPoint (target.position);
 					mouse_pos.x = mouse_pos.x - human_pos.x;
@@ -75,6 +79,8 @@ public class HumanMove : PlayerInput {
 				}
 				else
 				{
+					Debug.Log("b");
+				
 					// Look towards where shooting or if we haven't shot in a while rotate towards movement direction
 					// Check if we've shot recently
 					if (Time.time > nextFire + 0.8f)
@@ -84,7 +90,7 @@ public class HumanMove : PlayerInput {
 						desired_rotation = Quaternion.AngleAxis(angle_ - 90, Vector3.forward);
 					}
 
-					this.transform.rotation = Quaternion.Slerp(this.transform.rotation, desired_rotation, Time.deltaTime * rotation_speed);
+					this.target.rotation = Quaternion.Slerp(this.target.rotation, desired_rotation, Time.deltaTime * rotation_speed);
 				}
 			} 
 			else if (IsDead == true) 
