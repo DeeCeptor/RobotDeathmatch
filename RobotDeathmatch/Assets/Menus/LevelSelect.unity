@@ -224,7 +224,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Chaos floor
+  m_Text: Calamity Columns
 --- !u!222 &298632715
 CanvasRenderer:
   m_ObjectHideFlags: 0
