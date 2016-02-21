@@ -2,13 +2,13 @@
 using System.Collections;
 
 public class Pause : MonoBehaviour {
-	Font pausemenufont;
+
 	bool ispaused = false;
 	public Canvas pausedscreen; 
 
 	// Use this for initialization
 	void Start () {
-		GUI.skin.box.font = pausemenufont;
+
 	}
 	
 	// Update is called once per frame
