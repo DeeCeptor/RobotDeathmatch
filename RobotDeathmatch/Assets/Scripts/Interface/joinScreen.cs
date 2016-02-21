@@ -127,8 +127,8 @@ public class joinScreen : MonoBehaviour {
 	public string GetCharacterTypeText(bool is_robot, int player_num)
 	{
 		if (is_robot)
-			return "Player " + player_num + ": Robot";
+			return "Player " + player_num + "      Robot";
 		else
-			return "Player " + player_num + ": Human";
+			return "Player " + player_num + "      Human";
 	}
 }
