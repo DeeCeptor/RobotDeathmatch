@@ -6,8 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Join.unity
+    path: Assets/Menus/StartMenu.unity
   - enabled: 1
-    path: Assets/LevelSelect.unity
+    path: Assets/Menus/Join.unity
+  - enabled: 1
+    path: Assets/Menus/LevelSelect.unity
+  - enabled: 1
+    path: Assets/Menus/Results.unity
   - enabled: 1
     path: Assets/Levels/Yige_level.unity

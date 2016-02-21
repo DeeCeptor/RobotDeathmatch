@@ -102,7 +102,6 @@ public class PlayerInput : MonoBehaviour
 
 		if (healthbar) 
 		{
-			Debug.Log("A");
 			healthbar.setHealth (cur_health);
 		}
 

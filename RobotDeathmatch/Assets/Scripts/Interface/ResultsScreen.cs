@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class ResultsScreen : MonoBehaviour {
 
@@ -14,23 +16,41 @@ public class ResultsScreen : MonoBehaviour {
 	public Text p3deaths;
 	public Text p4deaths;
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		//getData
-		setPlayerKills("P1",AllScores.all_scores.scores["P1"].kills);
-		setPlayerKills("P2",AllScores.all_scores.scores["P2"].kills);
-		setPlayerKills("P3",AllScores.all_scores.scores["P3"].kills);
-		setPlayerKills("P4",AllScores.all_scores.scores["P4"].kills);
-
-		setPlayerDeaths("P1",AllScores.all_scores.scores["P1"].deaths);
-		setPlayerDeaths("P2",AllScores.all_scores.scores["P2"].deaths);
-		setPlayerDeaths("P3",AllScores.all_scores.scores["P3"].deaths);
-		setPlayerDeaths("P4",AllScores.all_scores.scores["P4"].deaths);
+		if (AllScores.all_scores.scores.ContainsKey("P1"))
+		{
+			setPlayerKills("P1",AllScores.all_scores.scores["P1"].kills);
+			setPlayerDeaths("P1",AllScores.all_scores.scores["P1"].deaths);
+		}
+		if (AllScores.all_scores.scores.ContainsKey("P2"))
+		{
+			setPlayerKills("P2",AllScores.all_scores.scores["P2"].kills);
+			setPlayerDeaths("P2",AllScores.all_scores.scores["P2"].deaths);
+		}
+		if (AllScores.all_scores.scores.ContainsKey("P3"))
+		{
+			setPlayerKills("P3",AllScores.all_scores.scores["P3"].kills);
+			setPlayerDeaths("P3",AllScores.all_scores.scores["P3"].deaths);
+		}
+		if (AllScores.all_scores.scores.ContainsKey("P4"))
+		{
+			setPlayerKills("P4",AllScores.all_scores.scores["P4"].kills);
+			setPlayerDeaths("P4",AllScores.all_scores.scores["P4"].deaths);
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("Submit")) {
+		if (Input.GetButtonDown("Submit")) 
+		{
 			Debug.Log ("Submitted");
+
+			if (AllScores.all_scores != null)
+				Destroy(AllScores.all_scores.gameObject);
+			
+			SceneManager.LoadScene("LevelSelect");
 		}
 	}
 

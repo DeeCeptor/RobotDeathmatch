@@ -44,7 +44,7 @@ public class HumanMove : PlayerInput {
 		anim = this.GetComponentInChildren<Animator> ();
 		thisCollider = GetComponent<CircleCollider2D> ();
 		audio = GetComponent<AudioSource> ();
-
+		Timer.timer.RegisterHuman();
 		this.cur_health = this.max_health;
 
 		base.init ();
@@ -165,12 +165,15 @@ public class HumanMove : PlayerInput {
 	}
 	public override void Die (string attacker_name)
 	{
-
-		base.Die (attacker_name);
-		IsDead = true;
-		audio.clip = DeathNoise;
-		audio.Play ();
-		anim.SetTrigger ("die");
-		Destroy (this.gameObject, 3);
+		if (!IsDead)
+		{
+			base.Die (attacker_name);
+			IsDead = true;
+			audio.clip = DeathNoise;
+			audio.Play ();
+			Timer.timer.HumanDied();
+			anim.SetTrigger ("die");
+			Destroy (this.gameObject, 3);
+		}
 	} 
 }

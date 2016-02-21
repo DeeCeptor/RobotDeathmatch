@@ -319,24 +319,27 @@ public class RobotController : PlayerInput
 	}
 	public override void Die(string attacker_name)
 	{
-		base.Die(attacker_name);
-		CancelInvoke();
-		StopAllCoroutines();
-		dead = true;
-		physics.drag = 1000;
-		repairing_text.gameObject.SetActive(true);
-
-		// Clear queue
-		player_input_queue.Clear();
-		foreach (Image anim in action_icons)
+		if (!dead)
 		{
-			anim.sprite = open_action_slot;
-		}
-		actions_queue.Clear();
+			base.Die(attacker_name);
+			CancelInvoke();
+			StopAllCoroutines();
+			dead = true;
+			physics.drag = 1000;
+			repairing_text.gameObject.SetActive(true);
 
-		audio.clip = death_noise;
-		audio.Play ();
-		top_anim.SetTrigger ("die");
-		//Destroy (this.gameObject, 3);
+			// Clear queue
+			player_input_queue.Clear();
+			foreach (Image anim in action_icons)
+			{
+				anim.sprite = open_action_slot;
+			}
+			actions_queue.Clear();
+
+			audio.clip = death_noise;
+			audio.Play ();
+			top_anim.SetTrigger ("die");
+			//Destroy (this.gameObject, 3);
+		}
 	}
 }
