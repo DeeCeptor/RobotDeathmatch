@@ -737,6 +737,7 @@ GameObject:
   - 92: {fileID: 1251513025}
   - 124: {fileID: 1251513024}
   - 81: {fileID: 1251513023}
+  - 114: {fileID: 1251513022}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -778,6 +779,30 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!114 &1251513022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1251513020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09af3b8493fd044abd5fafd3e232b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot0: {fileID: 364499352}
+  slot1: {fileID: 2008905870}
+  slot2: {fileID: 1923275308}
+  slot3: {fileID: 1668841856}
+  slot4: {fileID: 1013698992}
+  slot5: {fileID: 1680619200}
+  item0: {fileID: 0}
+  item1: {fileID: 0}
+  item2: {fileID: 0}
+  item3: {fileID: 0}
+  item4: {fileID: 0}
+  item5: {fileID: 0}
+  delay: 0.1
 --- !u!81 &1251513023
 AudioListener:
   m_ObjectHideFlags: 0
