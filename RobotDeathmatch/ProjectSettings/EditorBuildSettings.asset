@@ -27,3 +27,5 @@ EditorBuildSettings:
     path: Assets/Levels/Yige_level_4.unity
   - enabled: 1
     path: Assets/Levels/Columns.unity
+  - enabled: 1
+    path: Assets/Levels/Box Fort.unity

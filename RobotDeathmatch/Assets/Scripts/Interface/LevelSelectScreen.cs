@@ -10,6 +10,7 @@ public class LevelSelectScreen : MonoBehaviour {
 	public GameObject slot3;
 	public GameObject slot4;
 	public GameObject slot5;
+	public GameObject slot6;
 
 	levelItem item0;
 	levelItem item1;
@@ -17,6 +18,7 @@ public class LevelSelectScreen : MonoBehaviour {
 	levelItem item3;
 	levelItem item4;
 	levelItem item5;
+	levelItem item6;
 
 	int current = 0;
 	public float delay;
@@ -30,6 +32,7 @@ public class LevelSelectScreen : MonoBehaviour {
 		item3 = slot3.GetComponent<levelItem> ();
 		item4 = slot4.GetComponent<levelItem> ();
 		item5 = slot5.GetComponent<levelItem> ();
+		item6 = slot6.GetComponent<levelItem> ();
 	}
 	
 	// Update is called once per frame
@@ -58,7 +61,7 @@ public class LevelSelectScreen : MonoBehaviour {
 		switch (current) {
 		case 0:
 			item0.Deselect ();
-			current = 5;
+			current = 6;
 			break;
 		case 1:
 			item1.Deselect ();
@@ -78,6 +81,10 @@ public class LevelSelectScreen : MonoBehaviour {
 			break;
 		case 5:
 			item5.Deselect ();
+			current--;
+			break;
+		case 6:
+			item6.Deselect ();
 			current--;
 			break;
 		}
@@ -107,6 +114,10 @@ public class LevelSelectScreen : MonoBehaviour {
 			break;
 		case 5:
 			item5.Deselect ();
+			current++;
+			break;
+		case 6:
+			item6.Deselect ();
 			current = 0;
 			break;
 		}
@@ -132,6 +143,9 @@ public class LevelSelectScreen : MonoBehaviour {
 			break;
 		case 5:
 			item5.Select ();
+			break;
+		case 6:
+			item6.Select ();
 			break;
 		}
 	}
@@ -163,7 +177,11 @@ public class LevelSelectScreen : MonoBehaviour {
 				break;
 			case 5:
 				Debug.Log("loadLevel");
-			SceneManager.LoadScene("Columns");
+				SceneManager.LoadScene("Columns");
+				break;
+			case 6:
+				Debug.Log("loadLevel");
+				SceneManager.LoadScene("Box Fort");
 				break;
 		}
 	}
