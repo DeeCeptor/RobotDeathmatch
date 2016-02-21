@@ -91,7 +91,7 @@ public class Pause : MonoBehaviour {
 			//SceneManager.LoadScene("Catacombs");
 			break;
 		case 1:
-			
+			Time.timeScale = 1f;
 			SceneManager.LoadScene("Join");
 			break;
 		}
