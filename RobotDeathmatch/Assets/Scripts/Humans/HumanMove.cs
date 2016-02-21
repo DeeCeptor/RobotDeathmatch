@@ -8,7 +8,7 @@ public class HumanMove : PlayerInput {
 	public float FireRate;
 	Vector3 mouse_pos;
 	Vector3 human_pos;
-	Transform target;
+	public Transform target;
 	float angle;
 	bool IsDead;
 	CircleCollider2D thisCollider;
@@ -21,20 +21,22 @@ public class HumanMove : PlayerInput {
 
 	public GameObject parent;
 
+	Quaternion desired_rotation;
+	float rotation_speed = 10f;
+
 	private float nextFire;
 	public float speed;
 	float bullet_speed = 15;
-	float bullet_damage = 10;
+	public float bullet_damage = 50;
 
 
 	Animator anim;
 	AudioSource audio;
 
-	// Use this for initialization
-	public void Start () {
-		parent = transform.parent.gameObject;
-		target = this.GetComponent<Transform> ();
-		anim = GetComponent<Animator> ();
+	void Awake () 
+	{
+		parent = this.gameObject;
+		anim = this.GetComponentInChildren<Animator> ();
 		thisCollider = GetComponent<CircleCollider2D> ();
 		audio = GetComponent<AudioSource> ();
 
@@ -43,11 +45,14 @@ public class HumanMove : PlayerInput {
 		base.init ();
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
-		if (Time.timeScale > 0) {
+		if (Time.timeScale > 0) 
+		{
 			UpdateInputs ();
-			if (IsDead == false) {
+
+			if (IsDead == false) 
+			{
 				float MoveHorizontal = this.horizontal_movement;
 				float MoveVertical = vertical_movement;
 
@@ -57,16 +62,35 @@ public class HumanMove : PlayerInput {
 				bool walking = MoveHorizontal != 0 || MoveVertical != 0;
 				anim.SetBool ("walking", walking);
 
-				mouse_pos = Input.mousePosition;
-				human_pos = Camera.main.WorldToScreenPoint (target.position);
-				mouse_pos.x = mouse_pos.x - human_pos.x;
-				mouse_pos.y = mouse_pos.y - human_pos.y;
-				angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg - 90;
-				transform.rotation = Quaternion.Euler (0, 0, angle);
-
 
 				FireBullet ();
-			} else if (IsDead == true) {
+
+				// Rotate towards desired rotation
+				if (!controller)
+				{
+					mouse_pos = Input.mousePosition;
+					human_pos = Camera.main.WorldToScreenPoint (target.position);
+					mouse_pos.x = mouse_pos.x - human_pos.x;
+					mouse_pos.y = mouse_pos.y - human_pos.y;
+					angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg - 90;
+					target.rotation = Quaternion.Euler (0, 0, angle);
+				}
+				else
+				{
+					// Look towards where shooting or if we haven't shot in a while rotate towards movement direction
+					// Check if we've shot recently
+					if (Time.time > nextFire + 0.8f && movement != Vector2.zero)
+					{
+						// Rotate towards walking direction
+						float angle_ = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+						desired_rotation = Quaternion.AngleAxis(angle_ - 90, Vector3.forward);
+					}
+
+					this.target.rotation = Quaternion.Slerp(this.target.rotation, desired_rotation, Time.deltaTime * rotation_speed);
+				}
+			} 
+			else if (IsDead == true) 
+			{
 				thisCollider.enabled = false;
 
 			}
@@ -77,18 +101,22 @@ public class HumanMove : PlayerInput {
 		if (Time.time > nextFire
 			&& ((controller && aiming_direction != Vector2.zero) || (!controller && flicked_aiming_direction != Vector2.zero)))
 		{
+			// Look towards where we're shooting
+			float angle_ = Mathf.Atan2(aiming_direction.y, aiming_direction.x) * Mathf.Rad2Deg;
+			desired_rotation = Quaternion.AngleAxis(angle_ - 90, Vector3.forward);
+
 			nextFire = Time.time + FireRate;
 			GameObject bullet = (GameObject) Instantiate ( (GameObject) shot, shotSpawn.position, shotSpawn.rotation);
-			bullet.GetComponent<Bullet> ().Initialize_Bullet(team_number, bullet_damage, aiming_direction, bullet_speed, 3) ;
+			bullet.GetComponent<Bullet> ().Initialize_Bullet(this.player_name, team_number, bullet_damage, aiming_direction, bullet_speed, 3) ;
 			anim.SetTrigger ("shoot");
 			audio.clip = Gunshot;
 			audio.Play ();
 		}
 	}
 
-	public override void TakeHit (float damage, Vector3 collision_position)
+	public override void TakeHit (float damage, Vector3 collision_position, string attacker_name)
 	{
-		base.TakeHit (damage, collision_position);
+		base.TakeHit (damage, collision_position, attacker_name);
 		GameObject spobj = Instantiate (bloodspray, collision_position, this.transform.rotation) as GameObject;
 		switch (Random.Range (0, 3)) {
 			case 0:
@@ -104,10 +132,10 @@ public class HumanMove : PlayerInput {
 
 		Destroy (spobj, 1);
 	}
-	public override void Die ()
+	public override void Die (string attacker_name)
 	{
 
-		base.Die ();
+		base.Die (attacker_name);
 		IsDead = true;
 		audio.clip = DeathNoise;
 		audio.Play ();

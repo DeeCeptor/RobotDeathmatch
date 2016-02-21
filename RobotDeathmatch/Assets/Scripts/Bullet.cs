@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 	public int shooter_team_number;
 	float time_left;	// When this hits 0, destroy bullet
 	public GameObject sparks;
+	string owners_name;
 
 	void Awake ()
 	{
@@ -26,8 +27,9 @@ public class Bullet : MonoBehaviour
 	}
 
 	// NEEDS TO BE CALLED
-	public void Initialize_Bullet(int team_number, float bullet_damage, Vector2 direction, float speed, float duration)
+	public void Initialize_Bullet(string shooters_name, int team_number, float bullet_damage, Vector2 direction, float speed, float duration)
 	{
+		owners_name = shooters_name;
 		shooter_team_number = team_number;
 		damage = bullet_damage;
 		time_left = duration;
@@ -65,30 +67,31 @@ public class Bullet : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Robot" || other.tag == "Human") {
+		if (other.tag == "Robot" || other.tag == "Human") 
+		{
 			PlayerInput player = other.GetComponent<PlayerInput> ();
+			if (player == null)
+				player = other.GetComponentInChildren<PlayerInput>();
 
 			// Should we be hurt by this bullet?
 			if (!this.Should_Bullet_Damage_You (player.team_number))
 				return;
 
 			// Take a hit
-			player.TakeHit (this.damage, this.transform.position);
-
-			if (other.tag == "Human" && shooter_team_number != 1) {
-				this.Bullet_Impacted ();
-			} else if (other.tag == "Robot" && shooter_team_number != 2) {
-				this.Bullet_Impacted ();
-			} 
-		} else if (other.tag == "Obstacle") {
+			player.TakeHit (this.damage, this.transform.position, owners_name);
+			this.Bullet_Impacted();
+		} 
+		else if (other.tag == "Obstacle") {
 			// Hit a piece of cover, destroy this bullet
 			DestructibleObstacle obs = other.GetComponent<DestructibleObstacle> ();
 
 			obs.TakeHit (this.damage);
 
 			this.Bullet_Impacted ();
-		} else if (other.tag != "Bullet"){
+		} 
+		else if (other.tag != "Bullet")
+		{
 			this.Bullet_Impacted ();
 		}
-		}
+	}
 }

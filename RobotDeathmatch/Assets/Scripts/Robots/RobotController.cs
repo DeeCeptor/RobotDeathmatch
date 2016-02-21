@@ -11,6 +11,18 @@ public class RobotController : PlayerInput
 	Image[] action_icons;
 	Transform UI_parent; 
 	Animator top_anim;
+	bool dead = false;
+
+	Transform sprite_parent;
+	Quaternion desired_rotation;
+	float rotation_speed = 5.0f;
+	public Transform barrel_tip;
+
+	// SOUNDS
+	AudioSource audio;
+	public AudioClip death_noise;
+	public AudioClip machinegun_noise;
+	public AudioClip moving_noise;
 
 	// ACTIONS
 	string current_action;	// Action we are performing
@@ -24,7 +36,7 @@ public class RobotController : PlayerInput
 	float machine_gun_duration = .2f;
 	int num_machine_gun_bullets = 15;
 	float machine_gun_speed = 20.0f;
-	float machine_gun_damage = 50;
+	public float machine_gun_damage = 20;
 
 	public Sprite open_action_slot;
 	public Sprite filled_action_slot;
@@ -33,6 +45,8 @@ public class RobotController : PlayerInput
 
 	void Awake()
 	{
+		audio = this.GetComponent<AudioSource>();
+		sprite_parent = this.transform.FindChild("Sprites");
 		physics = this.GetComponent<Rigidbody2D>();
 		cur_health = max_health;
 		top_anim = this.GetComponentInChildren<Animator>();
@@ -48,62 +62,64 @@ public class RobotController : PlayerInput
 		{
 			// Spawn 1 UI action icon per input limit
 			GameObject icon = (GameObject) Instantiate(Resources.Load("ActionSlot") as GameObject);
-			icon.transform.parent = UI_parent;
+			icon.transform.SetParent(UI_parent);
 			icon.transform.localScale = Vector3.one;
 			action_icons[x] = icon.GetComponent<Image>();
 		
 		}
 		base.init ();
 	}
-	void Start()
-	{
-
-	}
 
 
 	void Update () 
 	{
-		// We have all of the player input
-		UpdateInputs();
-
-		// If not maxed out on player inputs, allow more action inputs
-		if (player_input_queue.Count < input_limit)
+		if (Time.timeScale > 0 && !dead)
 		{
-			// Check for player input to be added the to the player input queue
-			if (prev_horizontal_movement == 0 && horizontal_movement != 0
-				&& Mathf.Abs(horizontal_movement) > Mathf.Abs(vertical_movement))
-			{
-				if (horizontal_movement > 0)
-					QueueNewInput("MoveRight");
-				else
-					QueueNewInput("MoveLeft");
-			}
-			if (prev_vertical_movement == 0 && vertical_movement != 0
-				&& Mathf.Abs(vertical_movement) > Mathf.Abs(horizontal_movement))
-			{
-				if (vertical_movement > 0)
-					QueueNewInput("MoveUp");
-				else
-					QueueNewInput("MoveDown");
-			}
-			// Aiming and firing
-			if (prev_flicked_aiming_direction == Vector2.zero && flicked_aiming_direction != Vector2.zero)
-			{
-				QueueNewInput("MachineGun " + flicked_aiming_direction.x + " " + flicked_aiming_direction.y);
-			}
-		}
+			// We have all of the player input
+			UpdateInputs();
 
-		/*
-		if (player_input_queue.Count >= input_limit)
-		{
-			DequeuePlayerInput();
-		}*/
+			// If not maxed out on player inputs, allow more action inputs
+			if (player_input_queue.Count < input_limit)
+			{
+				// Check for player input to be added the to the player input queue
+				if (prev_horizontal_movement == 0 && horizontal_movement != 0
+					&& Mathf.Abs(horizontal_movement) > Mathf.Abs(vertical_movement))
+				{
+					if (horizontal_movement > 0)
+						QueueNewInput("MoveRight");
+					else
+						QueueNewInput("MoveLeft");
+				}
+				if (prev_vertical_movement == 0 && vertical_movement != 0
+					&& Mathf.Abs(vertical_movement) > Mathf.Abs(horizontal_movement))
+				{
+					if (vertical_movement > 0)
+						QueueNewInput("MoveUp");
+					else
+						QueueNewInput("MoveDown");
+				}
+				// Aiming and firing
+				if (prev_flicked_aiming_direction == Vector2.zero && flicked_aiming_direction != Vector2.zero)
+				{
+					QueueNewInput("MachineGun " + flicked_aiming_direction.x + " " + flicked_aiming_direction.y);
+				}
+			}
+
+			/*
+			if (player_input_queue.Count >= input_limit)
+			{
+				DequeuePlayerInput();
+			}*/
 
 
-		// Currently performing actions?
-		if (!performing_action)
-		{
-			ResolveNextAction();
+			// Currently performing actions?
+			if (!performing_action)
+			{
+				ResolveNextAction();
+			}
+
+			// Set correct rotation
+			sprite_parent.rotation = Quaternion.Slerp(sprite_parent.rotation, desired_rotation, Time.deltaTime * rotation_speed);
 		}
 	}
 
@@ -123,10 +139,18 @@ public class RobotController : PlayerInput
 		performing_action = true;
 		physics.velocity = direction;
 		top_anim.SetBool ("walking", true);
+		audio.clip = moving_noise;
+		audio.Play ();
+
+		// Rotate towards direction we're walking
+		// Look towards where we're shooting
+		float angle_ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+		desired_rotation = Quaternion.AngleAxis(angle_ - 90, Vector3.forward);
 
 		yield return new WaitForSeconds(movement_time);
 
 		// Done moving
+		audio.Stop();
 		top_anim.SetBool ("walking", false);
 		performing_action = false;
 		physics.velocity = Vector2.zero;
@@ -134,12 +158,21 @@ public class RobotController : PlayerInput
 	IEnumerator MachineGun_Action(Vector2 direction)
 	{
 		performing_action = true;
+		// Look towards where we're shooting
+		float angle_ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+		desired_rotation = Quaternion.AngleAxis(angle_ - 90, Vector3.forward);
+
+		yield return new WaitForSeconds(0.2f);
 		top_anim.SetTrigger ("shoot");
+		audio.clip = machinegun_noise;
+		audio.loop = true;
+		audio.Play ();
 
 		int bullets_left = (int) num_machine_gun_bullets;
 		while (bullets_left > 0)
 		{
 			bullets_left--;
+			top_anim.SetTrigger ("shoot");
 
 			// Spawn a bullet, with a random variation on the aiming vector
 			Vector3 bullet_dir = new Vector3(direction.x + (Random.value - 0.5f),
@@ -149,13 +182,13 @@ public class RobotController : PlayerInput
 			var angle = Mathf.Atan2(bullet_dir.y, bullet_dir.x) * Mathf.Rad2Deg;
 
 			GameObject bullet = (GameObject) Instantiate(Resources.Load("Bullet") as GameObject, 
-				this.transform.position, 
+				this.barrel_tip.position, 
 				Quaternion.AngleAxis(angle, Vector3.forward));
-			bullet.GetComponent<Bullet>().Initialize_Bullet(this.team_number, machine_gun_damage, bullet_dir, machine_gun_speed, 3.0f);
+			bullet.GetComponent<Bullet>().Initialize_Bullet(this.player_name, this.team_number, machine_gun_damage, bullet_dir, machine_gun_speed, 3.0f);
 
 			// Shoot out a bullet casing perpendicular to the firing line
 			GameObject casing = (GameObject) Instantiate(Resources.Load("Casing") as GameObject, 
-				this.transform.position, 
+				this.barrel_tip.position, 
 				Quaternion.AngleAxis(angle + 90, Vector3.forward));
 			Quaternion quat = Quaternion.AngleAxis(90 + Random.value * 10 - 5f, Vector3.forward);
 			Vector3 vect= (Vector3) direction;
@@ -165,6 +198,8 @@ public class RobotController : PlayerInput
 			float wait_duration = machine_gun_duration / (float) num_machine_gun_bullets;
 			yield return new WaitForSeconds(wait_duration);
 		}
+		audio.loop = false;
+		audio.Stop();
 		performing_action = false;
 	}
 
@@ -220,17 +255,24 @@ public class RobotController : PlayerInput
 	}
 
 
-	public override void TakeHit(float damage, Vector3 collision_position)
+	public override void TakeHit(float damage, Vector3 collision_position, string attacker_name)
 	{
-		base.TakeHit(damage, collision_position);
-		GameObject spobj = Instantiate (robosparks, collision_position, this.transform.rotation) as GameObject;
-		Destroy (spobj, 1);
-
+		if (!dead)
+		{
+			base.TakeHit(damage, collision_position, attacker_name);
+			GameObject spobj = Instantiate (robosparks, collision_position, this.transform.rotation) as GameObject;
+			Destroy (spobj, 1);
+		}
 	}
-	public override void Die()
+	public override void Die(string attacker_name)
 	{
-		base.Die();
-
-		Destroy(this.gameObject);
+		base.Die(attacker_name);
+		CancelInvoke();
+		StopAllCoroutines();
+		dead = true;
+		audio.clip = death_noise;
+		audio.Play ();
+		top_anim.SetTrigger ("die");
+		Destroy (this.gameObject, 3);
 	}
 }
