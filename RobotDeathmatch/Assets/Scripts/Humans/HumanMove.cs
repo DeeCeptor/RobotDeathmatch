@@ -5,6 +5,7 @@ public class HumanMove : PlayerInput {
 
 	public GameObject shot;
 	public Transform shotSpawn;
+	// Transform Guntip;
 	public float FireRate;
 	Vector3 mouse_pos;
 	Vector3 human_pos;
@@ -18,6 +19,9 @@ public class HumanMove : PlayerInput {
 	public GameObject bloodpool1;
 	public GameObject bloodpool2;
 	public GameObject bloodpool3;
+	public bool HasRifle= false;
+	public float ammo;
+
 
 	public GameObject parent;
 
@@ -35,7 +39,7 @@ public class HumanMove : PlayerInput {
 
 	void Awake () 
 	{
-		parent = this.gameObject;
+		parent = transform.parent.gameObject;
 		target = this.GetComponent<Transform> ();
 		anim = this.GetComponentInChildren<Animator> ();
 		thisCollider = GetComponent<CircleCollider2D> ();
@@ -48,64 +52,76 @@ public class HumanMove : PlayerInput {
 	
 
 	void Update () {
-		if (Time.timeScale > 0) 
-		{
+		if (Time.timeScale > 0) {
 			UpdateInputs ();
 
-			if (IsDead == false) 
-			{
-				float MoveHorizontal = this.horizontal_movement;
-				float MoveVertical = vertical_movement;
+			if (IsDead == false) {
 
-				Vector2 movement = new Vector2 (MoveHorizontal, -MoveVertical);
-				parent.GetComponent<Rigidbody2D> ().velocity = movement * speed;
+					float MoveHorizontal = this.horizontal_movement;
+					float MoveVertical = vertical_movement;
 
-				bool walking = MoveHorizontal != 0 || MoveVertical != 0;
+					Vector2 movement = new Vector2 (MoveHorizontal, -MoveVertical);
+					parent.GetComponent<Rigidbody2D> ().velocity = movement * speed;
+
+					bool walking = MoveHorizontal != 0 || MoveVertical != 0;
+					
 				anim.SetBool ("walking", walking);
 
 
-				FireBullet ();
+					FireBullet ();
 
-				// Rotate towards desired rotation
-				if (!controller)
-				{
-					Debug.Log("A");
-					mouse_pos = Input.mousePosition;
-					human_pos = Camera.main.WorldToScreenPoint (target.position);
-					mouse_pos.x = mouse_pos.x - human_pos.x;
-					mouse_pos.y = mouse_pos.y - human_pos.y;
-					angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg - 90;
-					transform.rotation = Quaternion.Euler (0, 0, angle);
-				}
-				else
-				{
-					Debug.Log("b");
+					// Rotate towards desired rotation
+					if (!controller) {
+						//Debug.Log ("A");
+						mouse_pos = Input.mousePosition;
+						human_pos = Camera.main.WorldToScreenPoint (target.position);
+						mouse_pos.x = mouse_pos.x - human_pos.x;
+						mouse_pos.y = mouse_pos.y - human_pos.y;
+						angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg - 90;
+						transform.rotation = Quaternion.Euler (0, 0, angle);
+					} else {
+						//Debug.Log ("b");
 				
-					// Look towards where shooting or if we haven't shot in a while rotate towards movement direction
-					// Check if we've shot recently
-					if (Time.time > nextFire + 0.8f)
-					{
-						// Rotate towards walking direction
-						float angle_ = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
-						desired_rotation = Quaternion.AngleAxis(angle_ - 90, Vector3.forward);
+						// Look towards where shooting or if we haven't shot in a while rotate towards movement direction
+						// Check if we've shot recently
+						if (Time.time > nextFire + 0.8f) {
+							// Rotate towards walking direction
+							float angle_ = Mathf.Atan2 (movement.y, movement.x) * Mathf.Rad2Deg;
+							desired_rotation = Quaternion.AngleAxis (angle_ - 90, Vector3.forward);
+						}
+
+						this.target.rotation = Quaternion.Slerp (this.target.rotation, desired_rotation, Time.deltaTime * rotation_speed);
 					}
 
-					this.target.rotation = Quaternion.Slerp(this.target.rotation, desired_rotation, Time.deltaTime * rotation_speed);
-				}
-			} 
-			else if (IsDead == true) 
-			{
-				thisCollider.enabled = false;
 
-			}
+
+				} else if (IsDead == true) {
+					thisCollider.enabled = false;
+
+				}
+			
+
 		}
 	}
-
 	void FireBullet(){
 		if (Time.time > nextFire
 			&& ((controller && aiming_direction != Vector2.zero) || (!controller && flicked_aiming_direction != Vector2.zero)))
 		{
 			// Look towards where we're shooting
+			GetRifle ();
+			if (HasRifle==true){
+				FireRate=0.1f;
+				shotSpawn = GameObject.Find("Guntip2").transform;
+				ammo-=1;
+				Debug.Log ("ammo");
+			}else if (HasRifle == false){
+				FireRate = 0.25f;
+				shotSpawn = GameObject.Find("Guntip1").transform;
+			}if (ammo <= 0) {
+				
+				HasRifle = false;
+
+			}
 			float angle_ = Mathf.Atan2(aiming_direction.y, aiming_direction.x) * Mathf.Rad2Deg;
 			desired_rotation = Quaternion.AngleAxis(angle_ - 90, Vector3.forward);
 
@@ -115,7 +131,18 @@ public class HumanMove : PlayerInput {
 			anim.SetTrigger ("shoot");
 			audio.clip = Gunshot;
 			audio.Play ();
+
+
 		}
+	}
+
+	public void GetRifle(){
+		if (HasRifle == true) {
+			anim.SetBool ("rifle", true);
+		} else if (HasRifle == false) {
+			anim.SetBool ("rifle", false);
+		}
+
 	}
 
 	public override void TakeHit (float damage, Vector3 collision_position, string attacker_name)
