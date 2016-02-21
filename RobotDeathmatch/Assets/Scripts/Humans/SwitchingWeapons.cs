@@ -4,6 +4,10 @@ using System.Collections;
 public class SwitchingWeapons : MonoBehaviour {
 	CircleCollider2D guncollider;
 	SpriteRenderer gunrender;
+	public Canvas GunText;
+	float GunTextTime;
+	float GunTextTDelay=5;
+	bool GunTextVis;
 	float Delaytime =60;
 	float TimeGrab;
 	bool grabbed;
@@ -12,7 +16,9 @@ public class SwitchingWeapons : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gunrender = GetComponent<SpriteRenderer>();
-		guncollider = GetComponent<CircleCollider2D>(); 
+		guncollider = GetComponent<CircleCollider2D>();
+		GunText.enabled = false;
+		GunTextVis = false;
 	}
 	
 	// Update is called once per frame
@@ -20,7 +26,11 @@ public class SwitchingWeapons : MonoBehaviour {
 		if (grabbed && Time.time > TimeGrab + Delaytime) {
 			guncollider.enabled = true;
 			gunrender.enabled = true;
-			grabbed = false; 
+			grabbed = false;
+			}
+		if (GunTextVis && Time.time > GunTextTime+GunTextTDelay){
+			GunText.enabled = false;
+			GunTextVis = false;
 		}
 }
 	void OnTriggerEnter2D(Collider2D other)
@@ -36,6 +46,11 @@ public class SwitchingWeapons : MonoBehaviour {
 			human.ammo = 30;
 			human.HasRifle=true;
 			human.GetRifle();
+
+			GunText.enabled = true;
+			GunTextVis = true;
+			GunTextTime = Time.time;
+
 		}
 
 	}
