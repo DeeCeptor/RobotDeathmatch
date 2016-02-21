@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class LevelSelectScreen : MonoBehaviour {
 	public GameObject slot0;
@@ -133,25 +135,27 @@ public class LevelSelectScreen : MonoBehaviour {
 	public void loadLevel()
 	{
 		
-		switch (current) {
-		case 0:
-			Debug.Log("loadLevel");
-			break;
-		case 1:
-			Debug.Log("loadLevel");
-			break;
-		case 2:
-			Debug.Log("loadLevel");
-			break;
-		case 3:
-			Debug.Log("loadLevel");
-			break;
-		case 4:
-			Debug.Log("loadLevel");
-			break;
-		case 5:
-			Debug.Log("loadLevel");
-			break;
+		switch (current) 
+		{
+			case 0:
+				Debug.Log("loadLevel");
+				SceneManager.LoadScene("Yige_level");
+				break;
+			case 1:
+				Debug.Log("loadLevel");
+				break;
+			case 2:
+				Debug.Log("loadLevel");
+				break;
+			case 3:
+				Debug.Log("loadLevel");
+				break;
+			case 4:
+				Debug.Log("loadLevel");
+				break;
+			case 5:
+				Debug.Log("loadLevel");
+				break;
 		}
 	}
 }

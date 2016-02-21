@@ -9,6 +9,7 @@ TagManager:
   - Obstacle
   - Bullet
   - Timer
+  - Scores
   layers:
   - Default
   - TransparentFX
@@ -54,6 +55,9 @@ TagManager:
     locked: 0
   - name: Players
     uniqueID: 1093026937
+    locked: 0
+  - name: UpperEffects
+    uniqueID: 1081799597
     locked: 0
   - name: Walls
     uniqueID: 1070929625

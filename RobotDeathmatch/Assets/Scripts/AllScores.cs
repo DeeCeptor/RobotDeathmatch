@@ -12,11 +12,6 @@ public class AllScores : MonoBehaviour
 	void Awake () 
 	{
 		all_scores = this;
-	}
-	
-
-	void Update () 
-	{
-	
+		DontDestroyOnLoad(this.gameObject);
 	}
 }

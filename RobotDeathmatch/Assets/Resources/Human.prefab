@@ -12,6 +12,7 @@ GameObject:
   - 50: {fileID: 5022688}
   - 58: {fileID: 5859200}
   - 82: {fileID: 8230994}
+  - 114: {fileID: 11489524}
   m_Layer: 9
   m_Name: Human
   m_TagString: Human
@@ -45,7 +46,6 @@ GameObject:
   - 4: {fileID: 405998}
   - 212: {fileID: 21224248}
   - 95: {fileID: 9531902}
-  - 114: {fileID: 11464300}
   m_Layer: 9
   m_Name: Controller
   m_TagString: Human
@@ -399,12 +399,12 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &11464300
+--- !u!114 &11489524
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 146496}
+  m_GameObject: {fileID: 126288}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90f9c5dca31493a44930f3cc7548e8ee, type: 3}

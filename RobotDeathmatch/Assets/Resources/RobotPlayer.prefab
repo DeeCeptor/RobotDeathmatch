@@ -510,7 +510,7 @@ MonoBehaviour:
   player_name: P2
   team_number: 1
   controller: 1
-  player_color: {r: 0, g: 0, b: 0, a: 0}
+  player_color: {r: 1, g: 1, b: 1, a: 0}
   max_health: 100
   cur_health: 0
   horizontal_movement: 0
@@ -538,6 +538,7 @@ MonoBehaviour:
   open_action_slot: {fileID: 21300000, guid: 916e39967447569408ff06a177796b4a, type: 3}
   filled_action_slot: {fileID: 21300000, guid: 16ae21f63b7bf12489fe194705c3a3cf, type: 3}
   robosparks: {fileID: 113900, guid: ba7876803c0ea1a438e043187ec92918, type: 2}
+  top_sprite: {fileID: 21210980}
 --- !u!114 &11458418
 MonoBehaviour:
   m_ObjectHideFlags: 1

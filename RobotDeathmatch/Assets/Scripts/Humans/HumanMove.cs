@@ -42,6 +42,9 @@ public class HumanMove : PlayerInput {
 
 		this.cur_health = this.max_health;
 
+		// Register a live human
+		GameObject.FindGameObjectWithTag("Scores").GetComponent<Timer>().RegisterHuman();
+
 		base.init ();
 	}
 	
@@ -139,6 +142,7 @@ public class HumanMove : PlayerInput {
 		audio.clip = DeathNoise;
 		audio.Play ();
 		anim.SetTrigger ("die");
+		GameObject.FindGameObjectWithTag("Scores").GetComponent<Timer>().HumanDied();
 		Destroy (this.gameObject, 3);
 	} 
 }
