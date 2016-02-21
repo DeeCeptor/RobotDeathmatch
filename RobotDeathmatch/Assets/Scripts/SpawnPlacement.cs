@@ -37,9 +37,12 @@ public class SpawnPlacement : MonoBehaviour
 			Debug.Log(plyr.player_string + " " + plyr.robot);
 			// Set some information
 			PlayerInput input = obj.GetComponent<PlayerInput>();
+			if (input == null)
+				input.GetComponentInChildren<PlayerInput>();
 			input.player_name = plyr.player_string;
 			input.player_color = plyr.player_colour;
 			input.team_number = (plyr.robot ? 2 : 1);
+			input.Colourize();
 		}
 	}
 
@@ -52,7 +55,7 @@ public class SpawnPlacement : MonoBehaviour
 		GameObject obj = (GameObject) Instantiate(Resources.Load("Human") as GameObject, 
 			spawn_points[0].position, 
 			Quaternion.identity);
-		PlayerInput input = obj.GetComponent<PlayerInput>();
+		PlayerInput input = obj.GetComponentInChildren<PlayerInput>();
 		input.player_name = "P1";
 		input.player_color = Color.white;
 		input.team_number = 1;

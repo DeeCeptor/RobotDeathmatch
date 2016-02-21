@@ -68,13 +68,12 @@ public class RobotController : PlayerInput
 			icon.transform.SetParent(UI_parent);
 			icon.transform.localScale = Vector3.one;
 			action_icons[x] = icon.GetComponent<Image>();
-		
 		}
 		base.init ();
 	}
 
 
-	public void Colourize()
+	public override void Colourize()
 	{
 		// Colour robot
 		top_sprite.color = player_color;

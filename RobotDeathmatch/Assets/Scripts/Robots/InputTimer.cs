@@ -91,10 +91,4 @@ public class InputTimer : MonoBehaviour
 		}
 		active_robots.Remove(robot);
 	}
-
-
-	void OnGUI()
-	{
-		GUI.Label(new Rect(0, 0, 1000, 1000), "" + time_left_in_iteration);
-	}
 }

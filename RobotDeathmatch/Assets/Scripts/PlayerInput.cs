@@ -120,4 +120,10 @@ public class PlayerInput : MonoBehaviour
 			Debug.Log(attacker_name + " killed " + this.player_name);
 		}
 	}
+
+
+	public virtual void Colourize()
+	{
+
+	}
 }
