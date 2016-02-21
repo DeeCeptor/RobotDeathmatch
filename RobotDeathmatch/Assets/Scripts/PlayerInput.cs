@@ -8,6 +8,8 @@ public class PlayerInput : MonoBehaviour
 	public int team_number;		// 1-4 teams, can only hurt players on other teams
 	public bool controller = true;	// Using a controller?
 	public Color player_color = Color.white;
+	public string team_name;
+	public Color team_color;
 
 	public float max_health = 1000;
 	public float cur_health;

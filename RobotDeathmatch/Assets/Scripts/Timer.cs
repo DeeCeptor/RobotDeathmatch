@@ -42,10 +42,20 @@ public class Timer : MonoBehaviour
 	public void HumanDied()
 	{
 		alive_humans--;
-		if (alive_humans <= 0)
+
+		if (PlayerInformation.player_info.cur_modes == PlayerInformation.Modes.Kill_Humans)
 		{
-			Debug.Log("All humans are dead");
-			big_text.StartText(new string[] { "HUMANS", "ARE", "DEAD" });
+			if (alive_humans <= 0)
+			{
+				Debug.Log("All humans are dead");
+				big_text.StartText(new string[] { "HUMANS", "ARE", "DEAD" });
+				GameOver();
+			}
+		}
+		else if (PlayerInformation.player_info.cur_modes == PlayerInformation.Modes.Kill_Humans)
+		{
+			Debug.Log("A huamn has died");
+			big_text.StartText(new string[] { "HUMAN", "IS", "DEAD" });
 			GameOver();
 		}
 	}

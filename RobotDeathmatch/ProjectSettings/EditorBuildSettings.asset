@@ -10,6 +10,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Menus/Join.unity
   - enabled: 1
+    path: Assets/Menus/ModeSelect.unity
+  - enabled: 1
     path: Assets/Menus/LevelSelect.unity
   - enabled: 1
     path: Assets/Menus/Results.unity

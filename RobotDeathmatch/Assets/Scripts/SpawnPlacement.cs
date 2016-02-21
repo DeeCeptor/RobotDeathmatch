@@ -42,8 +42,20 @@ public class SpawnPlacement : MonoBehaviour
 			input.controller = true;
 			input.player_name = plyr.player_string;
 			input.player_color = plyr.player_colour;
-			input.team_number = (plyr.robot ? 2 : 1);
+
+			if (PlayerInformation.player_info.cur_modes == PlayerInformation.Modes.Kill_Humans)
+			{
+				Debug.Log("Kill humans mode");
+				input.team_number = (plyr.robot ? 2 : 1);
+			}
+			else if (PlayerInformation.player_info.cur_modes == PlayerInformation.Modes.Protect_Human)
+			{
+				input.team_number = plyr.team_number;
+				input.team_name = plyr.team_name;
+				input.team_color = plyr.team_color;
+			}
 			input.Colourize();
+
 		}
 	}
 

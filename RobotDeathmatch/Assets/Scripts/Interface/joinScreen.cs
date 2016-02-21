@@ -51,12 +51,6 @@ public class joinScreen : MonoBehaviour {
 				p1text.text = GetCharacterTypeText(player1.robot, 1);
 			}
 		}
-		if (Input.GetButtonDown("P1 Y") && p1)
-		{
-			// Player has already joined, switch human/robot status
-			player1.robot = !player1.robot;
-			p1text.text = GetCharacterTypeText(player1.robot, 1);
-		}
 
 		if (Input.GetButtonDown ("P2 A")) 
 		{
@@ -68,12 +62,6 @@ public class joinScreen : MonoBehaviour {
 				PlayerInformation.player_info.players.Add(player2);
 				p2text.text = GetCharacterTypeText(player2.robot, 2);
 			}
-		}
-		if (Input.GetButtonDown("P2 Y") && p2)
-		{
-			// Player has already joined, switch human/robot status
-			player2.robot = !player2.robot;
-			p2text.text = GetCharacterTypeText(player2.robot, 2);
 		}
 
 		if (Input.GetButtonDown ("P3 A")) 
@@ -87,12 +75,6 @@ public class joinScreen : MonoBehaviour {
 				p3text.text = GetCharacterTypeText(player3.robot, 3);
 			}
 		}
-		if (Input.GetButtonDown("P3 Y") && p3)
-		{
-			// Player has already joined, switch human/robot status
-			player3.robot = !player3.robot;
-			p3text.text = GetCharacterTypeText(player3.robot, 3);
-		}
 
 		if (Input.GetButtonDown ("P3 A")) 
 		{
@@ -105,12 +87,34 @@ public class joinScreen : MonoBehaviour {
 				p4text.text = GetCharacterTypeText(player4.robot, 4);
 			}
 		}
+
+		/*
+		if (Input.GetButtonDown("P1 Y") && p1)
+		{
+			// Player has already joined, switch human/robot status
+			player1.robot = !player1.robot;
+			p1text.text = GetCharacterTypeText(player1.robot, 1);
+		}
+		if (Input.GetButtonDown("P2 Y") && p2)
+		{
+			// Player has already joined, switch human/robot status
+			player2.robot = !player2.robot;
+			p2text.text = GetCharacterTypeText(player2.robot, 2);
+		}
+		if (Input.GetButtonDown("P3 Y") && p3)
+		{
+			// Player has already joined, switch human/robot status
+			player3.robot = !player3.robot;
+			p3text.text = GetCharacterTypeText(player3.robot, 3);
+		}
 		if (Input.GetButtonDown("P4 Y") && p3)
 		{
 			// Player has already joined, switch human/robot status
 			player4.robot = !player4.robot;
 			p4text.text = GetCharacterTypeText(player4.robot, 4);
-		}
+		}*/
+
+
 
 		if (p1 && (p2 || p3 || p4)) {
 			startText.enabled = true;
@@ -119,7 +123,8 @@ public class joinScreen : MonoBehaviour {
 		if (startText.enabled && Input.GetButtonDown("Submit")) 
 		{
 			Debug.Log ("Submitted");
-			SceneManager.LoadScene("LevelSelect");
+			//SceneManager.LoadScene("LevelSelect");
+			SceneManager.LoadScene("ModeSelect");
 		}
 	}
 
