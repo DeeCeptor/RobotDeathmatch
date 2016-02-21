@@ -96,7 +96,7 @@ GameObject:
   - 61: {fileID: 6189070}
   - 114: {fileID: 11483616}
   m_Layer: 8
-  m_Name: RobotPlayer (1)
+  m_Name: RobotPlayer
   m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
