@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class joinScreen : MonoBehaviour {
 
@@ -29,29 +30,37 @@ public class joinScreen : MonoBehaviour {
 		if (Input.GetButtonDown ("P1 A")) {
 			p1 = true;
 			p1Check.SetActive (true);
+			PlayerInformation.player_info.players.Add(new Player(1, Color.white, false));
+			Debug.Log("P1");
 		}
 
 		if (Input.GetButtonDown ("P2 A")) {
 			p2 = true;
 			p2Check.SetActive (true);
+			PlayerInformation.player_info.players.Add(new Player(2, Color.red, true));
+			Debug.Log("P2");
 		}
 
 		if (Input.GetButtonDown ("P3 A")) {
 			p3 = true;
 			p3Check.SetActive (true);
+			PlayerInformation.player_info.players.Add(new Player(3, Color.green, true));
 		}
 
 		if (Input.GetButtonDown ("P4 A")) {
 			p4 = true;
 			p4Check.SetActive (true);
+			PlayerInformation.player_info.players.Add(new Player(4, Color.blue, true));
 		}
 
 		if (p1 && (p2 || p3 || p4)) {
 			startText.enabled = true;
 		}
 
-		if (startText.enabled && Input.GetButtonDown("Submit")) {
+		if (startText.enabled && Input.GetButtonDown("Submit")) 
+		{
 			Debug.Log ("Submitted");
+			SceneManager.LoadScene("LevelSelect");
 		}
 	}
 }

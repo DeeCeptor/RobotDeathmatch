@@ -68,7 +68,6 @@ PlayerSettings:
   n3dsEnableSharedListOpt: 1
   n3dsEnableVSync: 0
   uiUse16BitDepthBuffer: 0
-  ignoreAlphaClear: 0
   xboxOneResolution: 0
   ps3SplashScreen: {fileID: 0}
   videoMemoryForVertexBuffers: 0
@@ -134,9 +133,6 @@ PlayerSettings:
   iPadLandscapeSplashScreen: {fileID: 0}
   iPadHighResLandscapeSplashScreen: {fileID: 0}
   appleTVSplashScreen: {fileID: 0}
-  tvOSSmallIconLayers: []
-  tvOSLargeIconLayers: []
-  tvOSTopShelfImageLayers: []
   iOSLaunchScreenType: 0
   iOSLaunchScreenPortrait: {fileID: 0}
   iOSLaunchScreenLandscape: {fileID: 0}
@@ -168,12 +164,17 @@ PlayerSettings:
     height: 180
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
+<<<<<<< HEAD
   resolutionDialogBanner: {fileID: 2800000, guid: 22fe5b352df2753448f65cfce189e719,
     type: 3}
+=======
+  resolutionDialogBanner: {fileID: 0}
+>>>>>>> 109f8b8cb3ed7f2ffe558dbd61f705f6021056fe
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
+<<<<<<< HEAD
       m_Icon: {fileID: 2800000, guid: 95da7f00b63f29245997370f5feb04ce, type: 3}
       m_Width: 128
       m_Height: 128
@@ -207,6 +208,11 @@ PlayerSettings:
       m_Icon: {fileID: 0}
       m_Width: 16
       m_Height: 16
+=======
+      m_Icon: {fileID: 0}
+      m_Width: 128
+      m_Height: 128
+>>>>>>> 109f8b8cb3ed7f2ffe558dbd61f705f6021056fe
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   webPlayerTemplate: APPLICATION:Default

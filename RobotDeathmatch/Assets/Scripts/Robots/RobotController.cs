@@ -44,6 +44,7 @@ public class RobotController : PlayerInput
 
 	Vector2 desired_velocity = Vector2.zero;
 	public GameObject robosparks;
+	public SpriteRenderer top_sprite;
 
 	void Awake()
 	{
@@ -70,6 +71,13 @@ public class RobotController : PlayerInput
 		
 		}
 		base.init ();
+	}
+
+
+	public void Colourize()
+	{
+		// Colour robot
+		top_sprite.color = player_color;
 	}
 
 
