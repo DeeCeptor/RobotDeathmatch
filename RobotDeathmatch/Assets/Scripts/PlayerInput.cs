@@ -7,7 +7,7 @@ public class PlayerInput : MonoBehaviour
 	public string player_name;	// Ex: P1
 	public int team_number;		// 1-4 teams, can only hurt players on other teams
 	public bool controller = true;	// Using a controller?
-	public Color player_color;
+	public Color player_color = Color.white;
 
 	public float max_health = 1000;
 	public float cur_health;
@@ -98,9 +98,11 @@ public class PlayerInput : MonoBehaviour
 
 	public virtual void TakeHit(float damage, Vector3 collision_position, string attacker_name)
 	{
-		cur_health -= damage;
+		cur_health = Mathf.Clamp(cur_health - damage, 0, max_health);
 
-		if (healthbar) {
+		if (healthbar) 
+		{
+			Debug.Log("A");
 			healthbar.setHealth (cur_health);
 		}
 

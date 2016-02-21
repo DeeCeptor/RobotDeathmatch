@@ -7,8 +7,10 @@ public class Timer : MonoBehaviour
 {
 	public Text timer_text;
 	public float remaining_time;
+	public int alive_humans = 0;
 
-	void Start () {
+	void Start () 
+	{
 	
 	}
 	
@@ -20,11 +22,25 @@ public class Timer : MonoBehaviour
 
 		if (remaining_time <= 0)
 		{
-			Debug.Log("Time is up");
+			Debug.Log("Time is up, humans win!");
 			GameOver();
 		}
 	}
 
+
+	public void HumanDied()
+	{
+		alive_humans--;
+		if (alive_humans <= 0)
+		{
+			Debug.Log("All humans are dead");
+			GameOver();
+		}
+	}
+	public void RegisterHuman()
+	{
+		alive_humans++;
+	}
 
 	public void GameOver()
 	{

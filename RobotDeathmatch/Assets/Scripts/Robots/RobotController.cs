@@ -11,6 +11,8 @@ public class RobotController : PlayerInput
 	Image[] action_icons;
 	Transform UI_parent; 
 	Animator top_anim;
+	bool dead = false;
+	public Text repairing_text;
 
 	Transform sprite_parent;
 	Quaternion desired_rotation;
@@ -35,12 +37,14 @@ public class RobotController : PlayerInput
 	float machine_gun_duration = .2f;
 	int num_machine_gun_bullets = 15;
 	float machine_gun_speed = 20.0f;
-	float machine_gun_damage = 50;
+	public float machine_gun_damage = 20;
 
 	public Sprite open_action_slot;
 	public Sprite filled_action_slot;
 
+	Vector2 desired_velocity = Vector2.zero;
 	public GameObject robosparks;
+	public SpriteRenderer top_sprite;
 
 	void Awake()
 	{
@@ -70,53 +74,89 @@ public class RobotController : PlayerInput
 	}
 
 
+	public void Colourize()
+	{
+		// Colour robot
+		top_sprite.color = player_color;
+	}
+
+
 	void Update () 
 	{
-		// We have all of the player input
-		UpdateInputs();
-
-		// If not maxed out on player inputs, allow more action inputs
-		if (player_input_queue.Count < input_limit)
+		if (Time.timeScale > 0 && !dead)
 		{
-			// Check for player input to be added the to the player input queue
-			if (prev_horizontal_movement == 0 && horizontal_movement != 0
-				&& Mathf.Abs(horizontal_movement) > Mathf.Abs(vertical_movement))
+			// We have all of the player input
+			UpdateInputs();
+
+			// If not maxed out on player inputs, allow more action inputs
+			if (player_input_queue.Count < input_limit)
 			{
-				if (horizontal_movement > 0)
-					QueueNewInput("MoveRight");
-				else
-					QueueNewInput("MoveLeft");
+				// Check for player input to be added the to the player input queue
+				if (prev_horizontal_movement == 0 && horizontal_movement != 0
+					&& Mathf.Abs(horizontal_movement) > Mathf.Abs(vertical_movement))
+				{
+					if (horizontal_movement > 0)
+						QueueNewInput("MoveRight");
+					else
+						QueueNewInput("MoveLeft");
+				}
+				if (prev_vertical_movement == 0 && vertical_movement != 0
+					&& Mathf.Abs(vertical_movement) > Mathf.Abs(horizontal_movement))
+				{
+					if (vertical_movement > 0)
+						QueueNewInput("MoveUp");
+					else
+						QueueNewInput("MoveDown");
+				}
+				// Aiming and firing
+				if (prev_flicked_aiming_direction == Vector2.zero && flicked_aiming_direction != Vector2.zero)
+				{
+					QueueNewInput("MachineGun " + flicked_aiming_direction.x + " " + flicked_aiming_direction.y);
+				}
 			}
-			if (prev_vertical_movement == 0 && vertical_movement != 0
-				&& Mathf.Abs(vertical_movement) > Mathf.Abs(horizontal_movement))
+
+			/*
+			if (player_input_queue.Count >= input_limit)
 			{
-				if (vertical_movement > 0)
-					QueueNewInput("MoveUp");
-				else
-					QueueNewInput("MoveDown");
-			}
-			// Aiming and firing
-			if (prev_flicked_aiming_direction == Vector2.zero && flicked_aiming_direction != Vector2.zero)
+				DequeuePlayerInput();
+			}*/
+
+
+			// Currently performing actions?
+			if (!performing_action)
 			{
-				QueueNewInput("MachineGun " + flicked_aiming_direction.x + " " + flicked_aiming_direction.y);
+				ResolveNextAction();
 			}
+
+			// Set correct rotation
+			sprite_parent.rotation = Quaternion.Slerp(sprite_parent.rotation, desired_rotation, Time.deltaTime * rotation_speed);
+
+			// Set our velocity
+			physics.velocity = desired_velocity;
 		}
-
-		/*
-		if (player_input_queue.Count >= input_limit)
+		else if (dead)
 		{
-			DequeuePlayerInput();
-		}*/
+			// Start repair and reanimation process
 
-
-		// Currently performing actions?
-		if (!performing_action)
-		{
-			ResolveNextAction();
 		}
+	}
 
-		// Set correct rotation
-		sprite_parent.rotation = Quaternion.Slerp(sprite_parent.rotation, desired_rotation, Time.deltaTime * rotation_speed);
+
+	public void Reanimation()
+	{
+		Debug.Log(player_name + " revived");
+		this.cur_health = max_health;
+		dead = false;
+		player_input_queue.Clear();
+		actions_queue.Clear();
+		physics.drag = 0;
+		top_anim.SetTrigger ("revive");
+		repairing_text.gameObject.SetActive(false);
+
+		foreach (Image anim in action_icons)
+		{
+			anim.sprite = open_action_slot;
+		}
 	}
 
 
@@ -133,7 +173,7 @@ public class RobotController : PlayerInput
 	IEnumerator Move_Action(Vector2 direction)
 	{
 		performing_action = true;
-		physics.velocity = direction;
+		desired_velocity = direction;
 		top_anim.SetBool ("walking", true);
 		audio.clip = moving_noise;
 		audio.Play ();
@@ -150,6 +190,7 @@ public class RobotController : PlayerInput
 		top_anim.SetBool ("walking", false);
 		performing_action = false;
 		physics.velocity = Vector2.zero;
+		desired_velocity = Vector2.zero;
 	}
 	IEnumerator MachineGun_Action(Vector2 direction)
 	{
@@ -203,15 +244,32 @@ public class RobotController : PlayerInput
 	// Takes all input currently entered and adds it to the queue that is executing actions
 	public void DequeuePlayerInput()
 	{
-		while (player_input_queue.Count > 0)
+		if (!dead)
 		{
-			string command = player_input_queue.Dequeue();
-			actions_queue.Enqueue(command);
-		}
+			while (player_input_queue.Count > 0)
+			{
+				string command = player_input_queue.Dequeue();
+				actions_queue.Enqueue(command);
+			}
 
-		foreach (Image anim in action_icons)
+			foreach (Image anim in action_icons)
+			{
+				anim.sprite = open_action_slot;
+			}
+		}
+		else
 		{
-			anim.sprite = open_action_slot;
+			// Dead, don't dequeue actions anymore, instead queue more
+			if (player_input_queue.Count >= 5)
+			{
+				// Done our time, revive
+				Reanimation();
+			}
+			else
+			{
+				player_input_queue.Enqueue("Revive");
+				action_icons[player_input_queue.Count - 1].sprite = filled_action_slot;
+			}
 		}
 	}
 
@@ -253,16 +311,33 @@ public class RobotController : PlayerInput
 
 	public override void TakeHit(float damage, Vector3 collision_position, string attacker_name)
 	{
-		base.TakeHit(damage, collision_position, attacker_name);
-		GameObject spobj = Instantiate (robosparks, collision_position, this.transform.rotation) as GameObject;
-		Destroy (spobj, 1);
+		if (!dead)
+		{
+			base.TakeHit(damage, collision_position, attacker_name);
+			GameObject spobj = Instantiate (robosparks, collision_position, this.transform.rotation) as GameObject;
+			Destroy (spobj, 1);
+		}
 	}
 	public override void Die(string attacker_name)
 	{
 		base.Die(attacker_name);
+		CancelInvoke();
+		StopAllCoroutines();
+		dead = true;
+		physics.drag = 1000;
+		repairing_text.gameObject.SetActive(true);
+
+		// Clear queue
+		player_input_queue.Clear();
+		foreach (Image anim in action_icons)
+		{
+			anim.sprite = open_action_slot;
+		}
+		actions_queue.Clear();
+
 		audio.clip = death_noise;
 		audio.Play ();
 		top_anim.SetTrigger ("die");
-		Destroy (this.gameObject, 3);
+		//Destroy (this.gameObject, 3);
 	}
 }
