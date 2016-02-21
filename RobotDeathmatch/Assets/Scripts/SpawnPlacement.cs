@@ -59,6 +59,7 @@ public class SpawnPlacement : MonoBehaviour
 		input.player_name = "P1";
 		input.player_color = Color.white;
 		input.team_number = 1;
+		input.Colourize();
 
 		// Spawn a robit
 		obj = (GameObject) Instantiate(Resources.Load("RobotPlayer") as GameObject, 
@@ -68,6 +69,7 @@ public class SpawnPlacement : MonoBehaviour
 		input.player_name = "P2";
 		input.player_color = Color.red;
 		input.team_number = 2;
+		input.Colourize();
 
 		// Spawn a robit
 		obj = (GameObject) Instantiate(Resources.Load("RobotPlayer") as GameObject, 
@@ -77,6 +79,7 @@ public class SpawnPlacement : MonoBehaviour
 		input.player_name = "P3";
 		input.player_color = Color.green;
 		input.team_number = 2;
+		input.Colourize();
 
 		// Spawn a robit
 		obj = (GameObject) Instantiate(Resources.Load("RobotPlayer") as GameObject, 
@@ -86,5 +89,6 @@ public class SpawnPlacement : MonoBehaviour
 		input.player_name = "P4";
 		input.player_color = Color.blue;
 		input.team_number = 2;
+		input.Colourize();
 	}
 }
