@@ -40,6 +40,10 @@ public class joinScreen : MonoBehaviour {
 
 	void Update () 
 	{
+		if (Input.GetButtonDown ("Cancel")) {
+			SceneManager.LoadScene ("StartMenu");
+		}
+
 		if (Input.GetButtonDown ("P1 A")) 
 		{
 			if(!p1)
