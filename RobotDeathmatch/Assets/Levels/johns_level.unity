@@ -428,6 +428,10 @@ Prefab:
       propertyPath: m_Name
       value: Destructible Crate (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
   m_IsPrefabParent: 0
@@ -1517,6 +1521,10 @@ Prefab:
     - target: {fileID: 172012, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_Name
       value: Destructible Crate (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
@@ -3056,6 +3064,10 @@ Prefab:
       propertyPath: m_Name
       value: Destructible Crate (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
   m_IsPrefabParent: 0
@@ -3193,6 +3205,10 @@ Prefab:
     - target: {fileID: 172012, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_Name
       value: Destructible Crate (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
@@ -6492,6 +6508,10 @@ Prefab:
       propertyPath: m_Name
       value: Destructible Crate (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
   m_IsPrefabParent: 0
@@ -7221,6 +7241,10 @@ Prefab:
     - target: {fileID: 172012, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_Name
       value: Destructible Crate (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
@@ -9118,6 +9142,10 @@ Prefab:
     - target: {fileID: 172012, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_Name
       value: Destructible Crate (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
@@ -11798,6 +11826,10 @@ Prefab:
       propertyPath: m_Name
       value: Destructible Crate (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
   m_IsPrefabParent: 0
@@ -12485,6 +12517,10 @@ Prefab:
     - target: {fileID: 172012, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_Name
       value: Destructible Crate (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
@@ -13198,6 +13234,10 @@ Prefab:
       propertyPath: m_Name
       value: Destructible Crate (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
   m_IsPrefabParent: 0
@@ -13864,6 +13904,10 @@ Prefab:
       propertyPath: m_Name
       value: Destructible Crate (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
   m_IsPrefabParent: 0
@@ -14071,6 +14115,10 @@ Prefab:
     - target: {fileID: 172012, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_Name
       value: Destructible Crate (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
@@ -15622,6 +15670,10 @@ Prefab:
       propertyPath: m_Name
       value: Destructible Crate (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
   m_IsPrefabParent: 0
@@ -16896,6 +16948,10 @@ Prefab:
     - target: {fileID: 172012, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_Name
       value: Destructible Crate (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
@@ -18337,6 +18393,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 449894, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -20169,6 +20229,10 @@ Prefab:
       propertyPath: m_Name
       value: Destructible Crate (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
   m_IsPrefabParent: 0
@@ -20788,6 +20852,10 @@ Prefab:
       propertyPath: m_Name
       value: Destructible Crate (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
   m_IsPrefabParent: 0
@@ -20833,6 +20901,10 @@ Prefab:
     - target: {fileID: 172012, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_Name
       value: Destructible Crate (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
@@ -21453,6 +21525,10 @@ Prefab:
       propertyPath: m_Name
       value: Destructible Crate (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
   m_IsPrefabParent: 0
@@ -21498,6 +21574,10 @@ Prefab:
     - target: {fileID: 172012, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_Name
       value: Destructible Crate (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
@@ -22831,6 +22911,10 @@ Prefab:
     - target: {fileID: 172012, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_Name
       value: Destructible Crate (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
@@ -24672,6 +24756,10 @@ Prefab:
       propertyPath: m_Name
       value: Destructible Crate (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
   m_IsPrefabParent: 0
@@ -25259,6 +25347,10 @@ Prefab:
     - target: {fileID: 172012, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_Name
       value: Destructible Crate (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
@@ -27383,6 +27475,10 @@ Prefab:
     - target: {fileID: 172012, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
       propertyPath: m_Name
       value: Destructible Crate (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436962, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a5d3f4de0047fa42bdc58e02fdada7c, type: 2}
