@@ -224,7 +224,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Chaos floor
+  m_Text: Calamity Columns
 --- !u!222 &298632715
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -369,7 +369,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Death Factory
+  m_Text: Serpentine
 --- !u!222 &520061523
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Candy Land
+  m_Text: Neutron Star
 --- !u!222 &792161095
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -645,7 +645,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Massacre Facility
+  m_Text: Kill-Bot Factory
 --- !u!222 &1040623059
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1309,7 +1309,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Murder Zone
+  m_Text: Massacre Facility
 --- !u!222 &1926111283
 CanvasRenderer:
   m_ObjectHideFlags: 0
