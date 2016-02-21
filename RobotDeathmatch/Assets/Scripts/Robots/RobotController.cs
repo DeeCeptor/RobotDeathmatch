@@ -24,6 +24,8 @@ public class RobotController : PlayerInput
 	public AudioClip death_noise;
 	public AudioClip machinegun_noise;
 	public AudioClip moving_noise;
+	public AudioClip hurt_noise;
+	public AudioClip revive_noise;
 
 	// ACTIONS
 	string current_action;	// Action we are performing
@@ -146,11 +148,14 @@ public class RobotController : PlayerInput
 		Debug.Log(player_name + " revived");
 		this.cur_health = max_health;
 		dead = false;
+		performing_action = false;
 		player_input_queue.Clear();
 		actions_queue.Clear();
 		physics.drag = 0;
 		top_anim.SetTrigger ("revive");
 		repairing_text.gameObject.SetActive(false);
+		audio.clip = revive_noise;
+		audio.Play ();
 
 		foreach (Image anim in action_icons)
 		{
@@ -315,6 +320,8 @@ public class RobotController : PlayerInput
 			base.TakeHit(damage, collision_position, attacker_name);
 			GameObject spobj = Instantiate (robosparks, collision_position, this.transform.rotation) as GameObject;
 			Destroy (spobj, 1);
+			audio.clip = hurt_noise;
+			audio.Play ();
 		}
 	}
 	public override void Die(string attacker_name)
@@ -322,6 +329,7 @@ public class RobotController : PlayerInput
 		if (!dead)
 		{
 			base.Die(attacker_name);
+			performing_action = false;
 			CancelInvoke();
 			StopAllCoroutines();
 			dead = true;

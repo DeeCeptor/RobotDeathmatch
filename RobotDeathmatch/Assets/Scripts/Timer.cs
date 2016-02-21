@@ -12,11 +12,12 @@ public class Timer : MonoBehaviour
 	public int alive_humans = 0;
 	public OpeningText big_text;
 	bool game_over = false;
-
+	AudioSource audio;
 
 	void Awake () 
 	{
 		timer = this;
+		audio = this.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -58,6 +59,7 @@ public class Timer : MonoBehaviour
 		Debug.Log("Game over");
 		game_over = true;
 		Invoke("ToScoreScreen", 2.0f);
+		audio.Play();
 	}
 
 
