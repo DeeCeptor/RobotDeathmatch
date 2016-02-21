@@ -173,6 +173,7 @@ public class HumanMove : PlayerInput {
 			audio.Play ();
 			Timer.timer.HumanDied();
 			anim.SetTrigger ("die");
+			parent.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			Destroy (this.gameObject, 3);
 		}
 	} 

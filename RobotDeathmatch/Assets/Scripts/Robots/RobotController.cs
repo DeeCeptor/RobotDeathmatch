@@ -34,6 +34,8 @@ public class RobotController : PlayerInput
 	float movement_velocity = 2.0f;
 	bool performing_action = false;
 	int input_limit = 5;	// If over this limit, dequeue the inputs
+	float respawn_time = 9f;
+	float death_counter;
 
 	// MACHINE GUN
 	float machine_gun_duration = .2f;
@@ -138,10 +140,16 @@ public class RobotController : PlayerInput
 		else if (dead)
 		{
 			// Start repair and reanimation process
+			death_counter -= Time.deltaTime;
 
+			if (death_counter <= 0 && player_input_queue.Count < input_limit)
+			{
+				player_input_queue.Enqueue("Revive");
+				action_icons[player_input_queue.Count - 1].sprite = filled_action_slot;
+				death_counter = respawn_time / (float) input_limit;
+			}
 		}
 	}
-
 
 	public void Reanimation()
 	{
@@ -263,17 +271,20 @@ public class RobotController : PlayerInput
 		}
 		else
 		{
+			
 			// Dead, don't dequeue actions anymore, instead queue more
 			if (player_input_queue.Count >= 5)
 			{
 				// Done our time, revive
 				Reanimation();
 			}
+			/*
 			else
 			{
 				player_input_queue.Enqueue("Revive");
 				action_icons[player_input_queue.Count - 1].sprite = filled_action_slot;
 			}
+			*/
 		}
 	}
 
@@ -329,6 +340,7 @@ public class RobotController : PlayerInput
 		if (!dead)
 		{
 			base.Die(attacker_name);
+			death_counter = respawn_time / (float) input_limit;
 			performing_action = false;
 			CancelInvoke();
 			StopAllCoroutines();

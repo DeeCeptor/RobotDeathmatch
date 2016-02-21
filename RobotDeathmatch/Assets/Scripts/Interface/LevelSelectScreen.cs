@@ -139,11 +139,11 @@ public class LevelSelectScreen : MonoBehaviour {
 		{
 			case 0:
 				Debug.Log("loadLevel");
-				SceneManager.LoadScene("Yige_level");
+				SceneManager.LoadScene("Catacombs");
 				break;
 			case 1:
 				Debug.Log("loadLevel");
-				SceneManager.LoadScene("Catacombs");
+				SceneManager.LoadScene("Yige_level");
 				break;
 			case 2:
 				Debug.Log("loadLevel");
