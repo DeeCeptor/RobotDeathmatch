@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour {
 
@@ -90,8 +91,8 @@ public class Pause : MonoBehaviour {
 			//SceneManager.LoadScene("Catacombs");
 			break;
 		case 1:
-			Quit ();
-			//SceneManager.LoadScene("Yige_level");
+			
+			SceneManager.LoadScene("Join");
 			break;
 		}
 	}
