@@ -44,8 +44,6 @@ public class StartScreen : MonoBehaviour {
 	public void moveLeft(){
 		switch (current) {
 		case 0:
-			item0.Deselect ();
-			current = 1;
 			break;
 		case 1:
 			item1.Deselect ();
@@ -61,8 +59,6 @@ public class StartScreen : MonoBehaviour {
 			current++;
 			break;
 		case 1:
-			item1.Deselect ();
-			current=0;
 			break;
 		}
 	}
