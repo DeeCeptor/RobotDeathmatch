@@ -52,7 +52,7 @@ public class joinScreen : MonoBehaviour {
 				p1Check.SetActive (true);
 				player1 = new Player(1, Color.white, false);
 				PlayerInformation.player_info.players.Insert(0, player1);
-				p1text.text = GetCharacterTypeText(player1.robot, 1);
+				//p1text.text = GetCharacterTypeText(player1.robot, 1);
 			}
 		}
 
@@ -64,7 +64,7 @@ public class joinScreen : MonoBehaviour {
 				p2Check.SetActive (true);
 				player2 = new Player(2, Color.red, true);
 				PlayerInformation.player_info.players.Add(player2);
-				p2text.text = GetCharacterTypeText(player2.robot, 2);
+				//p2text.text = GetCharacterTypeText(player2.robot, 2);
 			}
 		}
 
@@ -76,7 +76,7 @@ public class joinScreen : MonoBehaviour {
 				p3Check.SetActive (true);
 				player3 = new Player(3, Color.green, true);
 				PlayerInformation.player_info.players.Add(player3);
-				p3text.text = GetCharacterTypeText(player3.robot, 3);
+				//p3text.text = GetCharacterTypeText(player3.robot, 3);
 			}
 		}
 
@@ -88,7 +88,7 @@ public class joinScreen : MonoBehaviour {
 				p4Check.SetActive (true);
 				player4 = new Player(4, Color.blue, true);
 				PlayerInformation.player_info.players.Add(player4);
-				p4text.text = GetCharacterTypeText(player4.robot, 4);
+				//p4text.text = GetCharacterTypeText(player4.robot, 4);
 			}
 		}
 

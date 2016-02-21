@@ -474,6 +474,8 @@ MonoBehaviour:
   bloodpool3: {fileID: 111026, guid: bdc5cd7d43085ec43a5076680b1a256e, type: 2}
   HasRifle: 0
   ammo: 5
+  Guntip1: {fileID: 169216}
+  Guntip2: {fileID: 188172}
   parent: {fileID: 0}
   speed: 5
 --- !u!212 &21217590

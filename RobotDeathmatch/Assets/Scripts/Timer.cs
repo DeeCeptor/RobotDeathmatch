@@ -8,7 +8,9 @@ public class Timer : MonoBehaviour
 	public static Timer timer;
 
 	public Text timer_text;
-	public float remaining_time;
+	public float four_player_match_time = 180;	// Time used in 4 player matches
+	public float three_player_match_time = 240;
+	float remaining_time;
 	public int alive_humans = 0;
 	public OpeningText big_text;
 	bool game_over = false;
@@ -18,6 +20,20 @@ public class Timer : MonoBehaviour
 	{
 		timer = this;
 		audio = this.GetComponent<AudioSource>();
+	}
+	void Start ()
+	{
+		// Get the number of players to determine what we should set the timer to
+		if (PlayerInformation.player_info.players.Count >= 4)
+		{
+			remaining_time = four_player_match_time;
+			Debug.Log("Upper match time");
+		}
+		else
+		{
+			remaining_time = three_player_match_time;
+			Debug.Log("Lower match time");
+		}
 	}
 	
 	// Update is called once per frame

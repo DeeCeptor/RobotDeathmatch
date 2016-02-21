@@ -341,7 +341,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: survive
+  m_Text: 'survive,
+
+    grab guns'
 --- !u!222 &85569581
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -472,7 +474,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: kill all humans
+  m_Text: KILL
 --- !u!222 &306466903
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -816,8 +818,8 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 111.5, y: -11.3}
-  m_SizeDelta: {x: 199.2, y: 272.8}
+  m_AnchoredPosition: {x: 96, y: -16}
+  m_SizeDelta: {x: 143, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &584255487
 MonoBehaviour:
@@ -840,31 +842,21 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: f67c7ce57351ad84e87fa152cae7cda5, type: 3}
-    m_FontSize: 20
+    m_FontSize: 17
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Press Y
+  m_Text: 'Robots queue future actions by flicking a stick in a direction. actions
+    are executed when the top timer counts down.
 
-    to switch
-
-    classes
-
-
-    3:1 Robots
-
-    or
-
-    2:1 Robots
-
-    recommended'
+    plan your actions carefully'
 --- !u!222 &584255488
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -21,7 +21,8 @@ public class HumanMove : PlayerInput {
 	public GameObject bloodpool3;
 	public bool HasRifle= false;
 	public float ammo;
-
+	public GameObject Guntip1;
+	public GameObject Guntip2;
 
 	public GameObject parent;
 
@@ -111,12 +112,12 @@ public class HumanMove : PlayerInput {
 			GetRifle ();
 			if (HasRifle==true){
 				FireRate=0.1f;
-				shotSpawn = GameObject.Find("Guntip2").transform;
+				shotSpawn = Guntip2.transform;
 				ammo-=1;
 				Debug.Log ("ammo");
 			}else if (HasRifle == false){
 				FireRate = 0.25f;
-				shotSpawn = GameObject.Find("Guntip1").transform;
+				shotSpawn = Guntip1.transform;
 			}if (ammo <= 0) {
 				
 				HasRifle = false;
