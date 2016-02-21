@@ -134,7 +134,6 @@ public class HumanMove : PlayerInput {
 	}
 	public override void Die (string attacker_name)
 	{
-
 		base.Die (attacker_name);
 		IsDead = true;
 		audio.clip = DeathNoise;

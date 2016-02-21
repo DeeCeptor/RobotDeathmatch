@@ -12,6 +12,7 @@ public class RobotController : PlayerInput
 	Transform UI_parent; 
 	Animator top_anim;
 	bool dead = false;
+	public Text repairing_text;
 
 	Transform sprite_parent;
 	Quaternion desired_rotation;
@@ -41,6 +42,7 @@ public class RobotController : PlayerInput
 	public Sprite open_action_slot;
 	public Sprite filled_action_slot;
 
+	Vector2 desired_velocity = Vector2.zero;
 	public GameObject robosparks;
 
 	void Awake()
@@ -120,6 +122,32 @@ public class RobotController : PlayerInput
 
 			// Set correct rotation
 			sprite_parent.rotation = Quaternion.Slerp(sprite_parent.rotation, desired_rotation, Time.deltaTime * rotation_speed);
+
+			// Set our velocity
+			physics.velocity = desired_velocity;
+		}
+		else if (dead)
+		{
+			// Start repair and reanimation process
+
+		}
+	}
+
+
+	public void Reanimation()
+	{
+		Debug.Log(player_name + " revived");
+		this.cur_health = max_health;
+		dead = false;
+		player_input_queue.Clear();
+		actions_queue.Clear();
+		physics.drag = 0;
+		top_anim.SetTrigger ("revive");
+		repairing_text.gameObject.SetActive(false);
+
+		foreach (Image anim in action_icons)
+		{
+			anim.sprite = open_action_slot;
 		}
 	}
 
@@ -137,7 +165,7 @@ public class RobotController : PlayerInput
 	IEnumerator Move_Action(Vector2 direction)
 	{
 		performing_action = true;
-		physics.velocity = direction;
+		desired_velocity = direction;
 		top_anim.SetBool ("walking", true);
 		audio.clip = moving_noise;
 		audio.Play ();
@@ -154,6 +182,7 @@ public class RobotController : PlayerInput
 		top_anim.SetBool ("walking", false);
 		performing_action = false;
 		physics.velocity = Vector2.zero;
+		desired_velocity = Vector2.zero;
 	}
 	IEnumerator MachineGun_Action(Vector2 direction)
 	{
@@ -207,15 +236,32 @@ public class RobotController : PlayerInput
 	// Takes all input currently entered and adds it to the queue that is executing actions
 	public void DequeuePlayerInput()
 	{
-		while (player_input_queue.Count > 0)
+		if (!dead)
 		{
-			string command = player_input_queue.Dequeue();
-			actions_queue.Enqueue(command);
-		}
+			while (player_input_queue.Count > 0)
+			{
+				string command = player_input_queue.Dequeue();
+				actions_queue.Enqueue(command);
+			}
 
-		foreach (Image anim in action_icons)
+			foreach (Image anim in action_icons)
+			{
+				anim.sprite = open_action_slot;
+			}
+		}
+		else
 		{
-			anim.sprite = open_action_slot;
+			// Dead, don't dequeue actions anymore, instead queue more
+			if (player_input_queue.Count >= 5)
+			{
+				// Done our time, revive
+				Reanimation();
+			}
+			else
+			{
+				player_input_queue.Enqueue("Revive");
+				action_icons[player_input_queue.Count - 1].sprite = filled_action_slot;
+			}
 		}
 	}
 
@@ -270,9 +316,20 @@ public class RobotController : PlayerInput
 		CancelInvoke();
 		StopAllCoroutines();
 		dead = true;
+		physics.drag = 1000;
+		repairing_text.gameObject.SetActive(true);
+
+		// Clear queue
+		player_input_queue.Clear();
+		foreach (Image anim in action_icons)
+		{
+			anim.sprite = open_action_slot;
+		}
+		actions_queue.Clear();
+
 		audio.clip = death_noise;
 		audio.Play ();
 		top_anim.SetTrigger ("die");
-		Destroy (this.gameObject, 3);
+		//Destroy (this.gameObject, 3);
 	}
 }

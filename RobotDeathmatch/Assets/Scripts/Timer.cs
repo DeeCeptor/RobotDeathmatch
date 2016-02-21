@@ -7,8 +7,10 @@ public class Timer : MonoBehaviour
 {
 	public Text timer_text;
 	public float remaining_time;
+	public int alive_humans = 0;
 
-	void Start () {
+	void Start () 
+	{
 	
 	}
 	
