@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Linq;
 
 public class ModeScreen : MonoBehaviour 
 {
@@ -15,6 +17,8 @@ public class ModeScreen : MonoBehaviour
 			protect_humans.interactable = false;
 			PlayerInformation.player_info.cur_modes = PlayerInformation.Modes.Kill_Humans;
 		}
+
+		SortPlayerList();
 	}
 
 
@@ -33,13 +37,13 @@ public class ModeScreen : MonoBehaviour
 
 		// Team 1
 		// Human
-		Player plyr = PlayerInformation.player_info.players[0];
+		Player plyr = GetPlayer(1);
 		plyr.robot = false;
 		plyr.team_number = 1;
 		plyr.team_color = Color.red;
 		plyr.team_name = "Red";
 		// Robot
-		plyr = PlayerInformation.player_info.players[1];
+		plyr = GetPlayer(2);
 		plyr.robot = true;
 		plyr.team_number = 1;
 		plyr.team_color = Color.red;
@@ -48,13 +52,13 @@ public class ModeScreen : MonoBehaviour
 
 		// Team 2
 		// Human
-		plyr = PlayerInformation.player_info.players[2];
+		plyr = GetPlayer(3);
 		plyr.robot = false;
 		plyr.team_number = 2;
 		plyr.team_color = Color.blue;
 		plyr.team_name = "Blue";
 		// Robot
-		plyr = PlayerInformation.player_info.players[3];
+		plyr = GetPlayer(4);
 		plyr.robot = true;
 		plyr.team_number = 2;
 		plyr.team_color = Color.blue;
@@ -62,6 +66,26 @@ public class ModeScreen : MonoBehaviour
 
 
 		SceneManager.LoadScene("LevelSelect");
+	}
+
+
+	public void SortPlayerList()
+	{
+		List<Player> SortedList = PlayerInformation.player_info.players.OrderBy(o=>o.player_number).ToList();
+		PlayerInformation.player_info.players = SortedList;
+		Debug.Log("Player lists sorted");
+	}
+
+	public Player GetPlayer(int player_number)
+	{
+		foreach (Player plyr in PlayerInformation.player_info.players)
+		{
+			if (plyr.player_number == player_number)
+				return plyr;
+		}
+
+		Debug.Log("Did not find player number " + player_number);
+		return null;
 	}
 
 

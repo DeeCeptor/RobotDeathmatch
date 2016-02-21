@@ -10,6 +10,7 @@ public class PlayerInput : MonoBehaviour
 	public Color player_color = Color.white;
 	public string team_name;
 	public Color team_color;
+	public SpriteRenderer team_sprite;
 
 	public float max_health = 1000;
 	public float cur_health;
@@ -100,6 +101,7 @@ public class PlayerInput : MonoBehaviour
 
 	public virtual void TakeHit(float damage, Vector3 collision_position, string attacker_name)
 	{
+		float prev_health = cur_health;
 		cur_health = Mathf.Clamp(cur_health - damage, 0, max_health);
 
 		if (healthbar) 
@@ -107,18 +109,34 @@ public class PlayerInput : MonoBehaviour
 			healthbar.setHealth (cur_health);
 		}
 
-		if (cur_health <= 0)
+		if (cur_health <= 0 && prev_health > 0)
 			Die(attacker_name);
 	}
 	public virtual void Die(string attacker_name)
 	{
+		// Error catching
+		if (!AllScores.all_scores.scores.ContainsKey(player_name))
+			Debug.Log("No " + player_name + " score key found");
+		if (!AllScores.all_scores.scores.ContainsKey(attacker_name))
+			Debug.Log("No " + attacker_name + " score key found");
+		
 		if (!string.IsNullOrEmpty(attacker_name))
 		{
 			// Record kill and death
 			AllScores.all_scores.scores[player_name].deaths++;
 			AllScores.all_scores.scores[attacker_name].kills++;
 
-			Debug.Log(attacker_name + " killed " + this.player_name);
+			Debug.Log(attacker_name + " killed " + this.player_name + ". " + this.player_name + "'s K/D: " + 
+				AllScores.all_scores.scores[player_name].kills + "/" +
+				AllScores.all_scores.scores[player_name].deaths +
+				"   Attacker K/D: " + 				
+				AllScores.all_scores.scores[attacker_name].kills + "/" +
+				AllScores.all_scores.scores[attacker_name].deaths
+			);
+		}
+		else
+		{
+			Debug.Log("Attacker name is empty while attacking " + this.player_name);
 		}
 	}
 
@@ -126,5 +144,10 @@ public class PlayerInput : MonoBehaviour
 	public virtual void Colourize()
 	{
 
+	}
+	public virtual void ColourizeTeam()
+	{
+		team_sprite.color = new Color(team_color.r, team_color.g, team_color.b, 0.5f);
+		team_sprite.gameObject.SetActive(true);
 	}
 }

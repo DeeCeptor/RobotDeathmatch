@@ -52,9 +52,9 @@ public class Timer : MonoBehaviour
 				GameOver();
 			}
 		}
-		else if (PlayerInformation.player_info.cur_modes == PlayerInformation.Modes.Kill_Humans)
+		else if (PlayerInformation.player_info.cur_modes == PlayerInformation.Modes.Protect_Human)
 		{
-			Debug.Log("A huamn has died");
+			Debug.Log("A human has died");
 			big_text.StartText(new string[] { "HUMAN", "IS", "DEAD" });
 			GameOver();
 		}
