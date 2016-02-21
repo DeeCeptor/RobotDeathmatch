@@ -147,6 +147,7 @@ public class LevelSelectScreen : MonoBehaviour {
 				break;
 			case 2:
 				Debug.Log("loadLevel");
+			SceneManager.LoadScene("johns_level");
 				break;
 			case 3:
 				Debug.Log("loadLevel");
