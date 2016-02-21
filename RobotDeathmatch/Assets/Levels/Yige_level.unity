@@ -15133,6 +15133,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8206578, guid: edd4276acce157f409878ea315ef1258, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edd4276acce157f409878ea315ef1258, type: 2}
   m_IsPrefabParent: 0
@@ -19191,6 +19195,88 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aab25fe56aa9e7e4ab3325f958005ddc, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1600023213
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 373
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 233
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22408868, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 7e81c3fa95ac47548b5e8b5a20409a67, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1601634235 stripped
 Transform:
