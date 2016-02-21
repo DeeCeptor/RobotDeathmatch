@@ -155,11 +155,11 @@ public class LevelSelectScreen : MonoBehaviour {
 				break;
 			case 3:
 				Debug.Log("loadLevel");
-				SceneManager.LoadScene("Yige_level2");
+				SceneManager.LoadScene("Yige_level_2");
 				break;
 			case 4:
 				Debug.Log("loadLevel");
-				SceneManager.LoadScene("Yige_level4");
+				SceneManager.LoadScene("Yige_level_4");
 				break;
 			case 5:
 				Debug.Log("loadLevel");
