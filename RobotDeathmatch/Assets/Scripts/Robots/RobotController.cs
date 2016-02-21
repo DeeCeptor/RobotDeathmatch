@@ -74,7 +74,7 @@ public class RobotController : PlayerInput
 	}
 
 
-	public override void Colourize()
+	public void Colourize()
 	{
 		// Colour robot
 		top_sprite.color = player_color;
