@@ -11,6 +11,7 @@ public class RobotController : PlayerInput
 	Image[] action_icons;
 	Transform UI_parent; 
 	Animator top_anim;
+	bool dead = false;
 
 	Transform sprite_parent;
 	Quaternion desired_rotation;
@@ -35,7 +36,7 @@ public class RobotController : PlayerInput
 	float machine_gun_duration = .2f;
 	int num_machine_gun_bullets = 15;
 	float machine_gun_speed = 20.0f;
-	float machine_gun_damage = 50;
+	public float machine_gun_damage = 20;
 
 	public Sprite open_action_slot;
 	public Sprite filled_action_slot;
@@ -72,51 +73,54 @@ public class RobotController : PlayerInput
 
 	void Update () 
 	{
-		// We have all of the player input
-		UpdateInputs();
-
-		// If not maxed out on player inputs, allow more action inputs
-		if (player_input_queue.Count < input_limit)
+		if (Time.timeScale > 0 && !dead)
 		{
-			// Check for player input to be added the to the player input queue
-			if (prev_horizontal_movement == 0 && horizontal_movement != 0
-				&& Mathf.Abs(horizontal_movement) > Mathf.Abs(vertical_movement))
+			// We have all of the player input
+			UpdateInputs();
+
+			// If not maxed out on player inputs, allow more action inputs
+			if (player_input_queue.Count < input_limit)
 			{
-				if (horizontal_movement > 0)
-					QueueNewInput("MoveRight");
-				else
-					QueueNewInput("MoveLeft");
+				// Check for player input to be added the to the player input queue
+				if (prev_horizontal_movement == 0 && horizontal_movement != 0
+					&& Mathf.Abs(horizontal_movement) > Mathf.Abs(vertical_movement))
+				{
+					if (horizontal_movement > 0)
+						QueueNewInput("MoveRight");
+					else
+						QueueNewInput("MoveLeft");
+				}
+				if (prev_vertical_movement == 0 && vertical_movement != 0
+					&& Mathf.Abs(vertical_movement) > Mathf.Abs(horizontal_movement))
+				{
+					if (vertical_movement > 0)
+						QueueNewInput("MoveUp");
+					else
+						QueueNewInput("MoveDown");
+				}
+				// Aiming and firing
+				if (prev_flicked_aiming_direction == Vector2.zero && flicked_aiming_direction != Vector2.zero)
+				{
+					QueueNewInput("MachineGun " + flicked_aiming_direction.x + " " + flicked_aiming_direction.y);
+				}
 			}
-			if (prev_vertical_movement == 0 && vertical_movement != 0
-				&& Mathf.Abs(vertical_movement) > Mathf.Abs(horizontal_movement))
+
+			/*
+			if (player_input_queue.Count >= input_limit)
 			{
-				if (vertical_movement > 0)
-					QueueNewInput("MoveUp");
-				else
-					QueueNewInput("MoveDown");
-			}
-			// Aiming and firing
-			if (prev_flicked_aiming_direction == Vector2.zero && flicked_aiming_direction != Vector2.zero)
+				DequeuePlayerInput();
+			}*/
+
+
+			// Currently performing actions?
+			if (!performing_action)
 			{
-				QueueNewInput("MachineGun " + flicked_aiming_direction.x + " " + flicked_aiming_direction.y);
+				ResolveNextAction();
 			}
+
+			// Set correct rotation
+			sprite_parent.rotation = Quaternion.Slerp(sprite_parent.rotation, desired_rotation, Time.deltaTime * rotation_speed);
 		}
-
-		/*
-		if (player_input_queue.Count >= input_limit)
-		{
-			DequeuePlayerInput();
-		}*/
-
-
-		// Currently performing actions?
-		if (!performing_action)
-		{
-			ResolveNextAction();
-		}
-
-		// Set correct rotation
-		sprite_parent.rotation = Quaternion.Slerp(sprite_parent.rotation, desired_rotation, Time.deltaTime * rotation_speed);
 	}
 
 
@@ -253,13 +257,19 @@ public class RobotController : PlayerInput
 
 	public override void TakeHit(float damage, Vector3 collision_position, string attacker_name)
 	{
-		base.TakeHit(damage, collision_position, attacker_name);
-		GameObject spobj = Instantiate (robosparks, collision_position, this.transform.rotation) as GameObject;
-		Destroy (spobj, 1);
+		if (!dead)
+		{
+			base.TakeHit(damage, collision_position, attacker_name);
+			GameObject spobj = Instantiate (robosparks, collision_position, this.transform.rotation) as GameObject;
+			Destroy (spobj, 1);
+		}
 	}
 	public override void Die(string attacker_name)
 	{
 		base.Die(attacker_name);
+		CancelInvoke();
+		StopAllCoroutines();
+		dead = true;
 		audio.clip = death_noise;
 		audio.Play ();
 		top_anim.SetTrigger ("die");

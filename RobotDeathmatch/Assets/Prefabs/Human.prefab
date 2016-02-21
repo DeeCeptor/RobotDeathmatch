@@ -8,8 +8,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 424156}
+  - 114: {fileID: 11417616}
   - 50: {fileID: 5022688}
   - 58: {fileID: 5859200}
+  - 82: {fileID: 8230994}
   m_Layer: 9
   m_Name: Human
   m_TagString: Human
@@ -42,9 +44,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 405998}
   - 212: {fileID: 21224248}
-  - 114: {fileID: 11471222}
   - 95: {fileID: 9531902}
-  - 82: {fileID: 8214902}
   - 114: {fileID: 11464300}
   m_Layer: 9
   m_Name: Controller
@@ -210,7 +210,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &5859200
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -225,12 +225,12 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.27
---- !u!82 &8214902
+--- !u!82 &8230994
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 146496}
+  m_GameObject: {fileID: 126288}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -332,6 +332,52 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11417616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8682984c6687e254994f0f2da38b12dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_name: P1
+  team_number: 2
+  controller: 1
+  player_color: {r: 0, g: 0, b: 0, a: 0}
+  max_health: 100
+  cur_health: 0
+  horizontal_movement: 0
+  prev_horizontal_movement: 0
+  vertical_movement: 0
+  prev_vertical_movement: 0
+  aiming_direction: {x: 0, y: 0}
+  prev_aiming_direction: {x: 0, y: 0}
+  flicked_aiming_direction: {x: 0, y: 0}
+  prev_flicked_aiming_direction: {x: 0, y: 0}
+  left_trigger_held_down: 0
+  left_trigger_pressed: 0
+  right_trigger_held_down: 0
+  right_trigger_pressed: 0
+  left_bumper_held_down: 0
+  left_bumper_pressed: 0
+  right_bumper_held_down: 0
+  right_bumper_pressed: 0
+  shot: {fileID: 161634, guid: c158b07802a434343a70dccb32d65d8b, type: 2}
+  shotSpawn: {fileID: 485954}
+  FireRate: 0.25
+  target: {fileID: 405998}
+  DeathNoise: {fileID: 8300000, guid: 9dafc746234b4bd418c5df122d22c68b, type: 3}
+  Gunshot: {fileID: 8300000, guid: 24c5de575b831cc40a3262a7861f27b6, type: 3}
+  bloodspray: {fileID: 117382, guid: a3b9557a16af2d64dbf9f89c05721a2b, type: 2}
+  bloodpool1: {fileID: 128596, guid: 73e6c8b74c1ecf6468847c23ef6c6f5a, type: 2}
+  bloodpool2: {fileID: 129082, guid: e9eb5aeda079970449866f2479ca03e0, type: 2}
+  bloodpool3: {fileID: 111026, guid: bdc5cd7d43085ec43a5076680b1a256e, type: 2}
+  parent: {fileID: 0}
+  speed: 5
+  bullet_damage: 7
 --- !u!114 &11453116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -369,50 +415,6 @@ MonoBehaviour:
   healthContainer: {fileID: 139680}
   maxHealth: 100
   fadeDelay: 1
---- !u!114 &11471222
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 146496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8682984c6687e254994f0f2da38b12dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player_name: P1
-  team_number: 2
-  controller: 1
-  player_color: {r: 0, g: 0, b: 0, a: 0}
-  max_health: 1000
-  cur_health: 0
-  horizontal_movement: 0
-  prev_horizontal_movement: 0
-  vertical_movement: 0
-  prev_vertical_movement: 0
-  aiming_direction: {x: 0, y: 0}
-  prev_aiming_direction: {x: 0, y: 0}
-  flicked_aiming_direction: {x: 0, y: 0}
-  prev_flicked_aiming_direction: {x: 0, y: 0}
-  left_trigger_held_down: 0
-  left_trigger_pressed: 0
-  right_trigger_held_down: 0
-  right_trigger_pressed: 0
-  left_bumper_held_down: 0
-  left_bumper_pressed: 0
-  right_bumper_held_down: 0
-  right_bumper_pressed: 0
-  shot: {fileID: 161634, guid: c158b07802a434343a70dccb32d65d8b, type: 2}
-  shotSpawn: {fileID: 485954}
-  FireRate: 0.25
-  DeathNoise: {fileID: 8300000, guid: 9dafc746234b4bd418c5df122d22c68b, type: 3}
-  Gunshot: {fileID: 8300000, guid: 24c5de575b831cc40a3262a7861f27b6, type: 3}
-  bloodspray: {fileID: 117382, guid: a3b9557a16af2d64dbf9f89c05721a2b, type: 2}
-  bloodpool1: {fileID: 128596, guid: 73e6c8b74c1ecf6468847c23ef6c6f5a, type: 2}
-  bloodpool2: {fileID: 129082, guid: e9eb5aeda079970449866f2479ca03e0, type: 2}
-  bloodpool3: {fileID: 111026, guid: bdc5cd7d43085ec43a5076680b1a256e, type: 2}
-  parent: {fileID: 0}
-  speed: 5
 --- !u!212 &21224248
 SpriteRenderer:
   m_ObjectHideFlags: 1

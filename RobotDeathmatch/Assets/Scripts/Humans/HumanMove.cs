@@ -27,7 +27,7 @@ public class HumanMove : PlayerInput {
 	private float nextFire;
 	public float speed;
 	float bullet_speed = 15;
-	float bullet_damage = 10;
+	public float bullet_damage = 50;
 
 
 	Animator anim;
@@ -36,7 +36,6 @@ public class HumanMove : PlayerInput {
 	void Awake () 
 	{
 		parent = this.gameObject;
-		target = this.GetComponent<Transform> ();
 		anim = this.GetComponentInChildren<Animator> ();
 		thisCollider = GetComponent<CircleCollider2D> ();
 		audio = GetComponent<AudioSource> ();
@@ -69,21 +68,18 @@ public class HumanMove : PlayerInput {
 				// Rotate towards desired rotation
 				if (!controller)
 				{
-					Debug.Log("A");
 					mouse_pos = Input.mousePosition;
 					human_pos = Camera.main.WorldToScreenPoint (target.position);
 					mouse_pos.x = mouse_pos.x - human_pos.x;
 					mouse_pos.y = mouse_pos.y - human_pos.y;
 					angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg - 90;
-					transform.rotation = Quaternion.Euler (0, 0, angle);
+					target.rotation = Quaternion.Euler (0, 0, angle);
 				}
 				else
 				{
-					Debug.Log("b");
-				
 					// Look towards where shooting or if we haven't shot in a while rotate towards movement direction
 					// Check if we've shot recently
-					if (Time.time > nextFire + 0.8f)
+					if (Time.time > nextFire + 0.8f && movement != Vector2.zero)
 					{
 						// Rotate towards walking direction
 						float angle_ = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;

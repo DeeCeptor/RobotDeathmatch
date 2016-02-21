@@ -98,9 +98,10 @@ public class PlayerInput : MonoBehaviour
 
 	public virtual void TakeHit(float damage, Vector3 collision_position, string attacker_name)
 	{
-		cur_health -= damage;
+		cur_health = Mathf.Clamp(cur_health - damage, 0, max_health);
 
-		if (healthbar) {
+		if (healthbar) 
+		{
 			healthbar.setHealth (cur_health);
 		}
 

@@ -216,7 +216,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.529263, y: 6.001567, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 414938}
@@ -457,11 +457,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c450e16d5ab26944bafdb24024a5b1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_name: P1
+  player_name: P2
   team_number: 1
   controller: 1
   player_color: {r: 0, g: 0, b: 0, a: 0}
-  max_health: 1000
+  max_health: 100
   cur_health: 0
   horizontal_movement: 0
   prev_horizontal_movement: 0
@@ -483,6 +483,7 @@ MonoBehaviour:
   death_noise: {fileID: 8300000, guid: 95f9b8dae3648844a9a8b3e98eb5fe44, type: 3}
   machinegun_noise: {fileID: 8300000, guid: 17c831db104899947a54efd842838a05, type: 3}
   moving_noise: {fileID: 8300000, guid: 3e4c8e0566445c043b68ffd9bcc02ff7, type: 3}
+  machine_gun_damage: 10
   open_action_slot: {fileID: 21300000, guid: 916e39967447569408ff06a177796b4a, type: 3}
   filled_action_slot: {fileID: 21300000, guid: 16ae21f63b7bf12489fe194705c3a3cf, type: 3}
   robosparks: {fileID: 113900, guid: ba7876803c0ea1a438e043187ec92918, type: 2}
