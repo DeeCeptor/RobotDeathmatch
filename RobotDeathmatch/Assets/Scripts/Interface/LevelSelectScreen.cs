@@ -143,6 +143,7 @@ public class LevelSelectScreen : MonoBehaviour {
 				break;
 			case 1:
 				Debug.Log("loadLevel");
+				SceneManager.LoadScene("Catacombs");
 				break;
 			case 2:
 				Debug.Log("loadLevel");

@@ -33,7 +33,7 @@ public class OpeningText : MonoBehaviour
 	void Update () 
 	{
 		int statement_num = (int) ((Time.time - start_time)/ statement_duration);
-		Debug.Log(statement_num + ""+ statements);
+
 		if (statement_num >= statements.Length)
 			statement_text.gameObject.SetActive(false);
 		else

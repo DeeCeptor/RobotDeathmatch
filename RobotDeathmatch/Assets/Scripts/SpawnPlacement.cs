@@ -38,7 +38,7 @@ public class SpawnPlacement : MonoBehaviour
 			// Set some information
 			PlayerInput input = obj.GetComponent<PlayerInput>();
 			if (input == null)
-				input.GetComponentInChildren<PlayerInput>();
+				input = obj.GetComponentInChildren<PlayerInput>();
 			input.player_name = plyr.player_string;
 			input.player_color = plyr.player_colour;
 			input.team_number = (plyr.robot ? 2 : 1);
