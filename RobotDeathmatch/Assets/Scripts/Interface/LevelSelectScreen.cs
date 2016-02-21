@@ -163,6 +163,7 @@ public class LevelSelectScreen : MonoBehaviour {
 				break;
 			case 5:
 				Debug.Log("loadLevel");
+			SceneManager.LoadScene("Columns");
 				break;
 		}
 	}
