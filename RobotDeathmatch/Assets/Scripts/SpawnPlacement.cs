@@ -34,7 +34,7 @@ public class SpawnPlacement : MonoBehaviour
 			GameObject obj = (GameObject) Instantiate(Resources.Load(spawn_string) as GameObject, 
 				spawn_points[x].position, 
 				Quaternion.identity);
-			Debug.Log(plyr.player_string + " " + plyr.robot);
+
 			// Set some information
 			PlayerInput input = obj.GetComponent<PlayerInput>();
 			if (input == null)
@@ -50,9 +50,11 @@ public class SpawnPlacement : MonoBehaviour
 			}
 			else if (PlayerInformation.player_info.cur_modes == PlayerInformation.Modes.Protect_Human)
 			{
+				Debug.Log("Protect human mode");
 				input.team_number = plyr.team_number;
 				input.team_name = plyr.team_name;
 				input.team_color = plyr.team_color;
+				input.ColourizeTeam();
 			}
 			input.Colourize();
 

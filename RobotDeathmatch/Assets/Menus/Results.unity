@@ -96,7 +96,7 @@ GameObject:
   - 222: {fileID: 27296093}
   - 114: {fileID: 27296092}
   m_Layer: 5
-  m_Name: p3 kills
+  m_Name: p3 deaths
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ RectTransform:
   m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 1}
   m_Children: []
   m_Father: {fileID: 537866273}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 2.8, y: -30.000038}
@@ -677,8 +677,8 @@ RectTransform:
   - {fileID: 201339556}
   - {fileID: 1227286688}
   - {fileID: 495244447}
-  - {fileID: 27296091}
   - {fileID: 1986420921}
+  - {fileID: 27296091}
   - {fileID: 406424057}
   - {fileID: 940869022}
   - {fileID: 1631772273}
@@ -914,7 +914,7 @@ MonoBehaviour:
   p4kills: {fileID: 406424058}
   p1deaths: {fileID: 850709929}
   p2deaths: {fileID: 1227286689}
-  p3deaths: {fileID: 1986420922}
+  p3deaths: {fileID: 27296092}
   p4deaths: {fileID: 1887051507}
 --- !u!1 &850709927
 GameObject:
@@ -1598,7 +1598,7 @@ GameObject:
   - 222: {fileID: 1986420923}
   - 114: {fileID: 1986420922}
   m_Layer: 5
-  m_Name: p3 deaths
+  m_Name: p3 kills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1615,7 +1615,7 @@ RectTransform:
   m_LocalScale: {x: 0.49999994, y: 0.49999994, z: 1}
   m_Children: []
   m_Father: {fileID: 537866273}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -54.99974, y: -30.000038}
