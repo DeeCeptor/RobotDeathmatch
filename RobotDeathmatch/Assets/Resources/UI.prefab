@@ -26,6 +26,7 @@ GameObject:
   - 224: {fileID: 22496158}
   - 222: {fileID: 22257270}
   - 114: {fileID: 11460734}
+  - 114: {fileID: 11420624}
   m_Layer: 0
   m_Name: TimerText
   m_TagString: Untagged
@@ -61,6 +62,7 @@ GameObject:
   - 224: {fileID: 22400974}
   - 222: {fileID: 22291266}
   - 114: {fileID: 11493318}
+  - 114: {fileID: 11420904}
   m_Layer: 0
   m_Name: TimerText
   m_TagString: Untagged
@@ -132,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer_text: {fileID: 11460734}
-  remaining_time: 5
+  remaining_time: 240
   alive_humans: 0
   big_text: {fileID: 11479248}
 --- !u!114 &11405020
@@ -151,6 +153,34 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &11420624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &11420904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &11439822
 MonoBehaviour:
   m_ObjectHideFlags: 1
