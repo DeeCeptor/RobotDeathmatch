@@ -41,6 +41,14 @@ public class PlayerInput : MonoBehaviour
 	}
 
 
+	void Start()
+	{
+		// Register this player with the scores
+		if (!AllScores.all_scores.scores.ContainsKey(player_name))
+			AllScores.all_scores.scores.Add(player_name, new IndividualScore());
+	}
+
+
 	public void UpdateInputs () 
 	{
 		// Grab inputs from our controller
@@ -60,7 +68,6 @@ public class PlayerInput : MonoBehaviour
 
 			if (prev_aiming_direction == Vector2.zero && aiming_direction != Vector2.zero)
 			{
-				Debug.Log(aiming_direction.normalized);
 				flicked_aiming_direction = aiming_direction.normalized;
 			}
 			else
@@ -89,19 +96,28 @@ public class PlayerInput : MonoBehaviour
 
 
 
-	public virtual void TakeHit(float damage, Vector3 collision_position)
+	public virtual void TakeHit(float damage, Vector3 collision_position, string attacker_name)
 	{
-		cur_health -= damage;
+		cur_health = Mathf.Clamp(cur_health - damage, 0, max_health);
 
-		if (healthbar) {
+		if (healthbar) 
+		{
+			Debug.Log("A");
 			healthbar.setHealth (cur_health);
 		}
 
 		if (cur_health <= 0)
-			Die();
+			Die(attacker_name);
 	}
-	public virtual void Die()
+	public virtual void Die(string attacker_name)
 	{
+		if (!string.IsNullOrEmpty(attacker_name))
+		{
+			// Record kill and death
+			AllScores.all_scores.scores[player_name].deaths++;
+			AllScores.all_scores.scores[attacker_name].kills++;
 
+			Debug.Log(attacker_name + " killed " + this.player_name);
+		}
 	}
 }

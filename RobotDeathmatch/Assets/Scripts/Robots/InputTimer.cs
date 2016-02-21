@@ -52,7 +52,6 @@ public class InputTimer : MonoBehaviour
 	}
 	public void EnterInput()
 	{
-		Debug.Log("Entering input");
 		iterating = true;
 
 		// Done this iteration
