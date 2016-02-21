@@ -19,6 +19,10 @@ public class OpeningText : MonoBehaviour
 
 	public void StartText()
 	{
+		if (PlayerInformation.player_info != null 
+			&& PlayerInformation.player_info.cur_modes == PlayerInformation.Modes.Protect_Human)
+			statements = new string[] { "PROTECT", "YOUR", "HUMAN" };
+
 		start_time = Time.time;
 		statement_text.gameObject.SetActive(true);
 	}
