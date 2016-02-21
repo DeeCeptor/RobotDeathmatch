@@ -869,7 +869,7 @@ MonoBehaviour:
   slot4: {fileID: 1013698992}
   slot5: {fileID: 1680619200}
   slot6: {fileID: 76712372}
-  delay: 0.1
+  delay: 0.2
 --- !u!81 &1251513023
 AudioListener:
   m_ObjectHideFlags: 0
