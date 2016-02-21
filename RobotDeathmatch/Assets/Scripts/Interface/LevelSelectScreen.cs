@@ -52,7 +52,7 @@ public class LevelSelectScreen : MonoBehaviour {
 		}
 
 		if (Input.GetButtonDown ("Cancel")) {
-			SceneManager.LoadScene ("Join");
+			SceneManager.LoadScene ("ModeSelect");
 		}
 		selectLevel (current);
 	}
