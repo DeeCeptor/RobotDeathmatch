@@ -731,7 +731,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -168737581
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 95da7f00b63f29245997370f5feb04ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -822,6 +822,7 @@ GameObject:
   - 92: {fileID: 577035111}
   - 124: {fileID: 577035110}
   - 81: {fileID: 577035109}
+  - 114: {fileID: 577035113}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -896,6 +897,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &577035113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 577035107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f879e21ae94c3049bd5c84b1eba21c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p1kills: {fileID: 1277733248}
+  p2kills: {fileID: 201339557}
+  p3kills: {fileID: 27296092}
+  p4kills: {fileID: 406424058}
+  p1deaths: {fileID: 850709929}
+  p2deaths: {fileID: 1227286689}
+  p3deaths: {fileID: 1986420922}
+  p4deaths: {fileID: 1887051507}
 --- !u!1 &850709927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1029,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1326269169
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: eaa901390f61f5a4cbee557ce7b969dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1361,7 +1381,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -168737581
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a2eddc2aab7d27d41b7587a560a9e896, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

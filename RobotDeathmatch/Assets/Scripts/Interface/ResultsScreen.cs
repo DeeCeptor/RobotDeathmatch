@@ -16,6 +16,15 @@ public class ResultsScreen : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//getData
+		setPlayerKills("P1",AllScores.all_scores.scores["P1"].kills);
+		setPlayerKills("P2",AllScores.all_scores.scores["P2"].kills);
+		setPlayerKills("P3",AllScores.all_scores.scores["P3"].kills);
+		setPlayerKills("P4",AllScores.all_scores.scores["P4"].kills);
+
+		setPlayerDeaths("P1",AllScores.all_scores.scores["P1"].deaths);
+		setPlayerDeaths("P2",AllScores.all_scores.scores["P2"].deaths);
+		setPlayerDeaths("P3",AllScores.all_scores.scores["P3"].deaths);
+		setPlayerDeaths("P4",AllScores.all_scores.scores["P4"].deaths);
 	}
 	
 	// Update is called once per frame
