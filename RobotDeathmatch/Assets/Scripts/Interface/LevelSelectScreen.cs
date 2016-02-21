@@ -47,6 +47,10 @@ public class LevelSelectScreen : MonoBehaviour {
 		if (Input.GetButtonDown ("P1 A")) {
 			loadLevel ();
 		}
+
+		if (Input.GetButtonDown ("Cancel")) {
+			SceneManager.LoadScene ("Join");
+		}
 		selectLevel (current);
 	}
 
