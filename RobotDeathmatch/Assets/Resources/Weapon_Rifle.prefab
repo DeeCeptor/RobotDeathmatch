@@ -10,7 +10,7 @@ GameObject:
   - 224: {fileID: 22497148}
   - 222: {fileID: 22283216}
   - 114: {fileID: 11460328}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 212: {fileID: 21298926}
   - 58: {fileID: 5824600}
   - 114: {fileID: 11418760}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Weapon_Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - 223: {fileID: 22347716}
   - 114: {fileID: 11486932}
   - 114: {fileID: 11477886}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,6 +262,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
