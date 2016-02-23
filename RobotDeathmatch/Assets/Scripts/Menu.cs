@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -21,6 +21,7 @@ public class Menu : MonoBehaviour {
 		QuitMenu.enabled = true;
 		PlayButton.enabled = false;
 		ExitButton.enabled = false;
+        ExitGame();
 	}
 
 	public void NoPress()

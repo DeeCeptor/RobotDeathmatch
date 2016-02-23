@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEditor;
 
 // https://www.youtube.com/watch?v=ukYbRmmlaTM
 [ExecuteInEditMode]
@@ -17,9 +16,10 @@ public class GridSnap : MonoBehaviour
     }
 
 
+    #if UNITY_EDITOR
     void Update()
     {
-        if (EditorApplication.isPlaying)
+        if (UnityEditor.EditorApplication.isPlaying)
             return;
 
         if (
@@ -33,5 +33,6 @@ public class GridSnap : MonoBehaviour
             transform.position = new Vector3(x, y, z);
         }
     }
+    #endif
 
 }

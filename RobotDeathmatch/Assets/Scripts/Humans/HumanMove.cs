@@ -28,6 +28,7 @@ public class HumanMove : PlayerInput {
 
 	Quaternion desired_rotation;
 	float rotation_speed = 10f;
+    Vector2 last_movement_direction;
 
 	private float nextFire;
 	public float speed;
@@ -52,59 +53,62 @@ public class HumanMove : PlayerInput {
 	}
 	
 
-	void Update () {
-		if (Time.timeScale > 0) {
+	void Update ()
+    {
+		if (Time.timeScale > 0)
+        {
 			UpdateInputs ();
 
-			if (IsDead == false) {
+			if (IsDead == false)
+            {
+				float MoveHorizontal = this.horizontal_movement;
+				float MoveVertical = vertical_movement;
 
-					float MoveHorizontal = this.horizontal_movement;
-					float MoveVertical = vertical_movement;
+				Vector2 movement = new Vector2 (MoveHorizontal, -MoveVertical);
+				parent.GetComponent<Rigidbody2D> ().velocity = movement * speed;
 
-					Vector2 movement = new Vector2 (MoveHorizontal, -MoveVertical);
-					parent.GetComponent<Rigidbody2D> ().velocity = movement * speed;
+                if (movement != Vector2.zero)
+                    last_movement_direction = movement;
 
-					bool walking = MoveHorizontal != 0 || MoveVertical != 0;
+				bool walking = MoveHorizontal != 0 || MoveVertical != 0;
 					
 				anim.SetBool ("walking", walking);
 
+				FireBullet ();
 
-					FireBullet ();
-
-					// Rotate towards desired rotation
-					if (!controller) {
-						//Debug.Log ("A");
-						mouse_pos = Input.mousePosition;
-						human_pos = Camera.main.WorldToScreenPoint (target.position);
-						mouse_pos.x = mouse_pos.x - human_pos.x;
-						mouse_pos.y = mouse_pos.y - human_pos.y;
-						angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg - 90;
-						transform.rotation = Quaternion.Euler (0, 0, angle);
-					} else {
-						//Debug.Log ("b");
-				
-						// Look towards where shooting or if we haven't shot in a while rotate towards movement direction
-						// Check if we've shot recently
-						if (Time.time > nextFire + 0.8f) {
-							// Rotate towards walking direction
-							float angle_ = Mathf.Atan2 (movement.y, movement.x) * Mathf.Rad2Deg;
-							desired_rotation = Quaternion.AngleAxis (angle_ - 90, Vector3.forward);
-						}
-
-						this.target.rotation = Quaternion.Slerp (this.target.rotation, desired_rotation, Time.deltaTime * rotation_speed);
+				// Rotate towards mouse
+				if (!controller)
+                {
+					mouse_pos = Input.mousePosition;
+					human_pos = Camera.main.WorldToScreenPoint (target.position);
+					mouse_pos.x = mouse_pos.x - human_pos.x;
+					mouse_pos.y = mouse_pos.y - human_pos.y;
+					angle = Mathf.Atan2 (mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg - 90;
+					transform.rotation = Quaternion.Euler (0, 0, angle);
+				}
+                else
+                {
+					// Look towards where shooting or if we haven't shot in a while rotate towards movement direction
+					// Check if we've shot recently
+					if (Time.time > nextFire + 0.8f)
+                    {
+						// Rotate towards walking direction
+						float angle_ = Mathf.Atan2 (last_movement_direction.y, last_movement_direction.x) * Mathf.Rad2Deg;
+						desired_rotation = Quaternion.AngleAxis (angle_ - 90, Vector3.forward);
 					}
 
-
-
-				} else if (IsDead == true) {
-					thisCollider.enabled = false;
-
+					this.target.rotation = Quaternion.Slerp (this.target.rotation, desired_rotation, Time.deltaTime * rotation_speed);
 				}
-			
+			}
+            else if (IsDead == true)
+            {
+				thisCollider.enabled = false;
 
+			}
 		}
 	}
-	void FireBullet(){
+	void FireBullet()
+    {
 		if (Time.time > nextFire
 			&& ((controller && aiming_direction != Vector2.zero) || (!controller && flicked_aiming_direction != Vector2.zero)))
 		{

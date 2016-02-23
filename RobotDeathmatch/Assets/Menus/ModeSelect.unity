@@ -564,7 +564,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: protect your humans
+  m_Text: 'protect your humans
+
+    requires 4 players'
 --- !u!222 &1449491390
 CanvasRenderer:
   m_ObjectHideFlags: 0
