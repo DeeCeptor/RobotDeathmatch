@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class HumanMove : PlayerInput {
@@ -114,7 +114,6 @@ public class HumanMove : PlayerInput {
 				FireRate=0.1f;
 				shotSpawn = Guntip2.transform;
 				ammo-=1;
-				Debug.Log ("ammo");
 			}else if (HasRifle == false){
 				FireRate = 0.25f;
 				shotSpawn = Guntip1.transform;

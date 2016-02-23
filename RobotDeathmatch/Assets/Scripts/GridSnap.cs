@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 // https://www.youtube.com/watch?v=ukYbRmmlaTM
 [ExecuteInEditMode]
@@ -18,7 +19,12 @@ public class GridSnap : MonoBehaviour
 
     void Update()
     {
-        if (this.transform.parent == null
+        if (EditorApplication.isPlaying)
+            return;
+
+        if (
+            true || 
+            this.transform.parent == null
             || (this.transform.parent.name == "Terrain"))
         {
             x = Mathf.Round(transform.position.x / cell_size) * cell_size;

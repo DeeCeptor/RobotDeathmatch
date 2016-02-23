@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class SwitchingWeapons : MonoBehaviour {
@@ -35,7 +35,6 @@ public class SwitchingWeapons : MonoBehaviour {
 }
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log ("Hi");
 		if (other.tag == "Human") 
 		{
 			grabbed = true;

@@ -4544,6 +4544,14 @@ Prefab:
       propertyPath: spawn_points.Array.data[3]
       value: 
       objectReference: {fileID: 1599331960}
+    - target: {fileID: 11404534, guid: 0a19fa89a4d4e8a478dca95522bc2074, type: 2}
+      propertyPath: four_player_match_time
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 11404534, guid: 0a19fa89a4d4e8a478dca95522bc2074, type: 2}
+      propertyPath: three_player_match_time
+      value: 70
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a19fa89a4d4e8a478dca95522bc2074, type: 2}
   m_IsPrefabParent: 0

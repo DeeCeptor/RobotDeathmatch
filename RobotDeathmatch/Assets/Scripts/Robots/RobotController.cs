@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -12,7 +12,12 @@ public class RobotController : PlayerInput
 	Transform UI_parent; 
 	Animator top_anim;
 	bool dead = false;
+    bool invulnerable = false;      // Become invulnerable after reviving
+    float invulnerable_timer;
+    float invulnerability_time = 3.0f;
 	public Text repairing_text;
+    public Text invulnerable_text;
+    CircleCollider2D collider;
 
 	Transform sprite_parent;
 	Quaternion desired_rotation;
@@ -52,6 +57,7 @@ public class RobotController : PlayerInput
 
 	void Awake()
 	{
+        collider = this.GetComponent<CircleCollider2D>();
 		audio = this.GetComponent<AudioSource>();
 		sprite_parent = this.transform.FindChild("Sprites");
 		physics = this.GetComponent<Rigidbody2D>();
@@ -90,6 +96,17 @@ public class RobotController : PlayerInput
 		{
 			// We have all of the player input
 			UpdateInputs();
+
+            // Turn off invulnerability after a time
+            if (invulnerable)
+            {
+                invulnerable_timer -= Time.deltaTime;
+                if (invulnerable_timer <= 0)
+                {
+                    invulnerable = false;
+                    invulnerable_text.gameObject.SetActive(false);
+                }
+            }
 
 			// If not maxed out on player inputs, allow more action inputs
 			if (player_input_queue.Count < input_limit)
@@ -164,8 +181,15 @@ public class RobotController : PlayerInput
 		repairing_text.gameObject.SetActive(false);
 		audio.clip = revive_noise;
 		audio.Play ();
+        collider.enabled = true;
+        UpdateInputs();
 
-		foreach (Image anim in action_icons)
+        // Become invulnerable for a short time
+        invulnerable_timer = invulnerability_time;
+        invulnerable = true;
+        invulnerable_text.gameObject.SetActive(true);
+
+        foreach (Image anim in action_icons)
 		{
 			anim.sprite = open_action_slot;
 		}
@@ -326,7 +350,7 @@ public class RobotController : PlayerInput
 
 	public override void TakeHit(float damage, Vector3 collision_position, string attacker_name)
 	{
-		if (!dead)
+		if (!dead && !invulnerable)
 		{
 			base.TakeHit(damage, collision_position, attacker_name);
 			GameObject spobj = Instantiate (robosparks, collision_position, this.transform.rotation) as GameObject;
@@ -347,6 +371,9 @@ public class RobotController : PlayerInput
 			dead = true;
 			physics.drag = 1000;
 			repairing_text.gameObject.SetActive(true);
+
+            // Turn off collider so player can walk through
+            collider.enabled = false;
 
 			// Clear queue
 			player_input_queue.Clear();
