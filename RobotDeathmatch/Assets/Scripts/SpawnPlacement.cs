@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class SpawnPlacement : MonoBehaviour 
@@ -23,7 +23,34 @@ public class SpawnPlacement : MonoBehaviour
 	{
 		Debug.Log("Loaded player information for spawning");
 
-		for (int x = 0; x < PlayerInformation.player_info.players.Count; x++)
+        if (PlayerInformation.player_info.cur_modes == PlayerInformation.Modes.Kill_Humans)
+        {
+            // If mode is kill all humans, randomly select which player is the human
+            int human_num = Random.Range(0, PlayerInformation.player_info.players.Count);
+            Debug.Log("Randomized human player: " + (human_num + 1));
+            for (int x = 0; x < PlayerInformation.player_info.players.Count; x++)
+            {
+                Player plyr = PlayerInformation.player_info.players[x];
+
+                // Check if this is the human player
+                if (x == human_num)
+                {
+                    plyr.robot = false;
+                }
+                // Nope, is a robit
+                else
+                {
+                    plyr.robot = true;
+                }
+            }
+            // Make the human player in the first slot
+            Player hooman = PlayerInformation.player_info.players[human_num];
+            PlayerInformation.player_info.players.Remove(hooman);
+            PlayerInformation.player_info.players.Insert(0, hooman);
+        }
+
+
+        for (int x = 0; x < PlayerInformation.player_info.players.Count; x++)
 		{
 			Player plyr = PlayerInformation.player_info.players[x];
 			string spawn_string = "Human";

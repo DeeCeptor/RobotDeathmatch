@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -7,7 +7,7 @@ public class OpeningText : MonoBehaviour
 {
 	public string[] statements = new string[] 
 	{ "KILL", "ALL", "HUMANS" };
-	float statement_duration = 1f;
+	float statement_duration = 0.8f;
 	public Text statement_text;
 	float start_time;
 
